@@ -1,0 +1,2 @@
+INDEX
+Mostrar la bitacora
