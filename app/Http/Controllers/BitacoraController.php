@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bitacora;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class BitacoraController extends Controller
 {
@@ -14,7 +16,8 @@ class BitacoraController extends Controller
      */
     public function index()
     {
-        return view('bitacora.index');
+        $datos['bitacoras'] = Bitacora::paginate(10);
+        return view('bitacora.index', $datos);
     }
 
     /**
@@ -24,7 +27,7 @@ class BitacoraController extends Controller
      */
     public function create()
     {
-        
+
         return view('bitacora.create');
     }
 
@@ -39,9 +42,11 @@ class BitacoraController extends Controller
         //$datosBitacora = request()->all();
         $datosBitacora = request()->except('_token');
         Bitacora::insert($datosBitacora);
-        
+
         return response()->json($datosBitacora);
     }
+
+
 
     /**
      * Display the specified resource.
@@ -60,9 +65,11 @@ class BitacoraController extends Controller
      * @param  \App\Models\Bitacora  $bitacora
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bitacora $bitacora)
+    public function edit($id)
     {
-        //
+
+        $bitacora = Bitacora::findOrFail($id);
+        return view('bitacora.edit', compact('bitacora'));
     }
 
     /**
@@ -72,9 +79,13 @@ class BitacoraController extends Controller
      * @param  \App\Models\Bitacora  $bitacora
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bitacora $bitacora)
+    public function update(Request $request, $id)
     {
-        //
+        $datosBitacora = request()->except(['_token', '_method']);
+        Bitacora::where('id', '=', $id)->update($datosBitacora);
+
+        $bitacora = Bitacora::findOrFail($id);
+        return view('bitacora.edit', compact('bitacora'));
     }
 
     /**
@@ -83,8 +94,10 @@ class BitacoraController extends Controller
      * @param  \App\Models\Bitacora  $bitacora
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bitacora $bitacora)
+    public function destroy($id)
     {
-        //
+
+        Bitacora::destroy($id);
+        return redirect('bitacora');
     }
 }

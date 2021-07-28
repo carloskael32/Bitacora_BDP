@@ -26,7 +26,7 @@ class CreateBitacorasTable extends Migration
             $table->text('Observaciones');
            
 
-            $table->dateTime('Fecha_Hora', $precision = 0);
+            $table->date('fecha', $precision = 0);
         });
 
     
