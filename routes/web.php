@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BitacoraController;
+use Illuminate\Routing\RouteGroup;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +16,7 @@ use App\Http\Controllers\BitacoraController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 /*
@@ -29,4 +31,13 @@ Route::get('/bitacora/create',[BitacoraController::class,'create']);
 */
 
 // rutas mediante controlador a todas las clases
-Route::resource('bitacora', BitacoraController::class);
+Route::resource('bitacora', BitacoraController::class)->middleware('auth');
+Auth::routes(['register'=>false,'reset'=>false]);
+
+Route::get('/home', [BitacoraController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', [BitacoraController::class, 'index'])->name('home');
+    
+});

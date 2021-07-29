@@ -1,5 +1,18 @@
 
+@extends('layouts.app')
 
+@section('content')
+<div class="container">
+
+@if(Session::has('mensaje'))
+
+{{ Session::get('mensaje')}}
+
+@endif
+
+<a href="{{ url('bitacora/create') }}" class="btn btn-success">Nuevo Registro</a>
+<br>
+<br>
 <table class="table table-light">
 
     <thead class="thead-light">
@@ -13,7 +26,7 @@
             <th>UPS</th>
             <th>Generador</th>
             <th>Observaciones</th>
-            <th>Fecha Hora</th>
+            <th>Fecha</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -30,14 +43,16 @@
             <td>{{ $bitacora->UPS }}</td>
             <td>{{ $bitacora->Generador }}</td>
             <td>{{ $bitacora->Observaciones }}</td>
-            <td>{{ $bitacora->created_at }}</td>
+            <td>{{ $bitacora->Fecha }}</td>
             <td>
-                <a href="{{ url('/bitacora/'.$bitacora->id.'/edit') }}"> Editar </a>
-                |
-                <form action="{{ url('/bitacora/'.$bitacora->id) }}" method="POST">
+                <a href="{{ url('/bitacora/'.$bitacora->id.'/edit') }}" class="btn btn-warning"> Editar </a>
+
+                | 
+
+                <form action="{{ url('/bitacora/'.$bitacora->id) }}" class="d-inline" method="POST">
                     @csrf
                     {{ method_field('DELETE') }}
-                    <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+                    <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')"  value="Borrar">
                 </form>
             </td>
 
@@ -46,3 +61,5 @@
     </tbody>
 
 </table>
+</div>
+@endsection

@@ -39,11 +39,36 @@ class BitacoraController extends Controller
      */
     public function store(Request $request)
     {
+
+        $campos=[
+
+            'Agencia'=>'required|string|max:100',
+            'EncargadoOP'=>'required|string|max:100',
+            'Temperatura'=>'required|string|max:50',
+            'Humedad'=>'required|string|max:50',
+            'Filtracion'=>'required|string|max:50',
+            'UPS'=>'required|string|max:50',
+            'Generador'=>'required|string|max:50',
+            'Observaciones'=>'required|string|max:100',
+            'Fecha'=>'required|date|max:50',
+
+
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido'
+
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
         //$datosBitacora = request()->all();
         $datosBitacora = request()->except('_token');
         Bitacora::insert($datosBitacora);
 
-        return response()->json($datosBitacora);
+        
+
+        //return response()->json($datosBitacora);
+        return redirect('bitacora')->with('mensaje','Bitacora Agregada con Exito..');
     }
 
 
@@ -81,11 +106,16 @@ class BitacoraController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         $datosBitacora = request()->except(['_token', '_method']);
         Bitacora::where('id', '=', $id)->update($datosBitacora);
 
         $bitacora = Bitacora::findOrFail($id);
-        return view('bitacora.edit', compact('bitacora'));
+        //return view('bitacora.edit', compact('bitacora'));
+
+        //return response()->json($datosBitacora);
+        return redirect('bitacora')->with('mensaje','Registro Modificado..');
     }
 
     /**
@@ -98,6 +128,6 @@ class BitacoraController extends Controller
     {
 
         Bitacora::destroy($id);
-        return redirect('bitacora');
+        return redirect('bitacora')->with('mensaje','Registro Borrado..');
     }
 }

@@ -18,15 +18,15 @@ class CreateBitacorasTable extends Migration
 
             $table->string('Agencia');
             $table->string('EncargadoOP');
-            $table->float('Temperatura');
-            $table->float('Humedad');
+            $table->double('Temperatura');
+            $table->double('Humedad');
             $table->string('Filtracion');
             $table->string('UPS');
             $table->text('Generador');
             $table->text('Observaciones');
            
 
-            $table->date('fecha', $precision = 0);
+            $table->date('Fecha');
         });
 
     
