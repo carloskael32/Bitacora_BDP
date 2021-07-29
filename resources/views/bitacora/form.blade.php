@@ -56,12 +56,12 @@
     <input type="text" class="form-control" name="Observaciones" value="{{ isset($bitacora->Observaciones)?$bitacora->Observaciones:old('Observaciones') }}" id="Observaciones">
 </div>
 
-@if (isset($modo->Crear))
+
 <div class="form-group">
     <label for="Fecha">Fecha</label>
-    <input type="date" class="form-control" name="Fecha" value="{{ date('Y-m-d') }}" readonly>
+    <input type="date" class="form-control" name="Fecha" value="{{ isset($bitacora->Fecha)?$bitacora->Fecha:old('Fecha') }}" readonly>
 </div>
-@endif
+
 
 
 <!-- {{ date('Y-m-d H:i:s') }}-->
