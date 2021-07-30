@@ -16,7 +16,16 @@ class BitacoraController extends Controller
      */
     public function index()
     {
-        $datos['bitacoras'] = Bitacora::paginate(10);
+
+        /*
+        $datos['bitacoras'] = Bitacora::paginate(5);
+        return view('bitacora.index', $datos);
+        */
+
+
+        $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(5);
+
+
         return view('bitacora.index', $datos);
     }
 
@@ -40,22 +49,22 @@ class BitacoraController extends Controller
     public function store(Request $request)
     {
 
-        $campos=[
+        $campos = [
 
-            'Agencia'=>'required|string|max:100',
-            'EncargadoOP'=>'required|string|max:100',
-            'Temperatura'=>'required|string|max:50',
-            'Humedad'=>'required|string|max:50',
-            'Filtracion'=>'required|string|max:50',
-            'UPS'=>'required|string|max:50',
-            'Generador'=>'required|string|max:50',
-            'Observaciones'=>'required|string|max:100',
-            'Fecha'=>'required|date|max:50',
+            'Agencia' => 'required|string|max:100',
+            'EncargadoOP' => 'required|string|max:100',
+            'Temperatura' => 'required|string|max:50',
+            'Humedad' => 'required|string|max:50',
+            'Filtracion' => 'required|string|max:50',
+            'UPS' => 'required|string|max:50',
+            'Generador' => 'required|string|max:50',
+            'Observaciones' => 'required|string|max:100',
+            'Fecha' => 'required|date|max:50',
 
 
         ];
-        $mensaje=[
-            'required'=>'El :attribute es requerido'
+        $mensaje = [
+            'required' => 'El :attribute es requerido'
 
         ];
 
@@ -65,10 +74,10 @@ class BitacoraController extends Controller
         $datosBitacora = request()->except('_token');
         Bitacora::insert($datosBitacora);
 
-        
+
 
         //return response()->json($datosBitacora);
-        return redirect('bitacora')->with('mensaje','Bitacora Agregada con Exito..');
+        return redirect('bitacora')->with('mensaje', 'Bitacora Agregada con Exito..');
     }
 
 
@@ -115,7 +124,7 @@ class BitacoraController extends Controller
         //return view('bitacora.edit', compact('bitacora'));
 
         //return response()->json($datosBitacora);
-        return redirect('bitacora')->with('mensaje','Registro Modificado..');
+        return redirect('bitacora')->with('mensaje', 'Registro Modificado..');
     }
 
     /**
@@ -128,6 +137,6 @@ class BitacoraController extends Controller
     {
 
         Bitacora::destroy($id);
-        return redirect('bitacora')->with('mensaje','Registro Borrado..');
+        return redirect('bitacora')->with('mensaje', 'Registro Borrado..');
     }
 }

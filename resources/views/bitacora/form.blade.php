@@ -23,7 +23,7 @@
 
 <div class="form-group">
     <label for="EncargadoOP">EncargadoOP</label>
-    <input type="text" class="form-control" name="EncargadoOP" value="{{ isset($bitacora->EncargadoOP)?$bitacora->EncargadoOP:old('EncargadoOP') }}" id="EncargadoOP">
+    <input type="text" class="form-control" name="EncargadoOP" value="{{ isset($bitacora->EncargadoOP)?$bitacora->EncargadoOP:Auth::user()->name }}" id="EncargadoOP" readonly>
 </div>
 
 <div class="form-group">
@@ -56,11 +56,12 @@
     <input type="text" class="form-control" name="Observaciones" value="{{ isset($bitacora->Observaciones)?$bitacora->Observaciones:old('Observaciones') }}" id="Observaciones">
 </div>
 
-
+@if($modo == 'Crear')
 <div class="form-group">
     <label for="Fecha">Fecha</label>
-    <input type="date" class="form-control" name="Fecha" value="{{ isset($bitacora->Fecha)?$bitacora->Fecha:old('Fecha') }}" readonly>
+    <input type="date" class="form-control" name="Fecha" value="{{ isset($bitacora->Fecha)?$bitacora->Fecha:date('Y-m-d') }}" readonly>
 </div>
+@endif
 
 
 
