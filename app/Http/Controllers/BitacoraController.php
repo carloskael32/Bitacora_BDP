@@ -29,6 +29,21 @@ class BitacoraController extends Controller
         return view('bitacora.index', $datos);
     }
 
+    public function alertas()
+    {
+
+        $datos['bitacoras'] = DB::select('select * from bitacoras where Temperatura > 40 or Humedad > 85  order by id desc');
+
+        
+        return view('bitacora.alert', $datos);
+    }
+
+    public function reportes(){
+
+        return view('bitacora.report');
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

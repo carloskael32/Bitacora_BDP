@@ -32,12 +32,21 @@ Route::get('/bitacora/create',[BitacoraController::class,'create']);
 */
 
 // rutas mediante controlador a todas las clases
+
+
 Route::resource('bitacora', BitacoraController::class)->middleware('auth');
 Auth::routes();
 
-Route::get('/home', [BitacoraController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('/home', [BitacoraController::class, 'index'])->name('home');
     Route::get('/', [BitacoraController::class, 'index'])->name('home');
+    Route::get('/alertas',[BitacoraController::class,'alertas']);
+    Route::get('/reportes',[BitacoraController::class,'reportes']);
+
+
 });
+
+
+
