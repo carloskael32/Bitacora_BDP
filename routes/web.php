@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\PDFController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,11 +43,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [BitacoraController::class, 'index'])->name('home');
     Route::get('/', [BitacoraController::class, 'index'])->name('home');
-    Route::get('/alertas',[BitacoraController::class,'alertas']);
-    Route::get('/reportes',[BitacoraController::class,'reportes']);
+    Route::get('/alertas',[BitacoraController::class,'alertas'])->name('alertas');
+    Route::get('/reportes',[BitacoraController::class,'reportes'])->name('reportes');
 
 
 });
 
 
+Route::get('/pdf',[PDFController::class,'PDF'])->name('descargarpdf');
+
+Route::get('/report',[PDFController::class,'PDFBitacora'])->name('PDFBitacorareporte');
 

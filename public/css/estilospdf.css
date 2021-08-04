@@ -1,0 +1,23 @@
+@page{
+    margin: 0cm 0cm;
+    font-size: 1em;
+}
+
+body{
+margin: 2cm 0cm 0cm;
+
+
+}
+
+header{
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 1cm;
+    background-color: #242eb8;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}
+

@@ -17,13 +17,13 @@
 
 <div class="form-group">
     <label for="Agencia">Agencia</label>
-    <input type="text" class="form-control" name="Agencia" value="{{ isset($bitacora->Agencia)?$bitacora->Agencia:old('Agencia') }}" id="Agencia">
+    <input type="text" class="form-control" name="Agencia" value="{{ Auth::user()->agencia }}" id="Agencia" readonly>
 
 </div>
 
 <div class="form-group">
     <label for="EncargadoOP">EncargadoOP</label>
-    <input type="text" class="form-control" name="EncargadoOP" value="{{ isset($bitacora->EncargadoOP)?$bitacora->EncargadoOP:Auth::user()->name }}" id="EncargadoOP" readonly>
+    <input type="text" class="form-control" name="EncargadoOP" value="{{ Auth::user()->name }}" id="EncargadoOP" readonly>
 </div>
 
 <div class="form-group">

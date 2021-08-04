@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth;
 
 
 class BitacoraController extends Controller
@@ -23,7 +24,7 @@ class BitacoraController extends Controller
         */
 
 
-        $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(5);
+        $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(7);
 
 
         return view('bitacora.index', $datos);
@@ -34,14 +35,15 @@ class BitacoraController extends Controller
 
         $datos['bitacoras'] = DB::select('select * from bitacoras where Temperatura > 40 or Humedad > 85  order by id desc');
 
-        
+
         return view('bitacora.alert', $datos);
     }
 
-    public function reportes(){
-
-        return view('bitacora.report');
-
+    public function reportes()
+    {
+        $ag['agencias'] = DB::select('select agencia from bitacoras');
+        $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(7);
+        return view('bitacora.report', $datos, $ag);
     }
 
     /**

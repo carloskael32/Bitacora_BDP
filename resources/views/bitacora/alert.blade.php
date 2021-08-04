@@ -38,6 +38,7 @@
     <div class="row">
         <div class="col">
 
+        <a class="btn btn-primary" href="{{ route('descargarpdf') }}">imprimir</a>
             <table class=" table table-light">
 
                 <thead class="thead-light">
