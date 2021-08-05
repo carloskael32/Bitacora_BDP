@@ -14,26 +14,67 @@
                 </div>
 
                 <div class="card-body">
-                    <label for="exampleDataList" class="form-label">Selecciones alguna Agencia</label>
-<br>
-                    <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                        @foreach($agencias as $agencia)
-                     
-                        <option value="{{ $agencia->agencia }}">{{ $agencia->agencia }}</option>
 
-                        @endforeach
-                    </select>
-                    <br>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <a class="btn btn-primary " href="{{ route('PDFBitacorareporte',[$agencia->agencia]) }}" target="_blank">Generar Reporte</a>
+                    <!--
+                    <form action="{{ route('PDFBitacorareporte')}}" method="GET">
+
+                        <label for="exampleDataList" class="form-label">Selecciones alguna Agencia</label>
+                        <br>
+                        <div class="form-floating">
+                            <select name="agencia" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                <option selected>Open this select menu</option>
+                                @foreach($agencias as $agencia)
+
+                                <option value="{{ $agencia->agencia }}">{{ $agencia->agencia }} </option>
+
+                                @endforeach
+                            </select>
+                            <label for="floatingSelect">Works with selects</label>
+
+                        </div>
+                        <br>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <input class="btn btn-primary" type="submit" value="Generar Reporte">
+                        </div>
+
+                    </form>
+-->
 
 
+                    <!-- Genera reportes segun agencia -->
+                    <form action="{{ route('PDFBitacorareporte')}}" method="GET">
+                        <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
+                        <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="search...">
+                        <datalist name="agencia" id="datalistOptions">
+                            @foreach($agencias as $agencia)
+                            <option value="{{ $agencia->agencia }}">
+                                @endforeach
+                        </datalist>
+                        <br>
+
+                        <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label">Mes: </label>
+                        <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
                     </div>
+                    <br>
+
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <input class="btn btn-primary" type="submit" value="Generar Reporte">
+                        </div>
+
+                    </form>
+
+                    
+
 
                     <hr>
                     <br>
                     <br>
+
+<!-- Genera Reportes Segun Fechas-->
+
                     <h4 class="text-center">Ingrese el Intervalo
                         <br>
                         de Fechas
@@ -48,14 +89,10 @@
 
                         <input type="date" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
                     </div>
-
-
+                    <br>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                         <a class="btn btn-primary " href="{{ route('PDFBitacorareporte') }}" target="_blank">Generar Reporte</a>
                     </div>
-
-
-
                 </div>
 
                 <div class="card-footer text-muted text-center">
@@ -109,10 +146,6 @@
             <div class="pagination justify-content-center">
                 {!! $bitacoras->links() !!}
             </div>
-
-
-
-
 
 
         </div>

@@ -17,17 +17,33 @@ class PDFController extends Controller
         return $pdf->Stream('prueba.pdf');
     }
 
-    public function PDFBitacora(Request $agencia)
+    public function PDFBitacora(Request $request)
     {
         //$bitacoras = Bitacora::all();
         //$agencia = "la paz";
-        $bitacoras = DB::select('select * from bitacoras where agencia = ? order by id desc',[$agencia]);
-        $pdf = PDF::loadView('Bitacora.PDFReport',compact('bitacoras'));
+        //$request = request()->except('_token');
+        //$res =  implode($request);
+
+        
+
+        $agencia = $request->get('agencia');
+        $mes = $request->get('mes');
+
+        //return response()->json($mes);
+
+        $bitacoras = DB::select('select * from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
+
+
+          //return response()->json($bitacoras);
+        //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
+
+        $pdf = PDF::loadView('Bitacora.PDFReport', compact('bitacoras'));
         //return $pdf->Stream('Reporte.pdf');
-        return $pdf->setPaper('a4','landscape')->Stream('Reporte.pdf');
+        return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
 
-        //$bitacoras = DB::select('select * from users where active = ?', [1])
+
+        $collection = collect(['name' => 'taylor', 'framework' => 'laravel']);
+
+        $value = $collection->get('name');
     }
-
-
 }

@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-
+//PDF Dom
 Route::get('/pdf',[PDFController::class,'PDF'])->name('descargarpdf');
 
 Route::get('/report',[PDFController::class,'PDFBitacora'])->name('PDFBitacorareporte');
