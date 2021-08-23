@@ -44,8 +44,13 @@
 
                     <ul class="navbar-nav mr-auto">
 
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
+
+                        </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('bitacora.index') }}">{{ __('Bitacora') }}</a>
+                            <a class="nav-link" href="{{ route('bitacora') }}">{{ __('Bitacora') }}</a>
 
                         </li>
 

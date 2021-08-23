@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth;
 
+use App\Models\User;
+use App\Notifications\NotiBit;
+
+
 
 class BitacoraController extends Controller
 {
@@ -17,17 +21,21 @@ class BitacoraController extends Controller
      */
     public function index()
     {
+        $datos['bitacoras'] = DB::select('select c count(id) from  bitacoras ');
+        return view('bitacora.index',$datos);
+    }
+
+    public function bitacora()
+    {
+
 
         /*
         $datos['bitacoras'] = Bitacora::paginate(5);
         return view('bitacora.index', $datos);
         */
 
-
         $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(7);
-
-
-        return view('bitacora.index', $datos);
+        return view('bitacora.bitacora', $datos);
     }
 
     public function alertas()
@@ -41,7 +49,7 @@ class BitacoraController extends Controller
 
     public function reportes()
     {
-        $ag['agencias'] = DB::select('select agencia from bitacoras');
+        $ag['agencias'] = DB::select('select distinct agencia from bitacoras where 1=1');
         $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(7);
         return view('bitacora.report', $datos, $ag);
     }
@@ -65,6 +73,8 @@ class BitacoraController extends Controller
      */
     public function store(Request $request)
     {
+
+
 
         $campos = [
 
@@ -92,8 +102,18 @@ class BitacoraController extends Controller
         Bitacora::insert($datosBitacora);
 
 
+        //Notificacion
 
-        //return response()->json($datosBitacora);
+
+        $temperatura = $request->get('Temperatura');
+        $humedad = $request->get('Humedad');
+
+        if ($temperatura >= 40 or $humedad >= 85) {
+            $user = User::find(1);
+            $user->notify(new NotiBit);
+        }
+
+
         return redirect('bitacora')->with('mensaje', 'Bitacora Agregada con Exito..');
     }
 

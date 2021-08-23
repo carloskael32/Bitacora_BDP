@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use Barryvdh\DomPDF\facade as PDF;
 use PDF;
-use App\Bitacora;
 use Illuminate\Support\Facades\DB;
 
 
@@ -37,7 +36,7 @@ class PDFController extends Controller
           //return response()->json($bitacoras);
         //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
 
-        $pdf = PDF::loadView('Bitacora.PDFReport', compact('bitacoras'));
+        $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
         //return $pdf->Stream('Reporte.pdf');
         return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
 

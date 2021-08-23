@@ -33,8 +33,6 @@ Route::get('/bitacora/create',[BitacoraController::class,'create']);
 */
 
 // rutas mediante controlador a todas las clases
-
-
 Route::resource('bitacora', BitacoraController::class)->middleware('auth');
 Auth::routes();
 
@@ -43,6 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [BitacoraController::class, 'index'])->name('home');
     Route::get('/', [BitacoraController::class, 'index'])->name('home');
+
+    Route::get('/bitacora', [BitacoraController::class, 'bitacora'])->name('bitacora');
     Route::get('/alertas',[BitacoraController::class,'alertas'])->name('alertas');
     Route::get('/reportes',[BitacoraController::class,'reportes'])->name('reportes');
 
@@ -54,3 +54,14 @@ Route::get('/pdf',[PDFController::class,'PDF'])->name('descargarpdf');
 
 Route::get('/report',[PDFController::class,'PDFBitacora'])->name('PDFBitacorareporte');
 
+use App\Models\User;
+use App\Notifications\NotiBit;
+
+/*
+Route::get('/notificacion', function(){
+    $user = User::find(2);
+    $user->notify(new NotiBit);
+    return "notificacion enviada";
+
+});
+*/
