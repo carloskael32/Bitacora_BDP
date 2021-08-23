@@ -16,7 +16,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  
+
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
@@ -43,10 +43,29 @@
                     <!-- Left Side Of Navbar -->
 
                     <ul class="navbar-nav mr-auto">
+                        @auth
+                        @if (Auth::user()->acceso == "yes")
 
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('alertas') }}">{{ __('Alertas') }}</a>
 
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users') }}">{{ __('Usuarios') }}</a>
+                        </li>
+
+
+
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
                         </li>
 
                         <li class="nav-item">
@@ -55,17 +74,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('alertas') }}">{{ __('Alertas') }}</a>
-
-                        </li>
-
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
 
                         </li>
-
-                   
-
+                        @endif
+                        @endauth
 
 
                     </ul>
@@ -74,7 +87,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        
+
                         @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

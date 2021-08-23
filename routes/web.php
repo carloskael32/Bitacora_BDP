@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\RegisterUser;
+use App\Models\Bitacora;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/alertas',[BitacoraController::class,'alertas'])->name('alertas');
     Route::get('/reportes',[BitacoraController::class,'reportes'])->name('reportes');
 
+    Route::get('/users',[RegisterUser::class,'index'])->name('users');
 
 });
 
@@ -54,14 +58,3 @@ Route::get('/pdf',[PDFController::class,'PDF'])->name('descargarpdf');
 
 Route::get('/report',[PDFController::class,'PDFBitacora'])->name('PDFBitacorareporte');
 
-use App\Models\User;
-use App\Notifications\NotiBit;
-
-/*
-Route::get('/notificacion', function(){
-    $user = User::find(2);
-    $user->notify(new NotiBit);
-    return "notificacion enviada";
-
-});
-*/

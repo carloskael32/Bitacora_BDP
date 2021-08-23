@@ -16,7 +16,7 @@
 						<div class="card border-info mx-sm-1 p-3">
 							<div class="card border-info text-info p-3" ><span class="text-center fa fa-plane-departure" aria-hidden="true"></span></div>
 							<div class="text-info text-center mt-3"><h4>Registros</h4></div>
-							<div class="text-info text-center mt-2"><h1>{{ $bitacoras }}</h1></div>
+							<div class="text-info text-center mt-2"><h1></h1></div>
 						</div>
 					</div>
 					<div class="col-md-3">

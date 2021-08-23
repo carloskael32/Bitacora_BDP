@@ -21,8 +21,8 @@ class BitacoraController extends Controller
      */
     public function index()
     {
-        $datos['bitacoras'] = DB::select('select c count(id) from  bitacoras ');
-        return view('bitacora.index',$datos);
+        //$datos['bitacoras'] = DB::select('select c count(id) from  bitacoras ');
+        return view('bitacora.index');
     }
 
     public function bitacora()
@@ -35,7 +35,7 @@ class BitacoraController extends Controller
         */
 
         $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(7);
-        return view('bitacora.bitacora', $datos);
+        return view('bitacora.bitacora',$datos);
     }
 
     public function alertas()
