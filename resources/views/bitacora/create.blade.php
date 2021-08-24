@@ -8,7 +8,7 @@
 
 <form action="{{ url('/bitacora') }}" method="POST">
 @csrf
-@include('bitacora.form',['modo'=>'Crear'])
+@include('bitacora.form',['modo'=>'Registrar'])
 
 
 

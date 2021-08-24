@@ -42,7 +42,8 @@
 -->
 
 
-                    <!-- Genera reportes segun agencia -->
+                    <!-- Genera reportes segun agencia y mes -->
+                    <h4 class="text-center">Reportes por Mes</h4>
                     <form action="{{ route('PDFBitacorareporte')}}" method="GET">
                         <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
                         <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="search...">
@@ -54,10 +55,10 @@
                         <br>
 
                         <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label">Mes: </label>
-                        <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
-                    </div>
-                    <br>
+                            <label for="formGroupExampleInput" class="form-label">Mes: </label>
+                            <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+                        </div>
+                        <br>
 
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
@@ -66,33 +67,43 @@
 
                     </form>
 
-                    
-
-
                     <hr>
                     <br>
-                    <br>
 
-<!-- Genera Reportes Segun Fechas-->
+                    <!-- Genera Reportes Segun Fechas-->
 
-                    <h4 class="text-center">Ingrese el Intervalo
+                    <h4 class="text-center">Reporte con Intervalos
                         <br>
                         de Fechas
                     </h4>
+                    <form action="{{ route('PDFBitacorareporte')}}" method="GET">
+                        <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
+                        <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="search...">
+                        <datalist name="agencia" id="datalistOptions">
+                            @foreach($agencias as $agencia)
+                            <option value="{{ $agencia->agencia }}">
+                                @endforeach
+                        </datalist>
+                        <br>
 
-                    <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label">De: </label>
-                        <input type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
-                    </div>
-                    <div class="mb-3 ">
-                        <label for="formGroupExampleInput2" class="text-left">Hasta: </label>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput" class="form-label">De: </label>
+                            <input name="date1" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+                        </div>
+                        <br>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput" class="form-label">Hasta: </label>
+                            <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+                        </div>
 
-                        <input type="date" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-                    </div>
-                    <br>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <a class="btn btn-primary " href="{{ route('PDFBitacorareporte') }}" target="_blank">Generar Reporte</a>
-                    </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <input class="btn btn-primary" type="submit" value="Generar Reporte">
+                        </div>
+
+                    </form>
+
+
                 </div>
 
                 <div class="card-footer text-muted text-center">

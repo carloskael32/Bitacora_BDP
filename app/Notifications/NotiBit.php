@@ -41,6 +41,7 @@ class NotiBit extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->from('Monitoreo@bdp.com.bo', 'Monitoreo')
                     ->greeting('Alerta!..')
                     ->line('Se ha Registrado datos Fuera de los Parametros establecidos ')
                     ->action('Revisar', url('/alertas'))

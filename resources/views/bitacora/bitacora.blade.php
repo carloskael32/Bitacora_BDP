@@ -10,7 +10,7 @@
 
     <div class="row justify-content-center">
 
-       
+
 
         <div class="col-md-10">
 
@@ -82,13 +82,11 @@
             <div class="pagination justify-content-center">
                 {!! $bitacoras->links() !!}
             </div>
-
         </div>
-
-
     </div>
-
-
 </div>
+
+
+
 
 @endsection

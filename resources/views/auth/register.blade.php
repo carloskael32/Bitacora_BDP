@@ -27,7 +27,7 @@
 
 
 
-            <a href="{{ url('bitacora/create') }}" class="btn btn-success">Nuevo Registro</a>
+            <a href="{{ url('#') }}" class="btn btn-success">Nuevo Registro</a>
             <br>
             <br>
             <table class=" table table-light">
@@ -55,11 +55,11 @@
               
 
                         <td>
-                            <a href="{{ url('/bitacora/'.$user->id.'/edit') }}" class="btn btn-warning"> Editar </a>
+                            <a href="{{ url('#') }}" class="btn btn-warning"> Editar </a>
 
                             |
 
-                            <form action="{{ url('/bitacora/'.$user->id) }}" class="d-inline" method="POST">
+                            <form action="{{ url('#') }}" class="d-inline" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
