@@ -19,6 +19,7 @@ class NotiBit extends Notification
     public function __construct()
     {
         //
+        
     }
 
     /**

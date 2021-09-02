@@ -37,19 +37,39 @@ Route::get('/bitacora/create',[BitacoraController::class,'create']);
 
 // rutas mediante controlador a todas las clases
 Route::resource('bitacora', BitacoraController::class)->middleware('auth');
+//Route::resource('user', RegisterUser::class)->middleware('auth');
 Auth::routes();
 
 
 Route::group(['middleware' => 'auth'], function () {
-
+    
+    //inicio
     Route::get('/home', [BitacoraController::class, 'index'])->name('home');
     Route::get('/', [BitacoraController::class, 'index'])->name('home');
-
+    
+    //Bitacoras
     Route::get('/bitacora', [BitacoraController::class, 'bitacora'])->name('bitacora');
     Route::get('/alertas',[BitacoraController::class,'alertas'])->name('alertas');
     Route::get('/reportes',[BitacoraController::class,'reportes'])->name('reportes');
 
-    Route::get('/users',[RegisterUser::class,'index'])->name('users');
+    //Usuarios
+    
+    
+    Route::get('/user',[RegisterUser::class,'index'])->name('user');
+    Route::get('user/create',[RegisterUser::class,'create'])->name('user.create');
+
+    Route::post('/register',[RegisterUser::class, 'store'])->name('user.store');
+    Route::get('/user/{id}/edit',[RegisterUser::class, 'edit'])->name('user.edit');
+    Route::patch('user/{id}',[RegisterUser::class, 'update'])->name('user.update');
+    Route::post('/user/{id}',[RegisterUser::class, 'destroy'])->name('user.destroy');
+
+    //creditos/{id}/edit/{val}
+
+
+    
+    
+    
+    
 
 });
 

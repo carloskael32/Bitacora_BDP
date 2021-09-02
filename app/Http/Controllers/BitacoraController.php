@@ -10,7 +10,9 @@ use App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Notifications\NotiBit;
 
+use Illuminate\Support\Facades\Notification;
 
+//use Illuminate\Support\Facades\Notification;
 
 class BitacoraController extends Controller
 {
@@ -104,13 +106,19 @@ class BitacoraController extends Controller
 
         //Notificacion
 
-
         $temperatura = $request->get('Temperatura');
         $humedad = $request->get('Humedad');
 
         if ($temperatura >= 40 or $humedad >= 85) {
-            $user = User::find(1);
-            $user->notify(new NotiBit);
+
+            $adm = DB::select('select email from users where acceso = "yes"');
+         
+            Notification::route('mail', $adm)->notify(new NotiBit);
+            
+
+            //$user = User::find(1);
+            //$user->notify(new NotiBit);
+            
         }
 
 
