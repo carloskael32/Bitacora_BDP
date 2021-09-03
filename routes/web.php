@@ -8,6 +8,7 @@ use App\Http\Controllers\RegisterUser;
 use App\Models\Bitacora;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SessionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+/*
 Route::get('/', function () {
-    return view('auth.login');
+    return view('user.login');
+});
+*/
+
+Route::get('/', function () {
+    return view('user.login');
+});
+
+
+Route::get('/home', function () {
+    return view('user.login');
 });
 
 /*
@@ -38,43 +50,39 @@ Route::get('/bitacora/create',[BitacoraController::class,'create']);
 // rutas mediante controlador a todas las clases
 Route::resource('bitacora', BitacoraController::class)->middleware('auth');
 //Route::resource('user', RegisterUser::class)->middleware('auth');
-Auth::routes();
 
+//Auth::routes();
+
+    //login
+    Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
+    Route::get('/logout', [SessionsController::class, 'destroy'])->name('logout.destroy')->middleware('auth');
+    Route::get('/login', [SessionsController::class, 'index'])->name('login.index')->middleware('guest');
 
 Route::group(['middleware' => 'auth'], function () {
-    
+
+
     //inicio
     Route::get('/home', [BitacoraController::class, 'index'])->name('home');
     Route::get('/', [BitacoraController::class, 'index'])->name('home');
-    
+
     //Bitacoras
     Route::get('/bitacora', [BitacoraController::class, 'bitacora'])->name('bitacora');
-    Route::get('/alertas',[BitacoraController::class,'alertas'])->name('alertas');
-    Route::get('/reportes',[BitacoraController::class,'reportes'])->name('reportes');
+    Route::get('/alertas', [BitacoraController::class, 'alertas'])->name('alertas');
+    Route::get('/reportes', [BitacoraController::class, 'reportes'])->name('reportes');
 
     //Usuarios
-    
-    
-    Route::get('/user',[RegisterUser::class,'index'])->name('user');
-    Route::get('user/create',[RegisterUser::class,'create'])->name('user.create');
+    Route::get('/user', [RegisterUser::class, 'index'])->name('user');
+    Route::get('user/create', [RegisterUser::class, 'create'])->name('user.create');
 
-    Route::post('/register',[RegisterUser::class, 'store'])->name('user.store');
-    Route::get('/user/{id}/edit',[RegisterUser::class, 'edit'])->name('user.edit');
-    Route::patch('user/{id}',[RegisterUser::class, 'update'])->name('user.update');
-    Route::post('/user/{id}',[RegisterUser::class, 'destroy'])->name('user.destroy');
-
-    //creditos/{id}/edit/{val}
-
-
-    
-    
-    
-    
-
+    Route::post('/register', [RegisterUser::class, 'store'])->name('user.store');
+    Route::get('/user/{id}/edit', [RegisterUser::class, 'edit'])->name('user.edit');
+    Route::patch('user/{id}', [RegisterUser::class, 'update'])->name('user.update');
+    Route::post('/user/{id}', [RegisterUser::class, 'destroy'])->name('user.destroy');
 });
 
 //PDF Dom
-Route::get('/pdf',[PDFController::class,'PDF'])->name('descargarpdf');
+Route::get('/pdf', [PDFController::class, 'PDF'])->name('descargarpdf');
 
-Route::get('/report',[PDFController::class,'PDFBitacora'])->name('PDFBitacorareporte');
+Route::get('/report', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorareporte');
 
+Route::get('/report2', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');

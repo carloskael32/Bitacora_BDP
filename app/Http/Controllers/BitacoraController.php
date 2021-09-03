@@ -52,7 +52,7 @@ class BitacoraController extends Controller
     public function reportes()
     {
         $ag['agencias'] = DB::select('select distinct agencia from bitacoras where 1=1');
-        $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(7);
+        $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(20);
         return view('bitacora.report', $datos, $ag);
     }
 

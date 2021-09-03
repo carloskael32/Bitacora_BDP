@@ -33,27 +33,36 @@ class PDFController extends Controller
         $bitacoras = DB::select('select * from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
 
 
-        //return response()->json($bitacoras);
-        //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
+        if ($bitacoras != null) {
+            //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
 
-        $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
-        //return $pdf->Stream('Reporte.pdf');
-        return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
-
-
-        //$collection = collect(['name' => 'taylor', 'framework' => 'laravel']);
-
-        //$value = $collection->get('name');
+            $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
+            //return $pdf->Stream('Reporte.pdf');
+            return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
+        } else {
+            return redirect('reportes')->with('mensaje', 'No se Encontraron Registros');
+        }
     }
 
     public function PDFBitacora2(Request $request)
     {
         $agencia = $request->get('agencia');
-        $mes = $request->get('mes');
+        $ini = $request->get('date1');
+        $fin = $request->get('date2');
 
-        $bitacoras = DB::select('select * from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
-        
-        $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
-        return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
+
+
+        $bitacoras = DB::select('select * from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by id desc', [$agencia, $ini, $fin]);
+
+        //return response()->json($bitacoras);
+        if ($bitacoras != null) {
+
+            $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
+            return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
+        }
+        else{
+            return redirect('reportes')->with('mensaje2', 'No se Encontraron Registros');
+        }
+
     }
 }

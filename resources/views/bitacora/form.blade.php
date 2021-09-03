@@ -17,6 +17,7 @@
     </div>
     <br>
     <div class="container-fluid">
+        <br>
         <h5><span class="text-center fa fa-home"></span>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</52>
         <hr>
         <div class="row justify-content-center">

@@ -64,9 +64,7 @@
 
 
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
-                        </li>
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('bitacora') }}">{{ __('Bitacora') }}</a>
@@ -108,12 +106,12 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('logout.destroy') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Cerrar Sesion') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('logout.destroy') }}" method="GET" class="d-none">
                                     @csrf
                                 </form>
                             </div>
