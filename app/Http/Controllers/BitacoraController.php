@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Auth;
+//use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Notifications\NotiBit;
-
+//use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Notification;
 
 //use Illuminate\Support\Facades\Notification;
@@ -30,14 +31,19 @@ class BitacoraController extends Controller
     public function bitacora()
     {
 
+        $user = Auth::user()->agencia;
 
+     
         /*
         $datos['bitacoras'] = Bitacora::paginate(5);
         return view('bitacora.index', $datos);
         */
+        
+        $datos['bitacoras'] = DB::table('bitacoras')->where('Agencia','=',$user)->orderByDesc('id')->paginate(7);
 
-        $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(7);
         return view('bitacora.bitacora',$datos);
+
+       
     }
 
     public function alertas()

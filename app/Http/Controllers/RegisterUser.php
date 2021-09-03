@@ -46,7 +46,7 @@ class RegisterUser extends Controller
             'agencia' => '',
             'acceso' => 'yes',
             'email' => request('email'),
-            'password' => request('password'),
+            'password' => Hash::make(request('password')),
         ]);
 
         return redirect()->to('/user');
