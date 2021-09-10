@@ -33,17 +33,15 @@ class BitacoraController extends Controller
 
         $user = Auth::user()->agencia;
 
-     
+
         /*
         $datos['bitacoras'] = Bitacora::paginate(5);
         return view('bitacora.index', $datos);
         */
-        
-        $datos['bitacoras'] = DB::table('bitacoras')->where('Agencia','=',$user)->orderByDesc('id')->paginate(7);
 
-        return view('bitacora.bitacora',$datos);
+        $datos['bitacoras'] = DB::table('bitacoras')->where('Agencia', '=', $user)->orderByDesc('id')->paginate(7);
 
-       
+        return view('bitacora.bitacora', $datos);
     }
 
     public function alertas()
@@ -57,9 +55,33 @@ class BitacoraController extends Controller
 
     public function reportes()
     {
-        $ag['agencias'] = DB::select('select distinct agencia from bitacoras where 1=1');
-        $datos['bitacoras'] = DB::table('bitacoras')->orderByDesc('id')->paginate(20);
-        return view('bitacora.report', $datos, $ag);
+        //$por['porcentaje'] = DB::select('select * from bitacoras where year(Fecha) = YEAR(NOW())');
+        if (Auth::user()->acceso == "no") {
+
+            $agencia = Auth::user()->agencia;
+
+            //return response()->json($ag);
+            //usuarios
+            $ene['enero'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 1 group by agencia ',[$agencia]);
+            //$ago['agosto'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 8 group by agencia ',[$agencia]);
+            //$sep['septiembre'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 9 group by agencia ',[$agencia]);
+            
+
+           $todo['todo'] = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? group by mes',[$agencia]);
+
+            return response()->json($todo);
+
+            return view('bitacora.report',$todo, $ene);
+
+        } else {
+            //administrador
+            $ag['agencias'] = DB::select('select distinct agencia from bitacoras where 1=1');
+            $datos['bitacoras'] = DB::table('bitacoras')->where('fecha', '=', date('Y-m-d'))->orderByDesc('id')->paginate(20);
+            return view('bitacora.report', $datos, $ag);
+        }
+
+        //return response()->json($datos);
+
     }
 
     /**
@@ -118,13 +140,13 @@ class BitacoraController extends Controller
         if ($temperatura >= 40 or $humedad >= 85) {
 
             $adm = DB::select('select email from users where acceso = "yes"');
-         
+
             Notification::route('mail', $adm)->notify(new NotiBit);
-            
+
 
             //$user = User::find(1);
             //$user->notify(new NotiBit);
-            
+
         }
 
 
