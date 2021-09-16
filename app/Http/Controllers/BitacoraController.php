@@ -55,23 +55,20 @@ class BitacoraController extends Controller
 
     public function reportes()
     {
-        //$por['porcentaje'] = DB::select('select * from bitacoras where year(Fecha) = YEAR(NOW())');
+
         if (Auth::user()->acceso == "no") {
 
             $agencia = Auth::user()->agencia;
 
             //return response()->json($ag);
             //usuarios
-            $ene['enero'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 1 group by agencia ',[$agencia]);
-            //$ago['agosto'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 8 group by agencia ',[$agencia]);
-            //$sep['septiembre'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 9 group by agencia ',[$agencia]);
+            //$ene['enero'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 1 group by agencia ',[$agencia]);
+          
+           $meses['meses'] = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? group by mes',[$agencia]);
             
+            //return response()->json($meses);
 
-           $todo['todo'] = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? group by mes',[$agencia]);
-
-            return response()->json($todo);
-
-            return view('bitacora.report',$todo, $ene);
+            return view('bitacora.report',$meses);
 
         } else {
             //administrador

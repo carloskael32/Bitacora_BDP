@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\facade as PDF;
+use Illuminate\Support\Facades\Auth;
 //use PDF;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,27 @@ class PDFController extends Controller
     {
         $pdf = PDF::loadView('prueba');
         return $pdf->Stream('prueba.pdf');
+    }
+
+
+    public function PDFBit(Request $request)
+    {
+
+        $agencia = Auth::user()->agencia;
+        $mes1 = $request->get('mes1');
+      
+        $mes = $request->get('mes');
+        //return response()->json($mes);
+        //return response()->json($mes); where year(Fecha) = YEAR(NOW())
+
+        $bitacoras = DB::select('select * from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ',[$agencia, $mes]);
+
+        //return response()->json($bitacoras);
+        //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
+        $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
+        //return $pdf->Stream('Reporte.pdf');
+
+        return $pdf->setPaper('carta', 'landscape')->download($mes1.'_Reporte.pdf');
     }
 
     public function PDFBitacora(Request $request)
@@ -31,7 +53,6 @@ class PDFController extends Controller
         //return response()->json($mes);
 
         $bitacoras = DB::select('select * from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
-
 
         if ($bitacoras != null) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
@@ -59,10 +80,8 @@ class PDFController extends Controller
 
             $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
-        }
-        else{
+        } else {
             return redirect('reportes')->with('mensaje2', 'No se Encontraron Registros');
         }
-
     }
 }
