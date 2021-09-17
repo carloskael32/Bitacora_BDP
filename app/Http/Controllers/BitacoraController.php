@@ -46,11 +46,14 @@ class BitacoraController extends Controller
 
     public function alertas()
     {
-
-        $datos['bitacoras'] = DB::select('select * from bitacoras where Temperatura > 40 or Humedad > 85  order by id desc');
-
-
+        //GENERADOR DE ALERTAS
+        $datos['bitacoras'] = DB::select('select * from bitacoras where fecha = date(now()) and (Temperatura > 40 or Humedad > 85) ');
+        //return response()->json($datos);
+        
+        
+        
         return view('bitacora.alert', $datos);
+
     }
 
     public function reportes()
@@ -185,7 +188,7 @@ class BitacoraController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //MODIFICAR BITACORAS
 
         $datosBitacora = request()->except(['_token', '_method']);
         Bitacora::where('id', '=', $id)->update($datosBitacora);
@@ -205,7 +208,7 @@ class BitacoraController extends Controller
      */
     public function destroy($id)
     {
-
+        // BORRAR BITACORAS
         Bitacora::destroy($id);
         return redirect('bitacora')->with('mensaje', 'Registro Borrado..');
     }

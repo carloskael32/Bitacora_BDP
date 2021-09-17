@@ -52,7 +52,8 @@
                         <th>Generador</th>
                         <th>Observaciones</th>
                         <th>Fecha</th>
-                      
+                        <th>Eventos</th>
+
                     </tr>
                 </thead>
 
@@ -70,7 +71,18 @@
                         <td>{{ $bitacora->Generador }}</td>
                         <td>{{ $bitacora->Observaciones }}</td>
                         <td>{{ $bitacora->Fecha }}</td>
-                     
+
+
+
+                        <td>
+                            <form action="{{ route('reportAlert')}}" method="GET">
+
+                                <input name="agencia" type="hidden" class="form-control" id="formGroupExampleInput" value="{{ $bitacora->Agencia}}">
+                                <input class="btn btn-success" type="submit" value="Ver Eventos">
+
+
+                            </form>
+                        </td>
 
                     </tr>
                     @endforeach

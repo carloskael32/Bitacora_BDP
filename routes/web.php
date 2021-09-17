@@ -53,10 +53,10 @@ Route::resource('bitacora', BitacoraController::class)->middleware('auth');
 
 //Auth::routes();
 
-    //login
-    Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
-    Route::get('/logout', [SessionsController::class, 'destroy'])->name('logout.destroy')->middleware('auth');
-    Route::get('/login', [SessionsController::class, 'index'])->name('login.index')->middleware('guest');
+//login
+Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
+Route::get('/logout', [SessionsController::class, 'destroy'])->name('logout.destroy')->middleware('auth');
+Route::get('/login', [SessionsController::class, 'index'])->name('login.index')->middleware('guest');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -88,3 +88,6 @@ Route::get('/reportBit', [PDFController::class, 'PDFBit'])->name('reportBit');
 Route::get('/report', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorareporte');
 
 Route::get('/report2', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
+
+
+Route::get('/reportAlert', [PDFController::class, 'PDFAlertas'])->name('reportAlert');
