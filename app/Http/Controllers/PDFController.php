@@ -32,7 +32,7 @@ class PDFController extends Controller
 
         //return response()->json($bitacoras);
         //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
-        $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
+        $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
         //return $pdf->Stream('Reporte.pdf');
 
         return $pdf->setPaper('carta', 'landscape')->download($mes1 . '_Reporte.pdf');
@@ -45,8 +45,6 @@ class PDFController extends Controller
         //$request = request()->except('_token');
         //$res =  implode($request);
 
-
-
         $agencia = $request->get('agencia');
         $mes = $request->get('mes');
 
@@ -57,7 +55,7 @@ class PDFController extends Controller
         if ($bitacoras != null) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
 
-            $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
             //return $pdf->Stream('Reporte.pdf');
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
         } else {
@@ -78,7 +76,7 @@ class PDFController extends Controller
         //return response()->json($bitacoras);
         if ($bitacoras != null) {
 
-            $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
         } else {
             return redirect('reportes')->with('mensaje2', 'No se Encontraron Registros');
@@ -91,7 +89,7 @@ class PDFController extends Controller
         $agencia = $request->get('agencia');
         $bitacoras = DB::select('select * from bitacoras where agencia = ? and (Temperatura > 40 or Humedad > 85) order by fecha desc', [$agencia]);
         //return response()->json($alerta);
-        $pdf = PDF::loadView('bitacora.PDFReport', compact('bitacoras'));
+        $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
         return $pdf->setPaper('carta', 'landscape')->Stream('Resumen.pdf');
     }
 }

@@ -49,10 +49,8 @@ class BitacoraController extends Controller
         //GENERADOR DE ALERTAS
         $datos['bitacoras'] = DB::select('select * from bitacoras where fecha = date(now()) and (Temperatura > 40 or Humedad > 85) ');
         //return response()->json($datos);
-        
-        
-        
-        return view('bitacora.alert', $datos);
+
+        return view('complebit.alert', $datos);
 
     }
 
@@ -71,13 +69,13 @@ class BitacoraController extends Controller
             
             //return response()->json($meses);
 
-            return view('bitacora.report',$meses);
+            return view('complebit.report',$meses);
 
         } else {
             //administrador
             $ag['agencias'] = DB::select('select distinct agencia from bitacoras where 1=1');
             $datos['bitacoras'] = DB::table('bitacoras')->where('fecha', '=', date('Y-m-d'))->orderByDesc('id')->paginate(20);
-            return view('bitacora.report', $datos, $ag);
+            return view('complebit.report', $datos, $ag);
         }
 
         //return response()->json($datos);
@@ -141,7 +139,7 @@ class BitacoraController extends Controller
 
             $adm = DB::select('select email from users where acceso = "yes"');
 
-            Notification::route('mail', $adm)->notify(new NotiBit);
+            Notification::route('mail', $adm)->notify(new NotiBit('CPD'));
 
 
             //$user = User::find(1);

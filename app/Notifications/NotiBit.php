@@ -19,7 +19,7 @@ class NotiBit extends Notification
     public function __construct()
     {
         //
-        
+
     }
 
     /**
@@ -41,12 +41,16 @@ class NotiBit extends Notification
      */
     public function toMail($notifiable)
     {
+        
         return (new MailMessage)
+                    ->subject('CPD´s en Agencias')
                     ->from('Monitoreo@bdp.com.bo', 'Monitoreo')
                     ->greeting('Alerta!..')
-                    ->line('Se ha Registrado datos Fuera de los Parametros establecidos ')
-                    ->action('Revisar', url('/alertas'))
+                    ->line('Se han Registrado datos de Temperatura y Humedad Fuera de los Parametros establecidos. ')
+                    ->action('Revisar Eventos', url('/alertas'))
                     ->line('Thank you for using our application!');
+                    
+
     }
 
     /**

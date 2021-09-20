@@ -160,12 +160,13 @@ $datos = Arr::pluck($meses,'result','mes');
 
 
 
-                            <div class="col-md-9">  
-                                <h5 class="text-center">Reportes Registrados Hoy..</h5>
-                                <hr>
+                            <div class="col-md-9">
+
 
                                 @auth
                                 @if (Auth::user()->acceso == "yes")
+                                <h5 class="text-center">Reportes Registrados Hoy..</h5>
+                                <hr>
                                 <table class=" table table-light">
 
                                     <thead class="thead-light">
@@ -213,14 +214,8 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h5><span class="text-center fa fa-home"></span> @yield('title')</h5>
-                                    </div>
+
                                     <div class="card-body">
-                                        <h5>Hi <strong>{{ Auth::user()->name }},</strong> {{ __('You are logged in to ') }}{{ config('app.name', 'Laravel') }}</h5>
-
-                                        <hr>
-
 
                                         <div class="row w-100">
 
@@ -950,7 +945,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                     @endsection
 
-               
+
                 </div>
             </div>
         </div>

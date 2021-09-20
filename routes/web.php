@@ -26,6 +26,9 @@ Route::get('/', function () {
     return view('user.login');
 });
 */
+Route::get('/emails/email', function () {
+    return view('emails.email');
+});
 
 Route::get('/', function () {
     return view('user.login');
@@ -70,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/alertas', [BitacoraController::class, 'alertas'])->name('alertas');
     Route::get('/reportes', [BitacoraController::class, 'reportes'])->name('reportes');
 
-    //Usuarios
+    //Administradores
     Route::get('/user', [RegisterUser::class, 'index'])->name('user');
     Route::get('user/create', [RegisterUser::class, 'create'])->name('user.create');
 
@@ -89,5 +92,6 @@ Route::get('/report', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorar
 
 Route::get('/report2', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
 
-
 Route::get('/reportAlert', [PDFController::class, 'PDFAlertas'])->name('reportAlert');
+
+
