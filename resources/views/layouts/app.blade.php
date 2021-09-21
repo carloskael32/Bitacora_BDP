@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Bitacora CPD') }}</title>
+    <title>@yield('title') Bitacora BDP</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,6 +22,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style>
+        * {
+            
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -29,12 +37,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
-                <!-- 
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
 
--->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,8 +61,14 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('eno') }}">{{ __('Encargados Operativos') }}</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('user') }}">{{ __('Administrador') }}</a>
                         </li>
+
+
 
 
 
@@ -75,6 +84,9 @@
                             <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
 
                         </li>
+
+
+
                         @endif
                         @endauth
 
@@ -100,6 +112,11 @@
                         </li>
                         @endif
                         @else
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/eno/'.Auth::user()->id.'/edit') }}">{{ __('Cambio de Contraseña') }}</a>
+                        </li>
+                        
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
@@ -122,11 +139,11 @@
             </div>
         </nav>
 
-       
+
     </div>
     <main class="py-4">
-            @yield('content')
-        </main>
+        @yield('content')
+    </main>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

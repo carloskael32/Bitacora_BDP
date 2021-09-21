@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
-        <h5><span class="text-center fa fa-home"></span> @yield('title')</h5>
-        <h1>{{ $modo }} Administradores</h1>
+        
+        <h1>{{ $modo }} Encargados Operativos</h1>
     </div>
     <div class="card-body">
 
@@ -19,6 +19,20 @@
 
         </div>
         @endif
+
+        <div class="form-group row">
+            <label for="agencia" class="col-md-4 col-form-label text-md-right">{{ __('Agencia') }}</label>
+
+            <div class="col-md-6">
+                <input id="agencia" type="text" class="form-control @error('agencia') is-invalid @enderror" name="agencia" value="{{ isset($user->agencia)?$user->agencia:old('agencia') }}" autocomplete="agencia" autofocus>
+
+                @error('agencia')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
 
 
         <div class="form-group row">
@@ -82,8 +96,8 @@
 
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <input class="btn btn-success" type="submit" value="{{ $modo }}">
-                <a class="btn btn-primary" href="{{ url('user/') }}">Regresar</a>
+                <input class="btn btn-success" type="submit" value="{{ $modo }} ">
+                <a class="btn btn-primary" href="{{ url('eno/') }}">Regresar</a>
             </div>
 
         </div>

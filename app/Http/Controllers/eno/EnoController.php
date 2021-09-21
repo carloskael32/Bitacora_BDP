@@ -1,56 +1,54 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\eno;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterUser extends Controller
+class EnoController extends Controller
 {
-    //
-
     public function index()
     {
-        $datos['users'] = DB::select('select * from users where acceso = "yes"');
-        return view('user.index', $datos);
+        $datos['users'] = DB::select('select * from users where acceso = "no"');
+        return view('eno.index', $datos);
     }
 
     public function create()
     {
-        return view('user.create');
+        return view('eno.create');
     }
 
     public function store(Request $request)
     {
         $campos = [
+            'agencia'=> 'required',
             'name' => 'required',
             'email' => 'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'min'=>'la contraseña tiene que tener al menos 8 caracteres',
 
         ];
         $mensaje = [
             'required' => 'El :attribute es requerido',
-            'confirmed' => 'las contraseñas no coinciden'
+            'confirmed' => 'las contraseñas no coinciden',
+            'min:8'=>'la contraseña tiene que tener al menos 8 caracteres',
 
         ];
         $this->validate($request, $campos, $mensaje);
 
 
-
-
-        //$user = User::create(request(['name', 'email', Hash::make('password')]));
+        
         User::insert([
             'name' => request('name'),
-            'agencia' => '',
-            'acceso' => 'yes',
+            'agencia' => request('agencia'),
+            'acceso' => 'no',
             'email' => request('email'),
             'password' => Hash::make(request('password')),
         ]);
 
-        return redirect()->to('/user');
+        return redirect()->to('/eno');
     }
 
     public function edit(Request $request, $id)
@@ -58,7 +56,7 @@ class RegisterUser extends Controller
 
 
         $user = User::findOrFail($id);
-        return view('user.edit', compact('user'));
+        return view('eno.edit', compact('user'));
     }
     /*
     public function update(Request $request, $id)
@@ -76,15 +74,14 @@ class RegisterUser extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        
+      
+           
 
         ];
         $mensaje = [
             'required' => 'El :attribute es requerido',
             'confirmed' => 'las contraseñas no coinciden',
             'min'=>'la contraseña tiene que tener al menos 8 caracteres',
-
-
         ];
         $this->validate($request, $campos, $mensaje);
 
@@ -95,13 +92,13 @@ class RegisterUser extends Controller
 
         $user->save();
 
-        return redirect('user')->with('mensaje', 'Registro Modificado..');
+        return redirect('eno')->with('mensaje', 'Registro Modificado..');
     }
 
     public function destroy($id)
     {
 
         User::destroy($id);
-        return redirect('user')->with('mensaje', 'Registro Borrado..');
+        return redirect('eno')->with('mensaje', 'Registro Borrado..');
     }
 }

@@ -37,7 +37,7 @@
                 @if($modo == 'Registrar')
                 <div class="form-group">
                     <label for="Fecha">Fecha</label>
-                    <input type="date" class="form-control" name="Fecha" value="{{ isset($bitacora->Fecha)?$bitacora->Fecha:date('Y-m-d') }}" >
+                    <input type="date" class="form-control" name="Fecha" value="{{ isset($bitacora->Fecha)?$bitacora->Fecha:date('Y-m-d') }}" readonly>
                 </div>
                 @endif
             </div>

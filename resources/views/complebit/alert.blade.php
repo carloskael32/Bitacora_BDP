@@ -1,21 +1,21 @@
 @extends('layouts.app')
-
+@section ('title','Alertas')
 
 @section('content')
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    <h5><span class="text-center fa fa-home"></span> @yield('title')</h5>
+                    <h1 class="text-center">Alertas en CPD´s</h1>
                 </div>
                 <div class="card-body">
-                    <h5>Hi <strong>{{ Auth::user()->name }},</strong> {{ __('You are logged in to ') }}{{ config('app.name', 'Laravel') }}</h5>
-                    </br>
+
+                    <h5>Parametros fuera de los parametros establecidos</h5>
                     <hr>
 
-                    <h1 class="text-center">Alertas</h1>
+
                     <br>
                     <!-- Tabla datos -->
                     <div class="container col-3 border border-dark">
@@ -99,10 +99,14 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                
+
                                 </table>
+                              
                             </div>
                         </div>
                     </div>
+                    <hr>
 
                 </div>
             </div>

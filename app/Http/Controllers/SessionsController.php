@@ -12,7 +12,7 @@ class SessionsController extends Controller
 
     public function index()
     {
-        return view('user.login');
+        return view('login.login');
     }
 
     public function store()
@@ -34,6 +34,8 @@ class SessionsController extends Controller
     public function destroy()
     {
         Auth::logout();
+   
         return redirect()->to('/login');
+        
     }
 }

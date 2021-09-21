@@ -6,7 +6,7 @@
 
     <form action="{{ route('user.store') }}" method="POST">
         @csrf
-        @include('user.form',['modo'=>'Crear'])
+        @include('user.form',['modo'=>'Crear Usuario'])
 
 
 

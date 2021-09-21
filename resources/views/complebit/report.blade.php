@@ -6,6 +6,7 @@ $dias = 20;
 $datos = Arr::pluck($meses,'result','mes');
 @endphp
 @endif
+@section ('title','Reportes')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-11">

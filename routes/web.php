@@ -9,6 +9,7 @@ use App\Models\Bitacora;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\eno\EnoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,17 +27,15 @@ Route::get('/', function () {
     return view('user.login');
 });
 */
-Route::get('/emails/email', function () {
-    return view('emails.email');
-});
+
 
 Route::get('/', function () {
-    return view('user.login');
+    return view('login.login');
 });
 
 
 Route::get('/home', function () {
-    return view('user.login');
+    return view('login.login');
 });
 
 /*
@@ -73,18 +72,29 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/alertas', [BitacoraController::class, 'alertas'])->name('alertas');
     Route::get('/reportes', [BitacoraController::class, 'reportes'])->name('reportes');
 
+
+    //Encargados Operativos
+    Route::get('/eno', [EnoController::class, 'index'])->name('eno');
+    Route::get('eno/create', [EnoController::class, 'create'])->name('eno.create');
+    Route::post('/registereno', [EnoController::class, 'store'])->name('eno.store');
+    Route::get('/eno/{id}/edit', [EnoController::class, 'edit'])->name('eno.edit');
+    Route::patch('eno/{id}', [EnoController::class, 'update'])->name('eno.update');
+    Route::post('/eno/{id}', [EnoController::class, 'destroy'])->name('eno.destroy');
+
+
+
     //Administradores
     Route::get('/user', [RegisterUser::class, 'index'])->name('user');
     Route::get('user/create', [RegisterUser::class, 'create'])->name('user.create');
-
     Route::post('/register', [RegisterUser::class, 'store'])->name('user.store');
     Route::get('/user/{id}/edit', [RegisterUser::class, 'edit'])->name('user.edit');
     Route::patch('user/{id}', [RegisterUser::class, 'update'])->name('user.update');
     Route::post('/user/{id}', [RegisterUser::class, 'destroy'])->name('user.destroy');
+
 });
 
 //PDF Dom
-Route::get('/pdf', [PDFController::class, 'PDF'])->name('descargarpdf');
+//Route::get('/pdf', [PDFController::class, 'PDF'])->name('descargarpdf');
 
 Route::get('/reportBit', [PDFController::class, 'PDFBit'])->name('reportBit');
 
@@ -93,5 +103,3 @@ Route::get('/report', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorar
 Route::get('/report2', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
 
 Route::get('/reportAlert', [PDFController::class, 'PDFAlertas'])->name('reportAlert');
-
-

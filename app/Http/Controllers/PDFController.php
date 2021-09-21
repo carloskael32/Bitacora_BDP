@@ -11,11 +11,14 @@ use Illuminate\Support\Facades\DB;
 
 class PDFController extends Controller
 {
+
+    /*
     public function PDF()
     {
         $pdf = PDF::loadView('prueba');
         return $pdf->Stream('prueba.pdf');
     }
+    */
 
 
     public function PDFBit(Request $request)
@@ -23,12 +26,11 @@ class PDFController extends Controller
 
         $agencia = Auth::user()->agencia;
         $mes1 = $request->get('mes1');
-
         $mes = $request->get('mes');
         //return response()->json($mes);
         //return response()->json($mes); where year(Fecha) = YEAR(NOW())
 
-        $bitacoras = DB::select('select * from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ', [$agencia, $mes]);
+        $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ', [$agencia, $mes]);
 
         //return response()->json($bitacoras);
         //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
@@ -50,7 +52,7 @@ class PDFController extends Controller
 
         //return response()->json($mes);
 
-        $bitacoras = DB::select('select * from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
+        $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
 
         if ($bitacoras != null) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
@@ -71,7 +73,7 @@ class PDFController extends Controller
 
 
 
-        $bitacoras = DB::select('select * from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by id desc', [$agencia, $ini, $fin]);
+        $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by id desc', [$agencia, $ini, $fin]);
 
         //return response()->json($bitacoras);
         if ($bitacoras != null) {
@@ -87,7 +89,7 @@ class PDFController extends Controller
     {
 
         $agencia = $request->get('agencia');
-        $bitacoras = DB::select('select * from bitacoras where agencia = ? and (Temperatura > 40 or Humedad > 85) order by fecha desc', [$agencia]);
+        $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and (Temperatura > 40 or Humedad > 85) order by fecha desc', [$agencia]);
         //return response()->json($alerta);
         $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
         return $pdf->setPaper('carta', 'landscape')->Stream('Resumen.pdf');
