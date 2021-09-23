@@ -14,8 +14,8 @@ $datos = Arr::pluck($meses,'result','mes');
 
             <div class="card">
                 <div class="card-header">
-                    <h5><span class="text-center fa fa-home"></span> @yield('title')</h5>
-                    <h1 class="text-center">Reportes</h1>
+                  
+                    <h2 class="text-center">Reportes</h2>
                 </div>
                 <div class="card-body">
 

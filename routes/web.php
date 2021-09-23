@@ -74,7 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //Encargados Operativos
-    Route::get('/eno', [EnoController::class, 'index'])->name('eno');
+    Route::get('/eno', [EnoController::class, 'index'])->name('eno')->middleware('admin');
     Route::get('eno/create', [EnoController::class, 'create'])->name('eno.create');
     Route::post('/registereno', [EnoController::class, 'store'])->name('eno.store');
     Route::get('/eno/{id}/edit', [EnoController::class, 'edit'])->name('eno.edit');
@@ -82,14 +82,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/eno/{id}', [EnoController::class, 'destroy'])->name('eno.destroy');
 
 
+  
 
     //Administradores
-    Route::get('/user', [RegisterUser::class, 'index'])->name('user');
+    Route::get('/user', [RegisterUser::class, 'index'])->name('user')->middleware('admin');
     Route::get('user/create', [RegisterUser::class, 'create'])->name('user.create');
     Route::post('/register', [RegisterUser::class, 'store'])->name('user.store');
     Route::get('/user/{id}/edit', [RegisterUser::class, 'edit'])->name('user.edit');
     Route::patch('user/{id}', [RegisterUser::class, 'update'])->name('user.update');
     Route::post('/user/{id}', [RegisterUser::class, 'destroy'])->name('user.destroy');
+
+    
 
 });
 

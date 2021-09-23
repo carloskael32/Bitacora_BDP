@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class EnoController extends Controller
 {
@@ -92,13 +93,18 @@ class EnoController extends Controller
 
         $user->save();
 
-        return redirect('eno')->with('mensaje', 'Registro Modificado..');
+        if (Auth::user()->acceso == 'yes'){
+            return redirect('eno')->with('mensaje', 'Usuario Modificado..');
+        }else{
+            return redirect('/bitacora')->with('mensaje','Contraseña Modificada..');
+        }
+        
     }
 
     public function destroy($id)
     {
 
         User::destroy($id);
-        return redirect('eno')->with('mensaje', 'Registro Borrado..');
+        return redirect('eno')->with('mensaje', 'Usuario Eliminado..');
     }
 }

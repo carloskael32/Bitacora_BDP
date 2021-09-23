@@ -19,13 +19,6 @@
                     <h2 class="text-center">Bitacora</h2>
                 </div>
                 <div class="card-body">
-                    <h5>Hi <strong>{{ Auth::user()->name }}</strong> </h5>
-                    </br>
-                    <hr>
-
-
-
-
 
                     @if(Session::has('mensaje'))
                     <div class="alert alert-success alert-dismissible" role="alert">
@@ -37,11 +30,13 @@
                     @endif
 
 
+                 
 
 
                     <a href="{{ url('bitacora/create') }}" class="btn btn-success">Nuevo Registro</a>
-                    <br>
-                    <br>
+                    <hr>
+                    
+                    
                     <table class=" table table-light">
 
                         <thead class="thead-light">

@@ -8,7 +8,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="text-center">Alertas en CPD´s</h1>
+                    <h2 class="text-center">Alertas en CPD´s</h2>
                 </div>
                 <div class="card-body">
 
@@ -16,7 +16,6 @@
                     <hr>
 
 
-                    <br>
                     <!-- Tabla datos -->
                     <div class="container col-3 border border-dark">
                         <div class="row">

@@ -1,11 +1,11 @@
 <div class="card">
     <div class="card-header">
-        
+
         <h1>{{ $modo }} Encargados Operativos</h1>
     </div>
     <div class="card-body">
 
-     
+
 
         @if(count($errors)>0)
 
@@ -20,11 +20,14 @@
         </div>
         @endif
 
+        @auth
+        @if (Auth::user()->acceso == "no")
+
         <div class="form-group row">
             <label for="agencia" class="col-md-4 col-form-label text-md-right">{{ __('Agencia') }}</label>
 
             <div class="col-md-6">
-                <input id="agencia" type="text" class="form-control @error('agencia') is-invalid @enderror" name="agencia" value="{{ isset($user->agencia)?$user->agencia:old('agencia') }}" autocomplete="agencia" autofocus>
+                <input id="agencia" type="text" class="form-control @error('agencia') is-invalid @enderror" name="agencia" value="{{ isset($user->agencia)?$user->agencia:old('agencia') }}" autocomplete="agencia" autofocus readonly>
 
                 @error('agencia')
                 <span class="invalid-feedback" role="alert">
@@ -39,7 +42,7 @@
             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de usuario') }}</label>
 
             <div class="col-md-6">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ isset($user->name)?$user->name:old('name') }}" autocomplete="name" autofocus>
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ isset($user->name)?$user->name:old('name') }}" autocomplete="name" autofocus readonly>
 
                 @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -54,7 +57,7 @@
             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
             <div class="col-md-6">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($user->email)?$user->email:old('email') }}" autocomplete="email">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($user->email)?$user->email:old('email') }}" autocomplete="email" readonly> 
 
                 @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -63,6 +66,54 @@
                 @enderror
             </div>
         </div>
+
+        @else 
+        <div class="form-group row">
+            <label for="agencia" class="col-md-4 col-form-label text-md-right">{{ __('Agencia') }}</label>
+
+            <div class="col-md-6">
+                <input id="agencia" type="text" class="form-control @error('agencia') is-invalid @enderror" name="agencia" value="{{ isset($user->agencia)?$user->agencia:old('agencia') }}" autocomplete="agencia" autofocus >
+
+                @error('agencia')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de usuario') }}</label>
+
+            <div class="col-md-6">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ isset($user->name)?$user->name:old('name') }}" autocomplete="name" autofocus >
+
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+
+            <div class="col-md-6">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($user->email)?$user->email:old('email') }}" autocomplete="email" > 
+
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        @endauth
+        @endif
 
         <div class="form-group row">
             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
