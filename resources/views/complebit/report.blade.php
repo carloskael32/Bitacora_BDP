@@ -19,9 +19,7 @@ $datos = Arr::pluck($meses,'result','mes');
                 </div>
                 <div class="card-body">
 
-
-
-                    <!-- Tabla datos -->
+                       <!-- Tabla datos -->
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-md-3">

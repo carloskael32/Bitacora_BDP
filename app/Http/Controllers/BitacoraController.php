@@ -24,8 +24,9 @@ class BitacoraController extends Controller
      */
     public function index()
     {
-        //$datos['bitacoras'] = DB::select('select c count(id) from  bitacoras ');
         return view('index');
+        //return view()->exists('index') ? view('index',compact('1')) : '';
+        
     }
 
     public function bitacora()

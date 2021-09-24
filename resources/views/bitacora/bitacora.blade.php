@@ -29,8 +29,7 @@
                     </div>
                     @endif
 
-
-                 
+                                   
 
 
                     <a href="{{ url('bitacora/create') }}" class="btn btn-success">Nuevo Registro</a>

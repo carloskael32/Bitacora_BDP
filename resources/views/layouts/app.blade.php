@@ -24,7 +24,7 @@
 
     <style>
         * {
-            
+
             font-family: Arial, Helvetica, sans-serif;
         }
     </style>
@@ -45,7 +45,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
 
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="nav nav-tabs">
                         @auth
                         @if (Auth::user()->acceso == "yes")
 
@@ -74,21 +74,37 @@
 
                         @else
 
-
+                        <!--
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('bitacora') }}">{{ __('Bitacora') }}</a>
-
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
+                        </li>
+    -->
 
+                
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('bitacora') }}">{{ __('Bitacora') }}</a>
+                        </li>
+               
+
+   
+
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
                         </li>
 
+                    </ul>
 
 
-                        @endif
-                        @endauth
+
+                    @endif
+                    @endauth
 
 
                     </ul>
@@ -118,7 +134,7 @@
                             <a class="nav-link" href="{{ url('/eno/'.Auth::user()->id.'/edit') }}">{{ __('Cambio de Contraseña') }}</a>
                         </li>
                         @endif
-                        
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}

@@ -1,25 +1,54 @@
-@if(count($errors)>0)
-
-<div class="alert alert-danger" role="alert">
-    <ul>
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-
-    </ul>
-
-</div>
-@endif
-<br>
 <div class="card">
     <div class="card-header">
-        <h2><span class="text-center fa fa-home"></span>{{ $modo }} Bitacora</h2>
+        <h2><span class="text-center fa fa-home"></span> Bitacora</h2>
     </div>
     <br>
     <div class="container-fluid">
+        <hr>
+        <div class="container col-4 border border-info">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-bordered text-center">
+
+                        <b> Parametros de control del CPD</b>
+                        <thead>
+                            <th></th>
+                            <th style="background-color: #1565C0; color: white;">Temperatura</th>
+                            <th style="background-color: #1565C0; color: white;">Humedad</th>
+                        </thead>
+                        <tr>
+                            <td>Valor Mínimo</td>
+                            <td>0°C</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td>Valor Máximo</td>
+                            <td>40°C</td>
+                            <td>85%</td>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
         <br>
-        <h5><span class="text-center fa fa-home"></span>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</52>
+        <h5>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</15>
             <hr>
+            @if(count($errors)>0)
+
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach($errors->all() as $error)
+
+                    <li>{{ $error }}</li>
+                    @endforeach
+
+                </ul>
+
+            </div>
+            @endif
+
             <div class="row justify-content-center">
                 <div class="col-md">
                     <div class="form-group">
@@ -48,25 +77,22 @@
                 <div class="col-md">
                     <div class="form-group">
                         <label for="Temperatura">Temperatura</label>
-                        <input type="double" class="form-control" name="Temperatura" value="{{ isset($bitacora->Temperatura)?$bitacora->Temperatura:old('Temperatura') }}" id="Temperatura">
+                        <input type="number" step=".01" class="form-control" name="Temperatura" value="{{ isset($bitacora->Temperatura)?$bitacora->Temperatura:old('Temperatura') }}" id="Temperatura" autofocus>
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group">
                         <label for="Humedad">Humedad</label>
-                        <input type="double" class="form-control" name="Humedad" value="{{ isset($bitacora->Humedad)?$bitacora->Humedad:old('Humedad') }}" id="Humedad">
+                        <input type="number" step=".01" class="form-control" name="Humedad" value="{{ isset($bitacora->Humedad)?$bitacora->Humedad:old('Humedad') }}" id="Humedad">
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group">
                         <label for="Filtracion">Filtracion</label>
                         <br>
-                        <select class="form-select" name="Filtracion" aria-label="Default select example">
-
-
+                        <select class="form-control" name="Filtracion">
                             <option value="No" selected>No</option>
                             <option value="Si">Si</option>
-
                         </select>
 
                     </div>
@@ -77,25 +103,35 @@
                 <div class="col-md">
                     <div class="form-group">
                         <label for="UPS">UPS</label>
-                        <input type="text" class="form-control" name="UPS" value="{{ isset($bitacora->UPS)?$bitacora->UPS:old('UPS') }}" id="UPS">
+                        <br>
+                        <select class="form-control" name="UPS">
+                        <option value="Fuera de linea">Fuera de linea</option>
+                            <option value="En linea" selected>En linea</option> 
+                        </select>
                     </div>
                 </div>
                 <div class="col-md">
-
                     <div class="form-group">
                         <label for="Generador">Generador</label>
-                        <input type="text" class="form-control" name="Generador" value="{{ isset($bitacora->Generador)?$bitacora->Generador:old('Generador') }}" id="Generador">
+                       <br>
+                       
+                       <select class="form-control" name="Generador">
+                            <option value="Fuera de linea">Fuera de linea</option>
+                            <option value="En linea" selected>En linea</option>
+                        </select>
+
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group">
                         <label for="Observaciones">Observaciones</label>
-                        <input type="text" class="form-control" name="Observaciones" value="{{ isset($bitacora->Observaciones)?$bitacora->Observaciones:old('Observaciones') }}" id="Observaciones">
+                        <input type="text" class="form-control" name="Observaciones" value="Sin Observaciones" id="Observaciones">
                     </div>
                 </div>
             </div>
 
             <!-- {{ date('Y-m-d H:i:s') }}-->
+            <br>
 
             <input class="btn btn-success" type="submit" value="{{ $modo }} Datos">
 
