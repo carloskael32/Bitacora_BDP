@@ -22,14 +22,9 @@ class BitacoraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('index');
-        //return view()->exists('index') ? view('index',compact('1')) : '';
-        
-    }
 
-    public function bitacora()
+
+    public function index()
     {
 
         $user = Auth::user()->agencia;

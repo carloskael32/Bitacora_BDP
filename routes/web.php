@@ -10,6 +10,7 @@ use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\eno\EnoController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,11 +65,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //inicio
-    Route::get('/home', [BitacoraController::class, 'index'])->name('home');
-    Route::get('/', [BitacoraController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     //Bitacoras
-    Route::get('/bitacora', [BitacoraController::class, 'bitacora'])->name('bitacora');
+    Route::get('/bitacora', [BitacoraController::class, 'index'])->name('bitacora');
     Route::get('/alertas', [BitacoraController::class, 'alertas'])->name('alertas');
     Route::get('/reportes', [BitacoraController::class, 'reportes'])->name('reportes');
 
