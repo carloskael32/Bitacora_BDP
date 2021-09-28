@@ -13,7 +13,9 @@ class EnoController extends Controller
 {
     public function index()
     {
-        $datos['users'] = DB::select('select * from users where acceso = "no"');
+        $datos['users'] = DB::select('select * from users where acceso = "no" order by id desc');
+        //$con['con']= DB::select('select count(*) from users where acceso = "no"');
+        //return response()->json($con);
         return view('eno.index', $datos);
     }
 

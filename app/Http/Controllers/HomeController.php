@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bitacora;
-use App\Models\Dashboard;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 
 class HomeController extends Controller
@@ -29,14 +30,29 @@ class HomeController extends Controller
     {
 
 
-        $bitacoras = DB::select('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = date("%m") group by agencia');
-        
+
+        $bitacoras = DB::select('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
+        //$bitacoras = DB::select(DB::raw('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia'));
+
+        //dd($bitacoras);
+        //return response()->json($bitacoras);
 
         $puntos = [];
-        foreach ($bitacoras as $bitac){
-            $puntos[] = ['name'=>$bitac['agencia'], 'y'=> ($bitac['total'])];
+        $array = json_decode(json_encode($bitacoras), true);
+
+        $dias = 20;
+
+
+        foreach ($array as $bitac) {
+
+            if ($bitac['total'] <= $dias) {
+                $b = round(($bitac['total'] * 100) / $dias);
+                $puntos[] = ['name' => $bitac['agencia'], 'y' => $b];
+            } else {
+                $puntos[] = ['name' => $bitac['agencia'], 'y' => 100];
+            }
         }
-        //return response()->json($puntos);
-        return view ("index", ["data"=>json_encode($puntos)]);
+
+        return view("index", ["data" => json_encode($puntos)]);
     }
 }

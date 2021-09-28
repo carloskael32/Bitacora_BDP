@@ -6,10 +6,10 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<h5><span class="text-center fa fa-home"></span> @yield('title')</h5>
+				<h5>Hi <strong>{{ Auth::user()->name }}</h5>
 				</div>
 				<div class="card-body">
-					<h5>Hi <strong>{{ Auth::user()->name }},</strong> {{ __('You are logged in to ') }}{{ config('app.name', 'Laravel') }}</h5>
+					
 
 					<hr>
 					<div id="container">
@@ -37,11 +37,12 @@
 			type: 'column'
 		},
 		title: {
-			text: 'Browser market shares. January, 2018'
+			text: 'Resumen mensual. <?php setlocale(LC_ALL, 'spanish'); echo strftime(' %B del %Y'); ?>'
+			//setlocale(LC_ALL, 'spanish'); echo strftime('%d de %B del %Y');
 		},
-		subtitle: {
+	/* 	subtitle: {
 			text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
-		},
+		}, */
 		accessibility: {
 			announceNewData: {
 				enabled: true
@@ -75,7 +76,7 @@
 		},
 
 		series: [{
-			name: "Browsers",
+			name: "Agencias",
 			colorByPoint: true,
 			data: <?= $data ?>
 

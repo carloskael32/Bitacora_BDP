@@ -43,6 +43,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>User Name</th>
+                                <th>Agencia</th>
                                 <th>Correo</th>
                                 <th>Acciones</th>
                             </tr>
@@ -50,14 +51,18 @@
 
                         <tbody class="text-center">
 
+                            @php
+                                $a = 1;
+                            @endphp
 
                             @foreach( $users as $user)
 
                             <tr>
 
 
-                                <td>{{ $user->id }}</td>
+                                <td>{{ $a }}</td>
                                 <td>{{ $user->name }}</td>
+                                <td>{{ $user->agencia}}</td>
                                 <td>{{ $user->email }}</td>
 
 
@@ -75,7 +80,11 @@
                                     </form>
                                 </td>
 
-                            </tr>
+                            </tr>   
+                            @php
+                                $a++;
+                            @endphp
+                            
                             @endforeach
                         </tbody>
                     </table>
