@@ -1,31 +1,117 @@
 @extends('layouts.app')
 @section('title', __('Dashboard'))
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid	">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header">
-				<h5>Hi <strong>{{ Auth::user()->name }}</h5>
-				</div>
+
 				<div class="card-body">
-					
-
-					<hr>
+				
 					<div id="container">
-
 					</div>
 
-
-
 				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<hr>
+<div class="container-fluid">
+	<div class="row">
+
+
+
+		<div class="col-md-6">
+			<div class="card">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr>
+							<th colspan="3">
+								<h4>Reportes de CPD´s</h4>
+							</th>
+						</tr>
+						<tr>
+
+							<th scope="col">#</th>
+							<th scope="col">Agencias</th>
+							<th scope="col">Nro. de Registros</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						@php
+						$a = 1;
+						@endphp
+						@foreach ($registros as $regis)
+						<tr>
+							<th scope="row">{{ $a }}</th>
+							<td>{{ $regis->agencia }}</td>
+							<td>{{ $regis->total }}</td>
+
+						</tr>
+
+						@php
+						$a++;
+						@endphp
+						@endforeach
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card">
+
+			
+			<table class="table table-striped text-center">
+				<thead>
+					<tr>
+						<th colspan="3">
+							<h4>Reportes de Generadores</h4>
+						</th>
+					</tr>
+					<tr>
+
+						<th scope="col">#</th>
+						<th scope="col">Agencias</th>
+						<th scope="col">Detalles</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					@php
+					$a = 1;
+					@endphp
+					@foreach ($registros as $regis)
+					<tr>
+						<th scope="row">{{ $a }}</th>
+						<td>{{ $regis->agencia }}</td>
+						<td>{{ $regis->total }}</td>
+
+					</tr>
+
+					@php
+					$a++;
+					@endphp
+					@endforeach
+				</tbody>
+			</table>
 			</div>
 		</div>
 	</div>
 </div>
 
+
+
+
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
@@ -37,12 +123,13 @@
 			type: 'column'
 		},
 		title: {
-			text: 'Resumen mensual. <?php setlocale(LC_ALL, 'spanish'); echo strftime(' %B del %Y'); ?>'
-			//setlocale(LC_ALL, 'spanish'); echo strftime('%d de %B del %Y');
+			text: 'Resumen mensual. <?php setlocale(LC_ALL, 'spanish'); echo strftime('%B del %Y'); ?>'
 		},
-	/* 	subtitle: {
-			text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
-		}, */
+		//setlocale(LC_ALL, 'spanish'); echo strftime('%d de %B del %Y');
+
+		/* 	subtitle: {
+				text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+			}, */
 		accessibility: {
 			announceNewData: {
 				enabled: true
@@ -78,11 +165,15 @@
 		series: [{
 			name: "Agencias",
 			colorByPoint: true,
-			data: <?= $data ?>
+			data: <?= $datos1 ?>
 
 
 		}],
 
 	});
 </script>
+
+
+
+
 @endsection

@@ -53,6 +53,11 @@ class HomeController extends Controller
             }
         }
 
-        return view("index", ["data" => json_encode($puntos)]);
+
+        $resultado2['registros'] = DB::select('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
+
+
+
+        return view("index", ["datos1" => json_encode($puntos)],$resultado2);
     }
 }
