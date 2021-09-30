@@ -84,17 +84,15 @@
                         </li>
     -->
 
-                
+
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('bitacora') }}">{{ __('Bitacora') }}</a>
                         </li>
-               
 
-   
-
-
-
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('generador') }}">{{ __('Generador') }}</a>
+                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
                         </li>

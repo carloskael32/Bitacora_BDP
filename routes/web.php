@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\eno\EnoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GeneradorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/{id}/edit', [RegisterUser::class, 'edit'])->name('user.edit');
     Route::patch('user/{id}', [RegisterUser::class, 'update'])->name('user.update');
     Route::post('/user/{id}', [RegisterUser::class, 'destroy'])->name('user.destroy');
+
+
+    //Generadores
+    Route::get('/generador',[GeneradorController::class,'index'])->name('generador');
 
     
 

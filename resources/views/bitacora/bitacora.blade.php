@@ -16,7 +16,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">Bitacora</h2>
+                    <h2 class="text-center">Generadores</h2>
                 </div>
                 <div class="card-body">
 
