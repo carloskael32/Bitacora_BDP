@@ -29,31 +29,53 @@
                     </div>
                     @endif
 
-                                   
 
 
-                    <a href="{{ url('bitacora/create') }}" class="btn btn-success">Nuevo Registro</a>
+
+                    <a href="{{ url('generador/create') }}" class="btn btn-success">Nuevo Registro</a>
                     <hr>
-                    
-                    
-                    <table class=" table table-light">
+
+
+                    <table class=" table table-light text-center">
 
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
-                                <th>Fehca</th>
-                                <th>EncargadoOP.</th>
+                                <th>Fecha</th>
+                                <th>Encargado OP.</th>
                                 <th>Agencia</th>
                                 <th>Observaciones</th>
-                            
+
 
                             </tr>
                         </thead>
+                        @php
+                        $a=1;
+                        @endphp
+                        <tbody>
+                            @foreach( $generador as $gen)
+                            <tr>
+                                <td>{{ $a}}</td>
+                                <td>{{ $gen->fecha }}</td>
+                                <td>{{ $gen->agencia }}</td>
+                                <td>{{ $gen->encargadoop }}</td>
+
+                                <td>{{ $gen->observaciones }}</td>
+
+
+
+                            </tr>
+                            @php
+                            $a++;
+                            @endphp
+                            @endforeach
+                        </tbody>
+                      
 
 
                     </table>
                     <div class="pagination justify-content-center">
-              
+
                     </div>
                 </div>
             </div>

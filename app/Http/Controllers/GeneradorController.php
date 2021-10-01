@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Generador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GeneradorController extends Controller
 {
@@ -15,7 +17,17 @@ class GeneradorController extends Controller
     public function index()
     {
         //
-        return view('generador.index');
+        $user = Auth::user()->agencia;
+
+
+        /*
+        $datos['bitacoras'] = Bitacora::paginate(5);
+        return view('bitacora.index', $datos);
+        */
+
+        $datos['generador'] = DB::table('generadors')->where('agencia', '=', $user)->orderByDesc('id')->paginate(12);
+
+        return view('generador.index', $datos);
     }
 
     /**
@@ -25,7 +37,7 @@ class GeneradorController extends Controller
      */
     public function create()
     {
-        //
+        return view('generador.create');
     }
 
     /**
@@ -36,7 +48,9 @@ class GeneradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosGenerador = request()->except('_token');
+        Generador::insert($datosGenerador);
+        return redirect('generador')->with('mensaje', 'Reporte registrado con Exito..');
     }
 
     /**

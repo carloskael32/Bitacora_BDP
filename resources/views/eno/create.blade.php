@@ -4,7 +4,7 @@
 <div class="container">
 
 
-    <form action="{{ route('eno.store') }}" method="POST">
+    <form action="{{ route('generador.store') }}" method="POST">
         @csrf
         @include('eno.form',['modo'=>'Crear Usuario'])
 

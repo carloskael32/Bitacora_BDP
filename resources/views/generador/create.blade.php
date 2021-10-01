@@ -6,11 +6,11 @@
 
 
 
-    <form action="{{ url('/bitacora') }}" method="POST">
+    <form action="{{ url('/register') }}" method="POST">
 
   
         @csrf
-        @include('bitacora.form',['modo'=>'Registrar'])
+        @include('generador.form',['modo'=>'Registrar'])
 
 
 

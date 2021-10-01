@@ -212,11 +212,12 @@ $datos = Arr::pluck($meses,'result','mes');
                                 </div>
 
                                 @else
+                                
                                 <div class="card">
 
                                     <div class="card-body">
 
-                                        <div class="row w-100">
+                                        <div class="row">
 
                                             @if (!empty($datos[1]))
                                             @php
@@ -241,7 +242,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                        <hr>
+                                                
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -299,7 +300,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                        <hr>
+                                               
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -357,7 +358,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                        <hr>
+                                                        
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -414,7 +415,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                        <hr>
+                                                    
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -451,7 +452,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         </div>
                                         <br>
                                         <hr>
-                                        <div class="row w-100">
+                                        <div class="row">
 
                                             @if (!empty($datos[5]))
                                             @php
@@ -476,7 +477,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                        <hr>
+                                                    
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -533,7 +534,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                        <hr>
+                                                     
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -592,7 +593,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                        <hr>
+                                                    
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -652,7 +653,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                        <hr>
+                                                 
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -689,7 +690,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <br>
                                         <hr>
 
-                                        <div class="row w-100">
+                                        <div class="row">
 
                                             <div class="col-md-3">
 
@@ -717,7 +718,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                        <hr>
+                                                     
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -778,7 +779,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                        <hr>
+                                                   
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -810,16 +811,11 @@ $datos = Arr::pluck($meses,'result','mes');
 
 
 
-
-
-
-
-
                                             <div class="col-md-3">
-                                                @if (!empty($datos[10]))
+                                                @if (!empty($datos[11]))
                                                 @php
 
-                                                $a = $datos[10];
+                                                $a = $datos[11];
                                                 $dias;
                                                 $b = round(($a*100)/$dias);
 
@@ -839,7 +835,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                        <hr>
+                                                       
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -875,10 +871,10 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                             <div class="col-md-3">
 
-                                                @if (!empty($datos[10]))
+                                                @if (!empty($datos[12]))
                                                 @php
 
-                                                $a = $datos[10];
+                                                $a = $datos[12];
                                                 $dias;
                                                 $b = round(($a*100)/$dias);
 
@@ -898,7 +894,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                        <hr>
+                                                   
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">

@@ -85,11 +85,11 @@
 					@php
 					$a = 1;
 					@endphp
-					@foreach ($registros as $regis)
+					@foreach ($generador as $gen)
 					<tr>
 						<th scope="row">{{ $a }}</th>
-						<td>{{ $regis->agencia }}</td>
-						<td>{{ $regis->total }}</td>
+						<td>{{ $gen->agencia }}</td>
+						<td>{{ $gen->fecha }}</td>
 
 					</tr>
 

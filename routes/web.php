@@ -97,6 +97,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Generadores
     Route::get('/generador',[GeneradorController::class,'index'])->name('generador');
+    Route::get('generador/create',[GeneradorController::class,'create'])->name('generador.create');
+    Route::post('/register',[GeneradorController::class,'store'])->name('generador.store');
+    
 
     
 
