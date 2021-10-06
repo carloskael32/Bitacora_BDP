@@ -39,7 +39,7 @@
                     @if($modo == 'Registrar')
                     <div class="form-group">
                         <label for="fecha">Fecha</label>
-                        <input type="date" class="form-control" name="fecha" value="{{ isset($bitacora->fecha)?$bitacora->fecha:date('Y-m-d') }}" readonly>
+                        <input type="date" class="form-control" name="fecha" value="{{ isset($generador->fecha)?$generador->fecha:date('Y-m-d') }}" readonly>
                     </div>
                     @endif
                 </div>
@@ -53,8 +53,8 @@
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <label for="observaciones">Observaciones</label>
-                        <textarea class="form-control" name="observaciones" placeholder="dejar las observaciones aqui.." id="floatingTextarea2" style="height: 100px"></textarea>
+                        <label for="observaciones">Observaciones</label>  
+                        <textarea class="form-control" name="observaciones" value="{{ isset($generador->observaciones)?$generador->observaciones:('') }}"  placeholder="dejar las observaciones aqui.." id="floatingTextarea2" style="height: 100px"></textarea>
                     </div>
                 </div>
             </div>

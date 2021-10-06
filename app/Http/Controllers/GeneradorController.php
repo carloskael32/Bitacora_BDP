@@ -70,9 +70,12 @@ class GeneradorController extends Controller
      * @param  \App\Models\Generador  $generador
      * @return \Illuminate\Http\Response
      */
-    public function edit(Generador $generador)
+    public function edit($id)
     {
         //
+        
+        $generador = Generador::findOrFail($id);
+        return view('generador.edit', compact('generador'));
     }
 
     /**
@@ -82,9 +85,18 @@ class GeneradorController extends Controller
      * @param  \App\Models\Generador  $generador
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Generador $generador)
+    public function update($id)
     {
-        //
+         //MODIFICAR generador
+
+         $datosGenerador = request()->except(['_token', '_method']);
+         Generador::where('id', '=', $id)->update($datosGenerador);
+ 
+         $generador = Generador::findOrFail($id);
+         //return view('bitacora.edit', compact('bitacora'));
+ 
+         //return response()->json($datosBitacora);
+         return redirect('generador')->with('mensaje', 'Registro Modificado..');
     }
 
     /**
@@ -93,8 +105,11 @@ class GeneradorController extends Controller
      * @param  \App\Models\Generador  $generador
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Generador $generador)
+    public function destroy($id)
     {
         //
+           // BORRAR generador
+           Generador::destroy($id);
+           return redirect('generador')->with('mensaje', 'Registro Borrado..');
     }
 }

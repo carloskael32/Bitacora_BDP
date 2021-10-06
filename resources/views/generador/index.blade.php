@@ -70,6 +70,19 @@
                             @endphp
                             @endforeach
                         </tbody>
+
+
+                    <!--     <td>
+                            <a href="{{ url('/generador/'.$gen->id.'/edit') }}" class="btn btn-warning"> Editar </a>
+
+                            &nbsp;
+
+                            <form action="{{ url('/generador/'.$gen->id) }}" class="d-inline" method="POST">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+                            </form>
+                        </td> -->
                       
 
 
