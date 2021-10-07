@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        //clases de tareas
+        Commands\TestTask::class,
+        Commands\Balert::class
     ];
 
     /**
@@ -25,6 +27,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('test:task')->everyMinute();
+        $schedule->command('bitacora:alerta')->everyMinute();
     }
 
     /**

@@ -89,7 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Administradores
     Route::get('/user', [RegisterUser::class, 'index'])->name('user')->middleware('admin');
     Route::get('user/create', [RegisterUser::class, 'create'])->name('user.create');
-    Route::post('/register', [RegisterUser::class, 'store'])->name('user.store');
+    Route::post('/registeruser', [RegisterUser::class, 'store'])->name('user.store');
     Route::get('/user/{id}/edit', [RegisterUser::class, 'edit'])->name('user.edit');
     Route::patch('user/{id}', [RegisterUser::class, 'update'])->name('user.update');
     Route::post('/user/{id}', [RegisterUser::class, 'destroy'])->name('user.destroy');
@@ -98,7 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Generadores
     Route::get('/generador',[GeneradorController::class,'index'])->name('generador');
     Route::get('generador/create',[GeneradorController::class,'create'])->name('generador.create');
-    Route::post('/register',[GeneradorController::class,'store'])->name('generador.store');
+    Route::post('/registergen',[GeneradorController::class,'store'])->name('generador.store');
     Route::get('/generador/{id}/edit', [GeneradorController::class, 'edit'])->name('generador.edit');
     Route::patch('generador/{id}', [GeneradorController::class, 'update'])->name('generador.update');
     Route::post('/generador/{id}', [GeneradorController::class, 'destroy'])->name('generador.destroy');

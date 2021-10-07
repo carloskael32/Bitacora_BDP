@@ -142,8 +142,6 @@ class BitacoraController extends Controller
             //$user->notify(new NotiBit);
 
         }
-
-
         return redirect('bitacora')->with('mensaje', 'Bitacora Agregada con Exito..');
     }
 
