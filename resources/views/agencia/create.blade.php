@@ -3,14 +3,11 @@
 @section('content')
 <div class="container">
 
-
-
-
-    <form action="{{ url('/generador') }}" method="POST">
+    <form action="{{ url('/agencia') }}" method="POST">
 
   
         @csrf
-        @include('generador.form',['modo'=>'Registrar'])
+        @include('agencia.form',['modo'=>'Registrar'])
 
 
 

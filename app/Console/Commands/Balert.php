@@ -40,17 +40,18 @@ class Balert extends Command
      */
     public function handle()
     {
-
+/*
         $ay = DB::select('SELECT * from bitacoras where fecha = date(now()) and Agencia = "prueba" or Agencia = "prueba1"');
         if ($ay == ''){
 
             $correo = new EmailAlert;
-
             Mail::to('virgi')->send($correo);
 
         }
-     
-        //$admin = DB::select('select email from users where acceso = "yes"');
+  */   
+        $admin = DB::select('select email from users where acceso = "yes"');
+        $correo = new EmailAlert;
+        Mail::to($admin)->send($correo);
 
      
     }

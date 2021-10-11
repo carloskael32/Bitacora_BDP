@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('test:task')->everyMinute();
-        $schedule->command('bitacora:alerta')->everyMinute();
+        $schedule->command('test:task')->dailyAt('08:00');
+        $schedule->command('bitacora:alerta')->dailyAt('08:00');
     }
 
     /**

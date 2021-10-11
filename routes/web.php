@@ -12,6 +12,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\eno\EnoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GeneradorController;
+use App\Http\Controllers\AgenciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@ Route::get('/bitacora/create',[BitacoraController::class,'create']);
 */
 
 // rutas mediante controlador a todas las clases
-Route::resource('bitacora', BitacoraController::class)->middleware('auth');
+//Route::resource('bitacora', BitacoraController::class)->middleware('auth');
 //Route::resource('user', RegisterUser::class)->middleware('auth');
 
 //Auth::routes();
@@ -70,6 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     //Bitacoras
+    Route::resource('bitacora', BitacoraController::class);
     Route::get('/bitacora', [BitacoraController::class, 'index'])->name('bitacora');
     Route::get('/alertas', [BitacoraController::class, 'alertas'])->name('alertas');
     Route::get('/reportes', [BitacoraController::class, 'reportes'])->name('reportes');
@@ -102,6 +104,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/generador/{id}/edit', [GeneradorController::class, 'edit'])->name('generador.edit');
     Route::patch('generador/{id}', [GeneradorController::class, 'update'])->name('generador.update');
     Route::post('/generador/{id}', [GeneradorController::class, 'destroy'])->name('generador.destroy');
+
+
+    //Agencias
+    Route::get('/agencia',[AgenciaController::class,'index'])->name('agencia');
+    Route::get('agencia/create',[AgenciaController::class,'create'])->name('agencia.create');
+    Route::post('/registerage',[AgenciaController::class,'store'])->name('agencia.store');
+    Route::get('/agencia/{id}/edit', [AgenciaController::class, 'edit'])->name('agencia.edit');
+    Route::patch('agencia/{id}', [AgenciaController::class, 'update'])->name('agencia.update');
+    Route::post('/agencia/{id}', [AgenciaController::class, 'destroy'])->name('agencia.destroy');
     
 
     
