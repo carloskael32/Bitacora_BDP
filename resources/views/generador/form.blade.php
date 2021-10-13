@@ -5,7 +5,7 @@
     <br>
     <div class="container-fluid">
 
-
+<br>
         <h5>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</15>
             <hr>
             @if(count($errors)>0)
@@ -54,7 +54,7 @@
                 <div class="col-md">
                     <div class="form-floating">
                         <label for="observaciones">Observaciones</label>  
-                        <textarea class="form-control" name="observaciones" value="{{ isset($generador->observaciones)?$generador->observaciones:('') }}"  placeholder="dejar las observaciones aqui.." id="floatingTextarea2" style="height: 100px"></textarea>
+                        <textarea class="form-control" name="observaciones" value="{{ isset($generador->observaciones)?$generador->observaciones:('') }}"  placeholder="dejar las observaciones aqui.." id="floatingTextarea2" style="height: 100px" required></textarea>
                     </div>
                 </div>
             </div>

@@ -49,7 +49,12 @@ class Balert extends Command
 
         }
   */   
-        $admin = DB::select('select email from users where acceso = "yes"');
+        //$admin = DB::select('select email from users where acceso = "yes"');
+
+
+        $admin = DB::select('SELECT agencia from bitacoras where  fecha = DATE_SUB(fecha, INTERVAL 1 DAY) and agencia = "prueba" and agencia ="prueba1"');
+
+        
         $correo = new EmailAlert;
         Mail::to($admin)->send($correo);
 

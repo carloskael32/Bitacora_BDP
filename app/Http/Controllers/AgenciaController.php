@@ -42,7 +42,7 @@ class AgenciaController extends Controller
         //
         $datosAgencia = request()->except('_token');
         Agencia::insert($datosAgencia);
-        return redirect('agencia')->with('mensaje', 'registrado con Exito..');
+        return redirect('agencia')->with('mensaje1', 'Registrado con Exito..');
     }
 
     /**
@@ -85,8 +85,10 @@ class AgenciaController extends Controller
      * @param  \App\Models\Agencia  $agencia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agencia $agencia)
+    public function destroy($id)
     {
         //
+        Agencia::destroy($id);
+        return redirect('agencia')->with('mensaje2', 'Registro Borrado..');
     }
 }

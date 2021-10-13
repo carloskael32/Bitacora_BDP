@@ -12,7 +12,7 @@
 
 
 
-        <div class="col-md-4">
+        <div class="col-md-5">
 
             <div class="card">
                 <div class="card-header">
@@ -20,9 +20,19 @@
                 </div>
                 <div class="card-body">
 
-                    @if(Session::has('mensaje'))
+                    @if(Session::has('mensaje1'))
                     <div class="alert alert-success alert-dismissible" role="alert">
-                        {{ Session::get('mensaje')}}
+
+                        {{ Session::get('mensaje1')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    @elseif(Session::has('mensaje2'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+
+                        {{ Session::get('mensaje2')}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -32,8 +42,36 @@
 
 
 
-                    <a href="{{ url('agencia/create') }}" class="btn btn-success">Nuevo Registro</a>
-                    <hr>
+
+                    <form action="{{ url('/registerage') }}" method="POST">
+                        @csrf
+
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="agencia">ingrese un nombre: </label>
+                                    <input type="text" class="form-control" name="agencia" id="agencia" required autofocus>
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <br>
+                                <input class="btn btn-success" type="submit" value="Registrar Datos">
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+
+
+
+
+
+
 
 
                     <table class=" table table-light text-center">
@@ -57,23 +95,22 @@
                             <tr>
                                 <td>{{ $a}}</td>
                                 <td>{{ $ag->agencia }}</td>
+
+                                @php
+                                $a++;
+                                @endphp
+
+                                <td>
+
+
+
+                                    <form action="{{ url('/agencia/'.$ag->id) }}" class="d-inline" method="POST">
+                                        @csrf
+
+                                        <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+                                    </form>
+                                </td>
                             </tr>
-                            @php
-                            $a++;
-                            @endphp
-
-                            <td>
-                                <a href="{{ url('/agencia/'.$ag->id.'/edit') }}" class="btn btn-warning"> Editar </a>
-
-                                &nbsp;
-
-                                <form action="{{ url('/agencia/'.$ag->id) }}" class="d-inline" method="POST">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
-                                </form>
-                            </td>
-
                             @endforeach
 
                         </tbody>

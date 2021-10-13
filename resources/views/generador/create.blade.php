@@ -4,9 +4,7 @@
 <div class="container">
 
 
-
-
-    <form action="{{ url('/generador') }}" method="POST">
+    <form action="{{ url('/registergen') }}" method="POST">
 
   
         @csrf

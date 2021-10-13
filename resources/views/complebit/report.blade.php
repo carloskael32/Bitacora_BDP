@@ -189,7 +189,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <tr>
 
                                             <td>{{ $bitacora->id }}</td>
-                                            <td>{{ $bitacora->Agencia }}</td>
+                                            <td>{{ $bitacora->agencia }}</td>
                                             <td>{{ $bitacora->EncargadoOP }}</td>
                                             <td>{{ $bitacora->Temperatura }}</td>
                                             <td>{{ $bitacora->Humedad }}</td>
