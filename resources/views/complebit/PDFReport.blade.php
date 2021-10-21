@@ -46,7 +46,7 @@
                 <tr>
 
 
-                    <td>{{ $bitacora->Agencia }}</td>
+                    <td>{{ $bitacora->agencia }}</td>
                     <td>{{ $bitacora->EncargadoOP }}</td>
                     <td>{{ $bitacora->Temperatura }}</td>
                     <td>{{ $bitacora->Humedad }}</td>

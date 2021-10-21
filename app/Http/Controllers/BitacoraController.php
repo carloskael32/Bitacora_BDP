@@ -134,7 +134,7 @@ class BitacoraController extends Controller
         if ($temperatura >= 40 or $humedad >= 85) {
 
             $adm = DB::select('select email from users where acceso = "yes"');
-
+            
             Notification::route('mail', $adm)->notify(new NotiBit('CPD'));
 
 

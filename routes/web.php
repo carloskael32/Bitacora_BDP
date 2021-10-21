@@ -108,14 +108,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Agencias
     Route::get('/agencia',[AgenciaController::class,'index'])->name('agencia');
-    //Route::get('agencia/create',[AgenciaController::class,'create'])->name('agencia.create');
+    Route::get('agencia/create',[AgenciaController::class,'create'])->name('agencia.create');
     Route::post('/registerage',[AgenciaController::class,'store'])->name('agencia.store');
     Route::get('/agencia/{id}/edit', [AgenciaController::class, 'edit'])->name('agencia.edit');
     Route::patch('agencia/{id}', [AgenciaController::class, 'update'])->name('agencia.update');
     Route::post('/agencia/{id}', [AgenciaController::class, 'destroy'])->name('agencia.destroy');
     
 
-    
+   
+    Route::get('/emails', function () {
+        return view('emails.ReporteMensual');
+    });
 
 });
 

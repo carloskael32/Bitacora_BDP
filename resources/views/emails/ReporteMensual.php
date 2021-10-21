@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
 
     <title>Bitacora BDP</title>
 
@@ -62,15 +61,13 @@
         <hr>
         <h2>Buenos Dias Estimad@.</h2>
         <br>
-        <p style=" font-size: 18px;">El dia de ayer no realizo el registro de la bitacora del CPD (Centro de Procesamiento de Datos). </p>
+        <p style=" font-size: 18px;">Reporte Mensual del los CPD´s de agencias </p>
 
-        <p class="title">El registro de la bitacora se debe realizar diariamente segun:
-        El Manual de Procedimiento de Infraestructura de Tecnologia de la Informacion
-        <b>- Codigo: </b> 06-A06-01-024</p>
+
         <hr>
        
   
-        <p><button> <a href="http://localhost/Bitacora_BDP/public/bitacora/create" style="color:white;">Registrar Bitacora</a></button></p>
+        <p><button> <a href="http://localhost/Bitacora_BDP/public/bitacora/create" style="color:white;">Descargar Reporte</a></button></p>
 
     </div>
 
@@ -80,7 +77,7 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
