@@ -5,7 +5,7 @@
     <br>
     <div class="container-fluid">
 
-<br>
+
         <h5>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</15>
             <hr>
             @if(count($errors)>0)
@@ -42,6 +42,30 @@
                         <input type="date" class="form-control" name="fecha" value="{{ isset($generador->fecha)?$generador->fecha:date('Y-m-d') }}" readonly>
                     </div>
                     @endif
+                </div>
+            </div>
+
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md">
+                    <div class="form-group">
+                        <label for="tiempo">Tiempo de Prueba</label>
+                        <input type="number" class="form-control" name="tiempo"  id="tiempo" placeholder="tiempo en minutos Ej. 30" >
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-group">
+                        <label for="marca">Marca del Generador</label>
+                        <input type="text" class="form-control" name="marca"  id="marca" >
+                    </div>
+                </div>
+                <div class="col-md">
+                 
+                    <div class="form-group">
+                        <label for="modelo">Modelo del Generador</label>
+                        <input type="text" class="form-control" name="modelo" >
+                    </div>
+              
                 </div>
             </div>
 

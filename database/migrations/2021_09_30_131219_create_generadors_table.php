@@ -15,9 +15,13 @@ class CreateGeneradorsTable extends Migration
     {
         Schema::create('generadors', function (Blueprint $table) {
             $table->id();
+            
             $table->date('fecha');
-            $table->String('encargadoop');
+            $table->int('tiempo');
+            $table->string('marca');
+            $table->string('modelo');
             $table->String('agencia');
+            $table->String('encargadoop');
             $table->text('observaciones');
 
 

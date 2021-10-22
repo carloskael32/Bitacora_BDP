@@ -70,7 +70,7 @@ class BitacoraController extends Controller
         } else {
             //administrador
             $ag['agencias'] = DB::select('select distinct agencia from bitacoras where 1=1');
-            $datos['bitacoras'] = DB::table('bitacoras')->where('fecha', '=', date('Y-m-d'))->orderByDesc('id')->paginate(20);
+            $datos['bitacoras'] = DB::table('bitacoras')->where('fecha', '=', date(now()))->orderByDesc('id')->paginate(20);
             return view('complebit.report', $datos, $ag);
         }
 

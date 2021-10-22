@@ -55,13 +55,13 @@ class HomeController extends Controller
         }
 
 
-        $resultado2 = DB::select('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
+        $bitacora = DB::select('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
 
-        $generador = DB::select('select * from generadors');
+        $generador = DB::select('select * from generadors order by fecha desc');
         //return response()->json($generador);
 
 
         //return view("index", ["datos1" => json_encode($puntos)],$resultado2);
-        return view('index')->with(["datos1" => json_encode($puntos), 'generador' => $generador,'registros'=>$resultado2]);
+        return view('index')->with(["datos1" => json_encode($puntos), 'generador' => $generador,'registros'=>$bitacora]);
     }
 }

@@ -15,7 +15,7 @@ $datos = Arr::pluck($meses,'result','mes');
             <div class="card">
                 <div class="card-header">
                   
-                    <h2 class="text-center">Reportes</h2>
+                    <h2 class="text-center">Reporte de Bitacoras en Agencias</h2>
                 </div>
                 <div class="card-body">
 
@@ -164,7 +164,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @auth
                                 @if (Auth::user()->acceso == "yes")
-                                <h5 class="text-center">Reportes Registrados Hoy..</h5>
+                                <h5 class="text-center">Bitacoras registrados Hoy..</h5>
                                 <hr>
                                 <table class=" table table-light">
 

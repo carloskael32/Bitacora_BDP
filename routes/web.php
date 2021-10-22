@@ -117,7 +117,7 @@ Route::group(['middleware' => 'auth'], function () {
 
    
     Route::get('/emails', function () {
-        return view('emails.ReporteMensual');
+        return view('emails.EmailAlert');
     });
 
 });

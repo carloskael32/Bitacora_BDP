@@ -56,21 +56,49 @@
                             <a class="nav-link" href="{{ route('alertas') }}">{{ __('Alertas') }}</a>
 
                         </li>
-                        <li class="nav-item">
+                        <!--   <li class="nav-item">
                             <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
+                        </li> -->
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Reportes</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('reportes') }}">Reporte de Bitacoras</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Reporte de Generadores</a></li>
+                            </ul>
                         </li>
 
-                        <li class="nav-item">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Usuarios</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('user') }}">Administradores</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('eno') }}">Encargados Operativos</a></li>
+                            </ul>
+                        </li>
+
+
+
+
+                        <!--        <li class="nav-item">
                             <a class="nav-link" href="{{ route('eno') }}">{{ __('Encargados Operativos') }}</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user') }}">{{ __('Administrador') }}</a>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('agencia') }}">{{ __('Agencias') }}</a>
                         </li>
+
+
 
 
 
@@ -99,7 +127,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('generador') }}">{{ __('Generador') }}</a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
                         </li>
@@ -170,7 +198,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
+
 </body>
 
 </html>

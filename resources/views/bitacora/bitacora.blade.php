@@ -3,15 +3,7 @@
 @section('content')
 <br>
 <div class="container-fluid">
-
-
-
-
-
     <div class="row justify-content-center">
-
-
-
         <div class="col-md-10">
 
             <div class="card">
@@ -30,7 +22,8 @@
                     @endif
 
                                    
-
+                    <h5>Estimad@.  recuerde que debe realizar la bitacora del CPD diariamente  gracias...</15>
+                    <hr>
 
                     <a href="{{ url('bitacora/create') }}" class="btn btn-success">Nuevo Registro</a>
                     <hr>

@@ -77,7 +77,7 @@
 
 						<th scope="col">#</th>
 						<th scope="col">Agencias</th>
-						<th scope="col">Detalles</th>
+						<th scope="col">Fecha de Prueba</th>
 
 					</tr>
 				</thead>

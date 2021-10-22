@@ -29,7 +29,8 @@
                     </div>
                     @endif
 
-
+                    <h5>Estimad@..  recuerde que debe realizar la prueba del generador una vez al mes</15>
+                    <hr>
 
 
                     <a href="{{ url('generador/create') }}" class="btn btn-success">Nuevo Registro</a>
@@ -42,8 +43,11 @@
                             <tr>
                                 <th>#</th>
                                 <th>Fecha</th>
-                                <th>Encargado OP.</th>
+                                <th>Tiempo</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
                                 <th>Agencia</th>
+                                <th>Encargado OP.</th>
                                 <th>Observaciones</th>
 
 
@@ -57,22 +61,19 @@
                             <tr>
                                 <td>{{ $a}}</td>
                                 <td>{{ $gen->fecha }}</td>
+                                <td>{{ $gen->tiempo }} min</td>
+                                <td>{{ $gen->marca }}</td>
+                                <td>{{ $gen->modelo }}</td>
                                 <td>{{ $gen->agencia }}</td>
-                                <td>{{ $gen->encargadoop }}</td>
-
+                                <td>{{ $gen->EncargadoOP }}</td>
                                 <td>{{ $gen->observaciones }}</td>
 
 
 
-                            </tr>
-                            @php
-                            $a++;
-                            @endphp
-                            @endforeach
-                        </tbody>
 
 
-                    <!--     <td>
+
+                                <!--     <td>
                             <a href="{{ url('/generador/'.$gen->id.'/edit') }}" class="btn btn-warning"> Editar </a>
 
                             &nbsp;
@@ -82,9 +83,15 @@
                                 {{ method_field('DELETE') }}
                                 <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
                             </form>
-                        </td> -->
-                      
+                        </td> 
+                    -->
 
+                            </tr>
+                            @php
+                            $a++;
+                            @endphp
+                            @endforeach
+                        </tbody>
 
                     </table>
                     <div class="pagination justify-content-center">
