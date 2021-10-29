@@ -62,6 +62,6 @@ class HomeController extends Controller
 
 
         //return view("index", ["datos1" => json_encode($puntos)],$resultado2);
-        return view('index')->with(["datos1" => json_encode($puntos), 'generador' => $generador,'registros'=>$bitacora]);
+        return view('index')->with(["datos1" => json_encode($puntos), 'generador' => $generador,'registros'=>$bitacora, 'tapin'=>'active']);
     }
 }

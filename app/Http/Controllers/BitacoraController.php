@@ -35,18 +35,21 @@ class BitacoraController extends Controller
         return view('bitacora.index', $datos);
         */
 
-        $datos['bitacoras'] = DB::table('bitacoras')->where('Agencia', '=', $user)->orderByDesc('id')->paginate(10);
+        $datos = DB::table('bitacoras')->where('Agencia', '=', $user)->orderByDesc('id')->paginate(10);
 
-        return view('bitacora.bitacora', $datos);
+        //return view('bitacora.bitacora', $datos);
+        return view('bitacora.bitacora')->with(['bitacoras' => $datos,'tapbi' =>'active']);
     }
 
     public function alertas()
     {
         //GENERADOR DE ALERTAS
-        $datos['bitacoras'] = DB::select('select * from bitacoras where fecha = date(now()) and (Temperatura > 40 or Humedad > 85) ');
+        $datos = DB::select('select * from bitacoras where fecha = date(now()) and (Temperatura > 40 or Humedad > 85) ');
         //return response()->json($datos);
 
-        return view('complebit.alert', $datos);
+        //return view('complebit.alert', $datos);
+        
+        return view('complebit.alert')->with(['bitacoras' => $datos, 'tapal'=>'active']);
 
     }
 
@@ -61,11 +64,12 @@ class BitacoraController extends Controller
             //usuarios
             //$ene['enero'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 1 group by agencia ',[$agencia]);
           
-           $meses['meses'] = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? group by mes',[$agencia]);
+           $meses = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? group by mes',[$agencia]);
             
             //return response()->json($meses);
 
-            return view('complebit.report',$meses);
+            //return view('complebit.report',$meses);
+            return view('complebit.report')->with(['meses' => $meses,'tapre' =>'active']);
 
         } else {
             //administrador

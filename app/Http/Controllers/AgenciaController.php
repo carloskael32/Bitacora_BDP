@@ -16,8 +16,9 @@ class AgenciaController extends Controller
     public function index()
     {
         //
-        $datos['agencia'] = DB::select('select * from agencias order by id desc');
-        return view('agencia.index',$datos);
+        $datos = DB::select('select * from agencias order by id desc');
+        //return view('agencia.index',$datos);
+        return view('agencia.index')->with(['agencia'=>$datos,'tapag'=>'active']);
     }
 
     /**

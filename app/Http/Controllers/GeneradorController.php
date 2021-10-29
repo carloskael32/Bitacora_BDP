@@ -25,9 +25,10 @@ class GeneradorController extends Controller
         return view('bitacora.index', $datos);
         */
 
-        $datos['generador'] = DB::table('generadors')->where('agencia', '=', $user)->orderByDesc('id')->paginate(12);
+        $datos = DB::table('generadors')->where('agencia', '=', $user)->orderByDesc('id')->paginate(12);
 
-        return view('generador.index', $datos);
+        //return view('generador.index', $datos);
+        return view('generador.index')->with(['generador' => $datos,'tapge' =>'active']);
     }
 
     /**

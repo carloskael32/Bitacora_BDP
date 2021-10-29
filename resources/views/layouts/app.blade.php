@@ -34,7 +34,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm ">
             <div class="container">
 
 
@@ -50,10 +50,10 @@
                         @if (Auth::user()->acceso == "yes")
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
+                            <a class="nav-link {{ isset($tapin)?$tapin:old('') }}" href="{{ route('home') }}">{{ __('Inicio') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('alertas') }}">{{ __('Alertas') }}</a>
+                            <a class="nav-link {{ isset($tapal)?$tapal:old('') }}" href="{{ route('alertas') }}">{{ __('Alertas') }}</a>
 
                         </li>
                         <!--   <li class="nav-item">
@@ -95,14 +95,8 @@
                         </li> -->
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('agencia') }}">{{ __('Agencias') }}</a>
+                            <a class="nav-link  {{ isset($tapag)?$tapag:old('') }}" href="{{ route('agencia') }}">{{ __('Agencias') }}</a>
                         </li>
-
-
-
-
-
-
 
 
 
@@ -121,15 +115,15 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('bitacora') }}">{{ __('Bitacora') }}</a>
+                            <a class="nav-link {{ isset($tapbi)?$tapbi:old('') }} " href="{{ route('bitacora') }}">{{ __('Bitacora') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('generador') }}">{{ __('Generador') }}</a>
+                            <a class="nav-link {{ isset($tapge)?$tapge:old('') }}" href="{{ route('generador') }}">{{ __('Generador') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
+                            <a class="nav-link {{ isset($tapre)?$tapre:old('') }}" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
                         </li>
 
                     </ul>
