@@ -74,7 +74,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('bitacora', BitacoraController::class);
     Route::get('/bitacora', [BitacoraController::class, 'index'])->name('bitacora');
     Route::get('/alertas', [BitacoraController::class, 'alertas'])->name('alertas');
+
+    //reportes
     Route::get('/reportes', [BitacoraController::class, 'reportes'])->name('reportes');
+    Route::get('/reportesge',[GeneradorController::class, 'reportesge'])->name('reportesge');
 
 
     //Encargados Operativos

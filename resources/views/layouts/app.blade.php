@@ -34,7 +34,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm ">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
             <div class="container">
 
 
@@ -61,13 +61,13 @@
                         </li> -->
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Reportes</a>
+                            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Reportes</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('reportes') }}">Reporte de Bitacoras</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Reporte de Generadores</a></li>
+                                <li><a class="dropdown-item" href="{{ route('reportesge') }}">Reporte de Generadores</a></li>
                             </ul>
                         </li>
 
@@ -122,8 +122,17 @@
                             <a class="nav-link {{ isset($tapge)?$tapge:old('') }}" href="{{ route('generador') }}">{{ __('Generador') }}</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link {{ isset($tapre)?$tapre:old('') }}" href="{{ route('reportes') }}">{{ __('Reportes') }}</a>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Reportes</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('reportes') }}">Reporte de Bitacoras</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('reportesge') }}">Reporte de Generadores</a></li>
+                            </ul>
                         </li>
 
                     </ul>
