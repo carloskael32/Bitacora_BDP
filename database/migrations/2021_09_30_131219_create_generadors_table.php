@@ -17,7 +17,7 @@ class CreateGeneradorsTable extends Migration
             $table->id();
             
             $table->date('fecha');
-            $table->int('tiempo');
+            $table->integer('tiempo');
             $table->string('marca');
             $table->string('modelo');
             $table->String('agencia');

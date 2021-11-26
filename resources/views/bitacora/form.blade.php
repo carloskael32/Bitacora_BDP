@@ -59,7 +59,7 @@
                 <div class="col-md">
                     <div class="form-group">
                         <label for="EncargadoOP">EncargadoOP</label>
-                        <input type="text" class="form-control" name="EncargadoOP" value="{{ Auth::user()->name }}" id="EncargadoOP" readonly>
+                        <input type="text" class="form-control" name="EncargadoOP" value="{{ Auth::user()->user }}" id="EncargadoOP" readonly>
                     </div>
                 </div>
                 <div class="col-md">

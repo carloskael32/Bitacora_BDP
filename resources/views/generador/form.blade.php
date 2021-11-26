@@ -32,7 +32,7 @@
                 <div class="col-md">
                     <div class="form-group">
                         <label for="encargadoop">EncargadoOP</label>
-                        <input type="text" class="form-control" name="encargadoop" value="{{ Auth::user()->name }}" id="encargadoop" readonly>
+                        <input type="text" class="form-control" name="encargadoop" value="{{ Auth::user()->user }}" id="encargadoop" readonly>
                     </div>
                 </div>
                 <div class="col-md">

@@ -53,13 +53,13 @@
 
                                 <td>{{ $bitacora->id }}</td>
                                 <td>{{ $bitacora->agencia }}</td>
-                                <td>{{ $bitacora->EncargadoOP }}</td>
-                                <td>{{ $bitacora->Temperatura }}</td>
-                                <td>{{ $bitacora->Humedad }}</td>
-                                <td>{{ $bitacora->Filtracion }}</td>
+                                <td>{{ $bitacora->encargadoOP }}</td>
+                                <td>{{ $bitacora->temperatura }}</td>
+                                <td>{{ $bitacora->humedad }}</td>
+                                <td>{{ $bitacora->filtracion }}</td>
                                 <td>{{ $bitacora->UPS }}</td>
-                                <td>{{ $bitacora->Generador }}</td>
-                                <td>{{ $bitacora->Observaciones }}</td>
+                                <td>{{ $bitacora->generador }}</td>
+                                <td>{{ $bitacora->observaciones }}</td>
                                 <td>{{ $bitacora->Fecha }}</td>
 
                                 <!--

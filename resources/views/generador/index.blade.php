@@ -67,7 +67,7 @@
                                 <td>{{ $gen->marca }}</td>
                                 <td>{{ $gen->modelo }}</td>
                                 <td>{{ $gen->agencia }}</td>
-                                <td>{{ $gen->EncargadoOP }}</td>
+                                <td>{{ $gen->encargadoop }}</td>
                                 <td>{{ $gen->observaciones }}</td>
 
 

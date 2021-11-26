@@ -26,6 +26,7 @@
         * {
 
             font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
         }
     </style>
 
@@ -165,15 +166,15 @@
                         @endif
                         @else
 
-                        @if (Auth::user()->acceso == 'no')
+                        <!--             @if (Auth::user()->acceso == 'no')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/eno/'.Auth::user()->id.'/edit') }}">{{ __('Cambio de Contraseña') }}</a>
                         </li>
                         @endif
-
+ -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->user }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

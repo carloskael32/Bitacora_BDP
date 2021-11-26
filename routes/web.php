@@ -67,8 +67,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //inicio
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('admin');
+    Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('admin');
 
     //Bitacoras
     Route::resource('bitacora', BitacoraController::class);
