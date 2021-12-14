@@ -2,7 +2,7 @@
 @section('content')
 @if (Auth::user()->acceso == "no")
 @php
-$dias = 20;
+$dias = 21;
 $datos = Arr::pluck($meses,'result','mes');
 @endphp
 @endif
@@ -14,25 +14,18 @@ $datos = Arr::pluck($meses,'result','mes');
 
             <div class="card">
                 <div class="card-header">
-                  
+
                     <h2 class="text-center">Reporte de Bitacoras en Agencias</h2>
                 </div>
                 <div class="card-body">
 
-                       <!-- Tabla datos -->
+                    <!-- Tabla datos -->
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-md-3">
 
 
-                                @if(Session::has('mensaje'))
-                                <div class="alert alert-danger alert-dismissible" role="alert">
-                                    {{ Session::get('mensaje')}}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                @endif
+
 
 
                                 <div class="card">
@@ -43,17 +36,54 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                     <div class="card-body">
 
-                                        <!-- Genera reportes segun agencia y mes -->
-
                                         @if (Auth::user()->acceso == "yes")
+
+                                        <!-- Generar reporte general  -->
+                                        <h4 class="text-center">Reporte general de Agencias</h4>
+                                        <form action="{{ route('PDFAll')}}" method="GET">
+
+             
+                                            <div class="mb-3">
+                                                <label for="formGroupExampleInput" class="form-label">De: </label>
+                                                <input name="date1" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                            </div>
+                                            <br>
+                                            <div class="mb-3">
+                                                <label for="formGroupExampleInput" class="form-label">Hasta: </label>
+                                                <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                            </div>
+
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                <input class="btn btn-success" type="submit" value="Generar Reporte">
+                                            </div>
+
+
+
+                                        </form>
+
+                                        <hr>
+                                        <br>
+
+                                        <!-- Genera reportes segun agencia y mes -->
+                                        @if(Session::has('mensaje'))
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            {{ Session::get('mensaje')}}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @endif
+
                                         <h4 class="text-center">Reportes por Mes</h4>
                                         <form action="{{ route('PDFBitacorareporte')}}" method="GET">
                                             <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
                                             <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
                                             <datalist name="agencia" id="datalistOptions">
+
                                                 @foreach($agencias as $agencia)
                                                 <option value="{{ $agencia->agencia }}">
-                                                    @endforeach
+                                                @endforeach
+
                                             </datalist>
                                             <br>
 
@@ -61,8 +91,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 <label for="formGroupExampleInput" class="form-label">Mes: </label>
                                                 <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Ejemplo: enero 2021" required>
                                             </div>
-                                            <br>
-
+                                           
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-primary" type="submit" value="Generar Reporte">
@@ -82,7 +111,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         @endif
 
 
-                                        <!-- Genera Reportes Segun Fechas-->
+                                        <!-- GENERA REPORTE CON INTERVALOS DE FECHAS-->
 
                                         <h4 class="text-center">Reporte con Intervalos
                                             <br>
@@ -92,9 +121,11 @@ $datos = Arr::pluck($meses,'result','mes');
                                             <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
                                             <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
                                             <datalist name="agencia" id="datalistOptions">
+
                                                 @foreach($agencias as $agencia)
                                                 <option value="{{ $agencia->agencia }}">
                                                     @endforeach
+
                                             </datalist>
                                             <br>
 
@@ -108,7 +139,6 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                             </div>
 
-
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-primary" type="submit" value="Generar Reporte">
                                             </div>
@@ -116,7 +146,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         </form>
                                         @else
 
-                                        <!-- Genera Reportes Segun Fechas-->
+
 
                                         <h4 class="text-center">Reporte con Intervalos
                                             <br>
@@ -164,7 +194,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @auth
                                 @if (Auth::user()->acceso == "yes")
-                                <h5 class="text-center">Bitacoras registrados Hoy..</h5>
+                                <h5 class="text-center">Bitacoras registradas el dia Hoy.. <b>{{ date('Y-m-d') }} </b></h5>
                                 <hr>
                                 <table class=" table table-light">
 
@@ -190,13 +220,13 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                             <td>{{ $bitacora->id }}</td>
                                             <td>{{ $bitacora->agencia }}</td>
-                                            <td>{{ $bitacora->EncargadoOP }}</td>
-                                            <td>{{ $bitacora->Temperatura }}</td>
-                                            <td>{{ $bitacora->Humedad }}</td>
-                                            <td>{{ $bitacora->Filtracion }}</td>
+                                            <td>{{ $bitacora->encargadoOP }}</td>
+                                            <td>{{ $bitacora->temperatura }}</td>
+                                            <td>{{ $bitacora->humedad }}</td>
+                                            <td>{{ $bitacora->filtracion }}</td>
                                             <td>{{ $bitacora->UPS }}</td>
-                                            <td>{{ $bitacora->Generador }}</td>
-                                            <td>{{ $bitacora->Observaciones }}</td>
+                                            <td>{{ $bitacora->generador }}</td>
+                                            <td>{{ $bitacora->observaciones }}</td>
                                             <td>{{ $bitacora->Fecha }}</td>
 
                                         </tr>
@@ -212,7 +242,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                 </div>
 
                                 @else
-                                
+
                                 <div class="card">
 
                                     <div class="card-body">
@@ -242,7 +272,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -300,7 +330,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                               
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -358,7 +388,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                        
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -415,7 +445,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                    
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -477,7 +507,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                    
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -534,7 +564,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                     
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -593,7 +623,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }} </h1>
-                                                    
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -653,7 +683,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                 
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -718,7 +748,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                     
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -779,7 +809,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                   
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
@@ -835,12 +865,12 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                       
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
-                                                                <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="10">
-                                                                <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Octubre">
+                                                                <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="11">
+                                                                <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Noviembre">
                                                             </div>
                                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                                 <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
@@ -894,12 +924,12 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                         <h6>Reportes enviados:</h6>
                                                         <h1>{{ $a }}</h1>
-                                                   
+
 
                                                         <form action="{{ route('reportBit')}}" method="GET">
                                                             <div class="mb-3">
-                                                                <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="10">
-                                                                <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Octubre">
+                                                                <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="12">
+                                                                <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Diciembre">
                                                             </div>
                                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                                 <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   
+
 
     <title>Bitacora BDP</title>
 
@@ -54,32 +54,30 @@
 
     <br><br>
 
- 
+
 
     <div class="card">
-        
+
         <hr>
         <h2>Buenos Dias Estimad@.</h2>
         <br>
         <p style=" font-size: 18px;">El dia de ayer no realizo el registro de la bitacora del CPD (Centro de Procesamiento de Datos). </p>
 
         <p class="title">El registro de la bitacora se debe realizar diariamente segun:
-        El Manual de Procedimiento de Infraestructura de Tecnologia de la Informacion
-        <b>- Codigo: </b> 06-A06-01-024</p>
+            El Manual de Procedimiento de Infraestructura de Tecnologia de la Informacion
+            <b>- Codigo: </b> 06-A06-01-024
+        </p>
         <hr>
-       
-  
+
+
         <p><button> <a href="http://localhost/Bitacora_BDP/public/bitacora/create" style="color:white;">Registrar Bitacora</a></button></p>
+
+
 
     </div>
 
 
-
-
-
-
-
-   
 </body>
 
 </html>
+

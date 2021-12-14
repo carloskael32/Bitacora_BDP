@@ -134,4 +134,8 @@ Route::get('/report', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorar
 
 Route::get('/report2', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
 
+Route::get('/report3', [PDFController::class, 'PDFAll'])->name('PDFAll');
+
 Route::get('/reportAlert', [PDFController::class, 'PDFAlertas'])->name('reportAlert');
+
+

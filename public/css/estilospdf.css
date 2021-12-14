@@ -1,15 +1,18 @@
 @page{
     margin: 0cm 0cm;
-    font-size: 1em;
+  
 }
 
 body{
-margin: 2cm 0cm 0cm;
+margin: 0.5cm 0cm 0cm;
+
+font-family: Arial, Helvetica, sans-serif;
+font-size: 13px;
 
 
 }
 
-header{
+/* header{
     position: fixed;
     top: 0cm;
     left: 0cm;
@@ -19,5 +22,20 @@ header{
     color: white;
     text-align: center;
     line-height: 30px;
-}
+} */
 
+table{
+    width: 100%;
+ 
+    border: 1px solid black;
+}
+td {
+    text-align: center;
+    border: 1px solid black;
+}
+th {
+    background-color: #221a96;
+    color: white;
+    text-align: center;
+    border: 1px solid black;
+}

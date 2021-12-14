@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 //use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
 
+
 use App\Models\User;
 use App\Notifications\NotiBit;
 //use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -38,7 +39,7 @@ class BitacoraController extends Controller
         $datos = DB::table('bitacoras')->where('Agencia', '=', $user)->orderByDesc('id')->paginate(10);
 
         //return view('bitacora.bitacora', $datos);
-        return view('bitacora.bitacora')->with(['bitacoras' => $datos,'tapbi' =>'active']);
+        return view('bitacora.bitacora')->with(['bitacoras' => $datos, 'tapbi' => 'active']);
     }
 
     public function alertas()
@@ -48,9 +49,8 @@ class BitacoraController extends Controller
         //return response()->json($datos);
 
         //return view('complebit.alert', $datos);
-        
-        return view('complebit.alert')->with(['bitacoras' => $datos, 'tapal'=>'active']);
 
+        return view('complebit.alert')->with(['bitacoras' => $datos, 'tapal' => 'active']);
     }
 
     public function reportes()
@@ -63,19 +63,21 @@ class BitacoraController extends Controller
             //return response()->json($ag);
             //usuarios
             //$ene['enero'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 1 group by agencia ',[$agencia]);
-          
-           $meses = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? group by mes',[$agencia]);
-            
+
+            $meses = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? group by mes', [$agencia]);
+
             //return response()->json($meses);
 
             //return view('complebit.report',$meses);
-            return view('complebit.report')->with(['meses' => $meses,'tapre' =>'active']);
-
+            return view('complebit.report')->with(['meses' => $meses, 'tapre' => 'active']);
         } else {
             //administrador
-            $ag['agencias'] = DB::select('select distinct agencia from bitacoras where 1=1');
-            $datos['bitacoras'] = DB::table('bitacoras')->where('fecha', '=', date(now()))->orderByDesc('id')->paginate(20);
-            return view('complebit.report', $datos, $ag);
+            $hoy = date('Y-m-d');
+
+            $ag = DB::select('select distinct agencia from bitacoras where 1=1');
+            $datos = DB::table('bitacoras')->where('fecha', '=', $hoy)->orderByDesc('id')->paginate(21);
+            //return response()->json($datos);
+            return view('complebit.report')->with(['bitacoras' => $datos, 'agencias' => $ag]);
         }
 
         //return response()->json($datos);
@@ -138,7 +140,7 @@ class BitacoraController extends Controller
         if ($temperatura >= 40 or $humedad >= 85) {
 
             $adm = DB::select('select email from users where acceso = "yes"');
-            
+
             Notification::route('mail', $adm)->notify(new NotiBit('CPD'));
 
 

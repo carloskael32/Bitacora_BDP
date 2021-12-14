@@ -29,6 +29,20 @@
                             <label for="floatingInput"><i class="bi bi-key-fill "></i> Contraseña</label>
                         </div>
 
+                        @error('message')
+
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg>
+                            <div>
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                            {{ $message }}
+                            </div>
+                        </div>
+                     
+                        @enderror
+
                         <div class="md-4 ">
                             <button type="submit" class="btn btn-primary">
                                 Ingresar
@@ -45,7 +59,7 @@
 
 
 
-          
+
 
         </div>
     </div>

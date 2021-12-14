@@ -41,7 +41,7 @@ class HomeController extends Controller
         $puntos = [];
         $array = json_decode(json_encode($bitacoras), true);
 
-        $dias = 20;
+        $dias = 21;
 
 
         foreach ($array as $bitac) {
