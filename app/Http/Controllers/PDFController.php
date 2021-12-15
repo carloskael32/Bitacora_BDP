@@ -100,13 +100,13 @@ class PDFController extends Controller
         $ini = $request->get('date1');
         $fin = $request->get('date2');
 
-        //todos los registros
-        $bitall = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where Fecha BETWEEN ? AND ? order by agencia,fecha desc', [$ini, $fin]);
+        //todos los registros por fechas
+        //$bitall = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where Fecha BETWEEN ? AND ? order by agencia,fecha desc', [$ini, $fin]);
 
         //contar todos los registros
         $bitto = DB::select('select agencia, COUNT(agencia) as total from bitacoras group by agencia order by total desc');
 
-
+        //return $bitto;
         //mostrar todos los registros por agencias 
         $prueba = DB::select('select distinct agencia from bitacoras where 1 = 1');
 
@@ -116,22 +116,19 @@ class PDFController extends Controller
         for ($i = 0; $i < count($datos); $i++) {
             //echo $datos[$i];
             $a = $datos[$i];
-            $all[] = $con = DB::select('select * from bitacoras where agencia = ?', [$a]);
-             //consulta para sacar los nombres de cada encargado ok
-             //$all[] = $con = DB::select('select b.agencia, u.nombre from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ?', [$a]);
+            $all[] = $con = DB::select('select agencia,encargadoOP,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by Fecha desc', [$a,$ini,$fin]);
+            
+            //consulta para sacar los nombres de cada encargado ok
+            //$all[] = $con = DB::select('select b.*, u.nombre from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ?', [$a]);
         }
 
+  
 
-        return response()->json($all);
-
-
-
-
-        if ($bitall != null) {
+        if ($all != null) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
-            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('bitall', 'bitto'));
+            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('bitto','all'));
             //return $pdf->Stream('Reporte.pdf');
-            return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
+            return $pdf->setPaper('carta', 'landscape')->Stream('Reporte_General_bitacoras.pdf');
         } else {
             return redirect('reportes')->with('mensaje', 'No se Encontraron Registros');
         }

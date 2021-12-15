@@ -73,6 +73,28 @@ class DatosSeeder extends Seeder
             'Fecha'=>'2021-10-02',
         ]);
         $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'lespinoza',
+            'temperatura'=>'19.80',
+            'humedad'=>'10',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2021-10-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'lespinoza',
+            'temperatura'=>'19.80',
+            'humedad'=>'10',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2021-10-02',
+        ]);
+        $bit=Bitacora::create([
             'agencia'=> 'Mairana',
             'encargadoOP'=>'pañaguaya',
             'temperatura'=>'23.8',

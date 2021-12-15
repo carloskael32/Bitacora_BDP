@@ -26,8 +26,8 @@ font-size: 13px;
 
 table{
     width: 100%;
- 
     border: 1px solid black;
+   
 }
 td {
     text-align: center;
@@ -39,3 +39,7 @@ th {
     text-align: center;
     border: 1px solid black;
 }
+.page-break {
+    page-break-after: always;
+}
+
