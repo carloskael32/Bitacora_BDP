@@ -16,11 +16,9 @@
 
 <body>
 
-    @php
 
-    for ($i = 0; $i < count($all); $i++) { $j=0; 
-        @endphp 
-        <!-- cabecera -->
+
+    @for ($i = 0; $i < count($all); $i++) @if ($all[$i] !=null) @php $j=0; @endphp <!-- cabecera -->
         <div class="container col-12">
 
 
@@ -100,10 +98,8 @@
                 </thead>
 
                 <tbody>
-                    @php
-                    for ($j = 0; $j < count($all[$i]); $j++) { 
-                        @endphp 
-                        <tr>
+
+                    @for ($j = 0; $j < count($all[$i]); $j++) <tr>
                         <td>{{$all[$i][$j]->Fecha}}</td>
                         <td>{{$all[$i][$j]->agencia}}</td>
                         <td>{{$all[$i][$j]->encargadoOP}}</td>
@@ -114,43 +110,44 @@
                         <td>{{$all[$i][$j]->observaciones}}</td>
                         </tr>
 
-                        @php
-                        }
-                        @endphp
+                        @endfor
 
                 </tbody>
             </table>
         </div>
 
-
         <div class="page-break"></div>
-        @php
+        @endif
 
-        }
 
-        @endphp
+        @endfor
 
         <div class="container col-5">
             <table>
                 <thead>
                     <tr>
-                    <th>Ubicacion</th>
-                    <th>Recibidos</th>
-                    <th>Porcentaje (%)</th>
+                        <th>Ubicacion</th>
+                        <th>Recibidos</th>
+                        <th>Porcentaje (%)</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($bitto as $bt)
-                    <tr>
-                    <td>{{$bt->agencia}}</td>
-                
-                    <td>{{$bt->total}}</td>
 
-             
-                    <td>s</td>
-                    </tr>
-                  
-                    @endforeach
+                 
+
+                        <tr>
+                            <td>{{$bt->agencia}}</td>
+
+                            <td>{{$bt->total}}</td>
+
+                            <td></td>
+
+
+                            <td>s</td>
+                        </tr>
+
+                        @endforeach
                 </tbody>
 
             </table>
