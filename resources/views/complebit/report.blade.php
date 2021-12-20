@@ -40,18 +40,30 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                         <!-- Generar reporte general  -->
                                         <h4 class="text-center">Reporte general de Agencias</h4>
+
+                                        <!-- Alerta de consultas por mes en todas las agencias -->
+                                        @if(Session::has('mensajeall'))
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            {{ Session::get('mensajeall')}}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @endif
+
+
                                         <form action="{{ route('PDFAll')}}" method="GET">
 
              
                                             <div class="mb-3">
                                                 <label for="formGroupExampleInput" class="form-label">De: </label>
-                                                <input name="date1" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                                <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                             </div>
                                             <br>
-                                            <div class="mb-3">
+                                           <!--  <div class="mb-3">
                                                 <label for="formGroupExampleInput" class="form-label">Hasta: </label>
                                                 <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
-                                            </div>
+                                            </div> -->
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-success" type="submit" value="Generar Reporte">

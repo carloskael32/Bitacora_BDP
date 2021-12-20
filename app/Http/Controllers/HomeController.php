@@ -55,7 +55,7 @@ class HomeController extends Controller
         }
 
 
-        $bitacora = DB::select('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
+        $bitacora = DB::select('select agencia, COUNT(agencia) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
 
         $generador = DB::select('select * from generadors where MONTH(fecha) = MONTH(date(NOW())) order by fecha desc');
         //return response()->json($generador);
