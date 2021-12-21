@@ -13,6 +13,7 @@ use App\Http\Controllers\eno\EnoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GeneradorController;
 use App\Http\Controllers\AgenciaController;
+use App\Http\Controllers\PDFGeneradorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,8 +135,11 @@ Route::get('/report', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorar
 
 Route::get('/report2', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
 
-Route::get('/report3', [PDFController::class, 'PDFAll'])->name('PDFAll');
+Route::get('/reporte_general_mensual', [PDFController::class, 'PDFAll'])->name('PDFAll');
 
 Route::get('/reportAlert', [PDFController::class, 'PDFAlertas'])->name('reportAlert');
 
 
+
+//REPORTE PDF DE GENERADORES
+Route::get('/reporte_Generador', [PDFGeneradorController::class, 'PDFALLGE'])->name('PDF_GENERADOR');

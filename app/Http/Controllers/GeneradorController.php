@@ -45,6 +45,8 @@ class GeneradorController extends Controller
            
         } else {
             //administrador
+
+            
             $ag = DB::select('select distinct agencia from generadors where 1=1');
             //$datos['generador'] = DB::table('bitacoras')->where('fecha', '=', date(now()))->orderByDesc('id')->paginate(20);
             //$generador = DB::select('select * from generadors where MONTH(fecha) = MONTH(date(NOW())) order by fecha desc');

@@ -2,7 +2,6 @@
 @section('content')
 @if (Auth::user()->acceso == "no")
 @php
-$dias = 21;
 $datos = Arr::pluck($meses,'result','mes');
 @endphp
 @endif
@@ -15,7 +14,7 @@ $datos = Arr::pluck($meses,'result','mes');
             <div class="card">
                 <div class="card-header">
 
-                    <h2 class="text-center">Reporte de Bitacoras en Agencias</h2>
+                    <h2 class="text-center">Reporte de Bitacoras en Agencias </h2>
                 </div>
                 <div class="card-body">
 
@@ -23,10 +22,6 @@ $datos = Arr::pluck($meses,'result','mes');
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-md-3">
-
-
-
-
 
                                 <div class="card">
                                     <div class="card-header text-center">
@@ -113,6 +108,9 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                         <hr>
                                         <br>
+
+                                        
+  <!-- GENERA REPORTE CON INTERVALOS DE FECHAS-->
                                         @if(Session::has('mensaje2'))
                                         <div class="alert alert-danger alert-dismissible" role="alert">
                                             {{ Session::get('mensaje2')}}
@@ -123,7 +121,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         @endif
 
 
-                                        <!-- GENERA REPORTE CON INTERVALOS DE FECHAS-->
+                                      
 
                                         <h4 class="text-center">Reporte con Intervalos
                                             <br>
@@ -266,8 +264,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                             $a = $datos[1];
                                             $dias;
-                                            $b = round(($a*100)/$dias);
-
+                                            $b = round(($a*100)/$dias);                                
                                             if( $b >= 100){
                                             $b=100;
                                             }

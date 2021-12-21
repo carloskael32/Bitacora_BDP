@@ -119,9 +119,10 @@
         <div class="page-break"></div>
         @endif
 
-
         @endfor
 
+        <p> <h5>Resumen de bitácoras de todas las agencias del mes de {{$mesDesc}}</h5></p>
+        <br>
         <div class="container col-5">
             <table>
                 <thead>
@@ -132,22 +133,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($bitto as $bt)
+                    @foreach ($rfn as $bt)
+                    <tr>
+                        <td>{{$bt->agencia}}</td>
 
-                 
+                        <td>{{$bt->total}}</td>
 
-                        <tr>
-                            <td>{{$bt->agencia}}</td>
+                        <td>{{$bt->porcentaje }}</td>
 
-                            <td>{{$bt->total}}</td>
+                    </tr>
 
-                            <td></td>
-
-
-                            <td>s</td>
-                        </tr>
-
-                        @endforeach
+                    @endforeach
                 </tbody>
 
             </table>

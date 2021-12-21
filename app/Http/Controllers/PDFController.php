@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\facade as PDF;
-use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
-//use PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
-use PhpParser\Node\Stmt\For_;
+
 
 class PDFController extends Controller
 {
@@ -31,13 +29,11 @@ class PDFController extends Controller
         $agencia = Auth::user()->agencia;
         $mes1 = $request->get('mes1');
         $mes = $request->get('mes');
-        //return response()->json($mes);
-        //return response()->json($mes); where year(Fecha) = YEAR(NOW())
-
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ', [$agencia, $mes]);
 
-        //return response()->json($bitacoras);
-        //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
+       
+
+   
         $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
         //return $pdf->Stream('Reporte.pdf');
 
@@ -47,24 +43,26 @@ class PDFController extends Controller
     public function PDFBitacora(Request $request)
     //REPORTE MENSUALMENTE - LADO ADMINISTRADOR 
     {
-        //$bitacoras = Bitacora::all();
-        //$agencia = "la paz";
-        //$request = request()->except('_token');
-        //$res =  implode($request);
 
         $agencia = $request->get('agencia');
         $mes = $request->get('mes');
 
-        //return response()->json($mes);
+        setlocale(LC_TIME, "spanish");
+        $fe = $mes;
+        $fe = str_replace("/", "-", $fe); 
+        $newDate = date("d-m-Y", strtotime($fe)); 
+        $mesDesc = strftime("%B de %Y", strtotime($newDate));
+
+      
         $resumen = DB::select('select  AVG(temperatura) as pTemperatura, AVG(Humedad) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
         $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
-        //return response()->json($agencia);
+   
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
 
         if ($bitacoras != null) {
-            //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
-            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu'));
+          
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu','mesDesc'));
             //return $pdf->Stream('Reporte.pdf');
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
         } else {
@@ -73,14 +71,28 @@ class PDFController extends Controller
     }
 
     public function PDFBitacora2(Request $request)
-    // REPORTES HECHO CON INTERVALOS DE FECHAS - LADO ADMINISTRADOR Y USUARIO
+    // REPORTES HECHO CON INTERVALOS DE FECHAS - LADO ADMINISTRADOR Y CLIENTE
     {
         $agencia = $request->get('agencia');
         $ini = $request->get('date1');
+
+        setlocale(LC_TIME, "spanish");
+        $fe = $ini;
+        $fe = str_replace("/", "-", $fe); 
+        $newDate1 = date("d-m-Y", strtotime($fe)); 
+        $mesini = strftime("%B de %Y", strtotime($newDate1));
+     
+
         $fin = $request->get('date2');
 
+        setlocale(LC_TIME, "spanish");
+        $fe = $fin;
+        $fe = str_replace("/", "-", $fe); 
+        $newDate2 = date("d-m-Y", strtotime($fe)); 
+        $mesfin = strftime("%B de %Y", strtotime($newDate2));
 
-        $resumen = DB::select('select  AVG(temperatura) as pTemperatura, AVG(Humedad) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
+
+        $resumen = DB::select('select  CONCAT(ROUND(AVG(temperatura))," %") as pTemperatura, CONCAT(ROUND(AVG(Humedad)),"") as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
         $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
@@ -88,7 +100,7 @@ class PDFController extends Controller
         //return response()->json($bitacoras);
         if ($bitacoras != null) {
 
-            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu'));
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu','mesini','mesfin'));
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
         } else {
             return redirect('reportes')->with('mensaje2', 'No se Encontraron Registros');
@@ -100,41 +112,24 @@ class PDFController extends Controller
     // REPORTE GENERAL DE TODAS LA AGENCIAS CON INTERVALO
     {
         $mes = $request->get('mes');
-        
-        //$fin = $request->get('date2');
+
+        setlocale(LC_TIME, "spanish");
+        $fe = $mes;
+        $fe = str_replace("/", "-", $fe); 
+        $newDate = date("d-m-Y", strtotime($fe)); 
+        $mesDesc = strftime("%B de %Y", strtotime($newDate));
+        //devuelve: Noviembre de 2021
+
+
 
         //todos los registros por fechas
         //$bitall = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where Fecha BETWEEN ? AND ? order by agencia,fecha desc', [$ini, $fin]);
 
         //contar todos los registros
-        $bitto = DB::select('select agencia, COUNT(agencia) as total from bitacoras group by agencia order by total desc');
-
-
-        //mostrar todos los registros por agencias 
-        $prueba = DB::select('select distinct agencia from bitacoras where 1 = 1');
-
-        $datos = Arr::pluck($prueba, 'agencia');
-
-
-        for ($i = 0; $i < count($datos); $i++) {
-            //echo $datos[$i];
-            $a = $datos[$i];
-            $all[] = $con = DB::select('select agencia,encargadoOP,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ?   order by Fecha desc', [$a, $mes]);
-
-        
-            //consulta para sacar los nombres de cada encargado ok para DESPUES
-            //$all[] = $con = DB::select('select b.*, u.nombre from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ?', [$a]);
-        }
-        
-        //return $all;
-        //$comes[] = $p = DB::select('select Month(Fecha) as Mes, count(agencia) as total,(select distinct agencia from bitacoras where 1=1 and agencia = ? group by agencia ) as agencia from bitacoras where Fecha BETWEEN ? AND ?  Group By Mes',[$a, $ini, $fin]);
-
-       
-
-
         // calcula los dias de cada mes sin los domingos
         $starDate = new DateTime();
         $starDate->modify('first day of this month');
+        
         $ct = 0;
         $cd = 0;
         $endDate = new DateTime();
@@ -147,23 +142,31 @@ class PDFController extends Controller
             $starDate->modify("+1 days");
             $ct++;
         }
-        $cand = $ct - $cd;
+        $dias = $ct - $cd;
+        $rfn = DB::select('select agencia,COUNT(agencia) as total,  CONCAT(ROUND((COUNT(agencia)/?*100),0),"%") as porcentaje from bitacoras where date_format(Fecha, "%Y-%m") = ? group by agencia order by total desc', [$dias,$mes]);
+        
 
 
-        // porcentajes de cada mes 
-        $cant = DB::select('select agencia, COUNT(agencia) as total from bitacoras where MONTH(Fecha) = MONTH(date(NOW())) group by agencia order by total desc');
-        //$bitacoras = DB::select(DB::raw('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia'));
+        //mostrar todos los registros por agencias 
+        $prueba = DB::select('select distinct agencia from bitacoras where 1 = 1');
 
-        //dd($bitacoras);
-        //return response()->json($bitacoras);
+        $datos = Arr::pluck($prueba, 'agencia');
 
 
+        for ($i = 0; $i < count($datos); $i++) {
+            //echo $datos[$i];
+            $a = $datos[$i];
+            $all[] = $con = DB::select('select agencia,encargadoOP,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ?   order by Fecha desc', [$a, $mes]);
+          
+            //consulta para sacar los nombres de cada encargado ok para DESPUES
+            //$all[] = $con = DB::select('select b.*, u.nombre from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ?', [$a]);
+        }
 
 
 
         if (!empty($all[0])) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
-            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all','bitto'));
+            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all', 'rfn','mesDesc'));
             //return $pdf->Stream('Reporte.pdf');
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte_General_bitacoras.pdf');
         } else {
@@ -180,4 +183,6 @@ class PDFController extends Controller
         $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
         return $pdf->setPaper('carta', 'landscape')->Stream('Resumen.pdf');
     }
+
+    
 }

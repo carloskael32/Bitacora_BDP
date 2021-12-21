@@ -21,7 +21,7 @@
 
             <tbody>
                 <tr>
-                    <td rowspan="3" colspan="2"><img src="{{asset('/img/logo.png')}}" width="200"></td>
+                    <td rowspan="3" colspan="2"><img src="{{asset('/img/logo.png')}}" width="190"></td>
                     <th colspan="3">Birtacora de Control de CPD</th>
                 </tr>
                 <tr>
@@ -111,8 +111,10 @@
 
         </table>
     </div>
-
-    <br><br><br><br><br><br><br>
+<br>
+    <div class="page-break"></div>
+    <p> <h5>Promedio de Temperatura y humedad de {{$mesini}} hasta {{$mesfin}}</h5></p>
+        <br>
 
     <div class="container col-4">
         <table>
