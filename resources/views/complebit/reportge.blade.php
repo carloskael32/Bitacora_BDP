@@ -23,17 +23,6 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                         <div class="row justify-content-center">
                             <div class="col-md-3">
 
-
-                                @if(Session::has('mensaje'))
-                                <div class="alert alert-danger alert-dismissible" role="alert">
-                                    {{ Session::get('mensaje')}}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                @endif
-
-
                                 <div class="card">
                                     <div class="card-header text-center">
                                         Reporte de Agencias
@@ -47,12 +36,18 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
 
                                         @if (Auth::user()->acceso == "yes")
                                         <!-- Generar reporte general  -->
+
+
+
+
+
                                         <h4 class="text-center">Reporte general de Agencias</h4>
+                                        <br>
 
                                         <!-- Alerta de consultas por mes en todas las agencias -->
-                                        @if(Session::has('mensajeall'))
+                                        @if(Session::has('mensaje'))
                                         <div class="alert alert-danger alert-dismissible" role="alert">
-                                            {{ Session::get('mensajeall')}}
+                                            {{ Session::get('mensaje')}}
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -60,18 +55,25 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                                         @endif
 
 
-                                        <form action="{{ route('PDFAll')}}" method="GET">
+                                        <form action="{{ route('PDF_GENERADOR')}}" method="GET">
 
 
                                             <div class="mb-3">
-                                                <label for="formGroupExampleInput" class="form-label">De: </label>
+
+                                                <label for="exampleDataList" class="form-label">Elija una Agencia: </label>
+                                                <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
+                                                <datalist name="agencia" id="datalistOptions">
+
+                                                    @foreach($agencias as $agencia)
+                                                    <option value="{{ $agencia->agencia }}">
+                                                        @endforeach
+
+                                                </datalist>
+                                                <br>
+                                                <label for="exampleDataList" class="form-label">Seleccione un Mes: </label>
                                                 <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                             </div>
                                             <br>
-                                            <!--  <div class="mb-3">
-                                                <label for="formGroupExampleInput" class="form-label">Hasta: </label>
-                                                <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
-                                            </div> -->
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-success" type="submit" value="Generar Reporte">
@@ -83,7 +85,7 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                                         <hr>
 
 
-                                
+
                                         @else
                                         @if(Session::has('mensaje'))
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -98,14 +100,14 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                                         <form action="{{ route('PDFBitacorareporte')}}" method="GET">
                                             <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
                                             <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" value="{{ Auth::user()->agencia }}" readonly>
-              
+
                                             <br>
 
                                             <div class="mb-3">
                                                 <label for="formGroupExampleInput" class="form-label">Mes: </label>
                                                 <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Ejemplo: enero 2021" required>
                                             </div>
-                                           
+
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-primary" type="submit" value="Generar Reporte">

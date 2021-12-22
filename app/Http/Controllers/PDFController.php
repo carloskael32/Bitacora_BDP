@@ -8,7 +8,7 @@ use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
-
+use Illuminate\Support\Facades\Date;
 
 class PDFController extends Controller
 {
@@ -27,14 +27,27 @@ class PDFController extends Controller
     {
 
         $agencia = Auth::user()->agencia;
-        $mes1 = $request->get('mes1');
-        $mes = $request->get('mes');
-        $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ', [$agencia, $mes]);
 
-       
+        $mes1 = $request->get('mes1');//literal
+        $mes = $request->get('mes');//numeral
 
+        $ms = Date("Y-$mes");
    
-        $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
+        setlocale(LC_TIME, "spanish");
+        $fe = $ms;
+        $fe = str_replace("/", "-", $fe);
+        $newDate = date("d-m-Y", strtotime($fe));
+        $mesini = strftime("%B de %Y", strtotime($newDate));
+
+
+        $resumen = DB::select('select  ROUND(AVG(temperatura),2) as pTemperatura, ROUND(AVG(Humedad),2) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
+
+        $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ', [$agencia, $mes]);
+        $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
+
+        $vr = 0;
+
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'datosu','vr','mesini','resumen'));
         //return $pdf->Stream('Reporte.pdf');
 
         return $pdf->setPaper('carta', 'landscape')->download($mes1 . '_Reporte.pdf');
@@ -49,20 +62,20 @@ class PDFController extends Controller
 
         setlocale(LC_TIME, "spanish");
         $fe = $mes;
-        $fe = str_replace("/", "-", $fe); 
-        $newDate = date("d-m-Y", strtotime($fe)); 
-        $mesDesc = strftime("%B de %Y", strtotime($newDate));
+        $fe = str_replace("/", "-", $fe);
+        $newDate = date("d-m-Y", strtotime($fe));
+        $mesini = strftime("%B de %Y", strtotime($newDate));
 
-      
-        $resumen = DB::select('select  AVG(temperatura) as pTemperatura, AVG(Humedad) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
+
+        $resumen = DB::select('select  ROUND(AVG(temperatura),2) as pTemperatura, ROUND(AVG(Humedad),2) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
         $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
-   
+
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
-
+        $vr = 1;
         if ($bitacoras != null) {
-          
-            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu','mesDesc'));
+
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu', 'mesini', 'vr'));
             //return $pdf->Stream('Reporte.pdf');
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
         } else {
@@ -78,29 +91,29 @@ class PDFController extends Controller
 
         setlocale(LC_TIME, "spanish");
         $fe = $ini;
-        $fe = str_replace("/", "-", $fe); 
-        $newDate1 = date("d-m-Y", strtotime($fe)); 
-        $mesini = strftime("%B de %Y", strtotime($newDate1));
-     
+        $fe = str_replace("/", "-", $fe);
+        $newDate1 = date("d-m-Y", strtotime($fe));
+        $mesini = strftime("%d de %B de %Y", strtotime($newDate1));
+
 
         $fin = $request->get('date2');
 
         setlocale(LC_TIME, "spanish");
         $fe = $fin;
-        $fe = str_replace("/", "-", $fe); 
-        $newDate2 = date("d-m-Y", strtotime($fe)); 
-        $mesfin = strftime("%B de %Y", strtotime($newDate2));
+        $fe = str_replace("/", "-", $fe);
+        $newDate2 = date("d-m-Y", strtotime($fe));
+        $mesfin = strftime("%d de %B de %Y", strtotime($newDate2));
 
 
-        $resumen = DB::select('select  CONCAT(ROUND(AVG(temperatura))," %") as pTemperatura, CONCAT(ROUND(AVG(Humedad)),"") as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
+        $resumen = DB::select('select  CONCAT(ROUND(AVG(temperatura))," %") as pTemperatura, CONCAT(ROUND(AVG(Humedad))," %") as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
         $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
-
+        $vr = 1;
         //return response()->json($bitacoras);
         if ($bitacoras != null) {
 
-            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu','mesini','mesfin'));
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu', 'mesini', 'mesfin', 'vr'));
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
         } else {
             return redirect('reportes')->with('mensaje2', 'No se Encontraron Registros');
@@ -115,8 +128,8 @@ class PDFController extends Controller
 
         setlocale(LC_TIME, "spanish");
         $fe = $mes;
-        $fe = str_replace("/", "-", $fe); 
-        $newDate = date("d-m-Y", strtotime($fe)); 
+        $fe = str_replace("/", "-", $fe);
+        $newDate = date("d-m-Y", strtotime($fe));
         $mesDesc = strftime("%B de %Y", strtotime($newDate));
         //devuelve: Noviembre de 2021
 
@@ -129,7 +142,7 @@ class PDFController extends Controller
         // calcula los dias de cada mes sin los domingos
         $starDate = new DateTime();
         $starDate->modify('first day of this month');
-        
+
         $ct = 0;
         $cd = 0;
         $endDate = new DateTime();
@@ -143,8 +156,8 @@ class PDFController extends Controller
             $ct++;
         }
         $dias = $ct - $cd;
-        $rfn = DB::select('select agencia,COUNT(agencia) as total,  CONCAT(ROUND((COUNT(agencia)/?*100),0),"%") as porcentaje from bitacoras where date_format(Fecha, "%Y-%m") = ? group by agencia order by total desc', [$dias,$mes]);
-        
+        $rfn = DB::select('select agencia,COUNT(agencia) as total,  CONCAT(ROUND((COUNT(agencia)/?*100),0),"%") as porcentaje from bitacoras where date_format(Fecha, "%Y-%m") = ? group by agencia order by total desc', [$dias, $mes]);
+
 
 
         //mostrar todos los registros por agencias 
@@ -157,7 +170,7 @@ class PDFController extends Controller
             //echo $datos[$i];
             $a = $datos[$i];
             $all[] = $con = DB::select('select agencia,encargadoOP,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ?   order by Fecha desc', [$a, $mes]);
-          
+
             //consulta para sacar los nombres de cada encargado ok para DESPUES
             //$all[] = $con = DB::select('select b.*, u.nombre from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ?', [$a]);
         }
@@ -166,7 +179,7 @@ class PDFController extends Controller
 
         if (!empty($all[0])) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
-            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all', 'rfn','mesDesc'));
+            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all', 'rfn', 'mesDesc'));
             //return $pdf->Stream('Reporte.pdf');
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte_General_bitacoras.pdf');
         } else {
@@ -183,6 +196,4 @@ class PDFController extends Controller
         $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
         return $pdf->setPaper('carta', 'landscape')->Stream('Resumen.pdf');
     }
-
-    
 }

@@ -92,7 +92,6 @@
             <tbody>
                 @foreach( $bitacoras as $bitacora)
                 <tr>
-
                     <td>{{ $bitacora->Fecha }}</td>
                     <td>{{ $bitacora->agencia }}</td>
                     <td>{{ $bitacora->encargadoOP }}</td>
@@ -100,21 +99,23 @@
                     <td>{{ $bitacora->humedad }}</td>
                     <td>{{ $bitacora->filtracion }}</td>
                     <td>{{ $bitacora->UPS }}</td>
-
                     <td>{{ $bitacora->observaciones }}</td>
-
-
-
                 </tr>
                 @endforeach
             </tbody>
 
         </table>
     </div>
-<br>
+    <br>
     <div class="page-break"></div>
-    <p> <h5>Promedio de Temperatura y humedad de {{$mesini}} hasta {{$mesfin}}</h5></p>
-        <br>
+    <p>
+        @if ($vr == 1)
+    <h5>Promedio de Temperatura y humedad de "{{$mesini}}" hasta "{{$mesfin}}"</h5>
+    @else
+    <h5>Promedio mensual de Temperatura y humedad de {{$mesini}}</h5>
+    @endif
+    </p>
+    <br>
 
     <div class="container col-4">
         <table>
@@ -138,7 +139,7 @@
         </table>
     </div>
 
-   
+
 </body>
 
 </html>

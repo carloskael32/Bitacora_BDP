@@ -142,4 +142,4 @@ Route::get('/reportAlert', [PDFController::class, 'PDFAlertas'])->name('reportAl
 
 
 //REPORTE PDF DE GENERADORES
-Route::get('/reporte_Generador', [PDFGeneradorController::class, 'PDFALLGE'])->name('PDF_GENERADOR');
+Route::get('/reporte_general_generador', [PDFGeneradorController::class, 'PDFALLGE'])->name('PDF_GENERADOR');

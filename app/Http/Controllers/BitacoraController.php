@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Notifications\NotiBit;
 use DateTime;
+use Illuminate\Support\Facades\Date;
 //use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Notification;
 
@@ -61,28 +62,44 @@ class BitacoraController extends Controller
             //USUARIO
             $agencia = Auth::user()->agencia;
             //$ene['enero'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 1 group by agencia ',[$agencia]);
-            $meses = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? group by mes', [$agencia]);
+            $meses = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? and year(Fecha) = YEAR(NOW()) group by mes', [$agencia]);
 
-
-            $starDate = new DateTime();
-            $starDate->modify('first day of this month');
-            
-            $ct = 0;
-            $cd = 0;
-            $endDate = new DateTime();
-            $endDate->modify('last day of this month');
-            while ($starDate <= $endDate) {
-                if ($starDate->format('l') == 'Sunday') {
-                    //echo $starDate->format('y-m-d (D)') . "<br/>";
-                    $cd++;
-                }
-                $starDate->modify("+1 days");
-                $ct++;
-            }
-            $dias = $ct - $cd;
+            $dmes = [];
 
          
-            return view('complebit.report')->with(['meses' => $meses, 'tapre' => 'active','dias'=>$dias]);
+            //return $ynow;
+
+            for ($i = 1; $i <= 12; $i++) {
+
+                $starDate = new DateTime(Date("Y-$i"));
+
+                $starDate->modify('first day of this month');
+
+                $ct = 0;
+                $cd = 0;
+                $endDate = new DateTime(Date("Y-$i"));
+
+                $endDate->modify('last day of this month');
+
+                while ($starDate <= $endDate) {
+                    if ($starDate->format('l') == 'Sunday') {
+                        //echo $starDate->format('y-m-d (D)') . "<br/>";
+                        $cd++;
+                    }
+                    $starDate->modify("+1 days");
+                    $ct++;
+                }
+                $dias = $ct - $cd;
+                $dmes[] = ['td' => $dias];
+            }
+            //return $dmes;
+
+
+
+
+
+
+            return view('complebit.report')->with(['meses' => $meses, 'dmes' => $dmes]);
         } else {
             //ADMINISTRADOR
             $hoy = date('Y-m-d');

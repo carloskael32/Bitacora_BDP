@@ -5,7 +5,7 @@
 $datos = Arr::pluck($meses,'result','mes');
 @endphp
 @endif
-@section ('title','Reportes')
+@section ('title','Reporte Bitacora')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-11">
@@ -55,10 +55,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                             </div>
                                             <br>
-                                           <!--  <div class="mb-3">
-                                                <label for="formGroupExampleInput" class="form-label">Hasta: </label>
-                                                <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
-                                            </div> -->
+                                 
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-success" type="submit" value="Generar Reporte">
@@ -263,7 +260,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             @php
 
                                             $a = $datos[1];
-                                            $dias;
+                                            $dias = implode($dmes[0]);
                                             $b = round(($a*100)/$dias);                                
                                             if( $b >= 100){
                                             $b=100;
@@ -320,7 +317,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             @php
 
                                             $a = $datos[2];
-                                            $dias;
+                                            $dias = implode($dmes[1]);
                                             $b = round(($a*100)/$dias);
 
                                             if( $b >= 100){
@@ -378,7 +375,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             @php
 
                                             $a = $datos[3];
-                                            $dias;
+                                            $dias = implode($dmes[2]);
                                             $b = round(($a*100)/$dias);
 
                                             if( $b >= 100){
@@ -435,7 +432,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             @php
 
                                             $a = $datos[4];
-                                            $dias;
+                                            $dias = implode($dmes[3]);
                                             $b = round(($a*100)/$dias);
 
                                             if( $b >= 100){
@@ -497,7 +494,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             @php
 
                                             $a = $datos[5];
-                                            $dias;
+                                            $dias = implode($dmes[4]);
                                             $b = round(($a*100)/$dias);
 
                                             if( $b >= 100){
@@ -554,7 +551,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             @php
 
                                             $a = $datos[6];
-                                            $dias;
+                                            $dias = implode($dmes[5]);
                                             $b = round(($a*100)/$dias);
 
                                             if( $b >= 100){
@@ -613,7 +610,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             @php
 
                                             $a = $datos[7];
-                                            $dias;
+                                            $dias = implode($dmes[6]);
                                             $b = round(($a*100)/$dias);
 
                                             if( $b >= 100){
@@ -673,7 +670,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 @php
 
                                                 $a = $datos[8];
-                                                $dias;
+                                                $dias = implode($dmes[7]);
                                                 $b = round(($a*100)/$dias);
 
                                                 if( $b >= 100){
@@ -738,7 +735,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 @php
 
                                                 $a = $datos[9];
-                                                $dias;
+                                                $dias = implode($dmes[8]);
                                                 $b = round(($a*100)/$dias);
 
                                                 if( $b >= 100){
@@ -799,9 +796,12 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 @php
 
                                                 $a = $datos[10];
-                                                $dias;
+                                                $dias = implode($dmes[9]);
+                                            
+                                                
+                                            
                                                 $b = round(($a*100)/$dias);
-
+                                                
                                                 if( $b >= 100){
                                                 $b=100;
                                                 }
@@ -855,7 +855,8 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 @php
 
                                                 $a = $datos[11];
-                                                $dias;
+                                            
+                                                $dias = implode($dmes[10]);
                                                 $b = round(($a*100)/$dias);
 
                                                 if( $b >= 100){
@@ -914,7 +915,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 @php
 
                                                 $a = $datos[12];
-                                                $dias;
+                                                $dias = implode($dmes[11]);
                                                 $b = round(($a*100)/$dias);
 
                                                 if( $b >= 100){

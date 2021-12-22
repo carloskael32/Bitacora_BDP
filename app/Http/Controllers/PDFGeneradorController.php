@@ -68,11 +68,11 @@ class PDFGeneradorController extends Controller
 
         if (!empty($all[0])) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
-            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all', 'rfn','mesDesc'));
+            $pdf = PDF::loadView('complebit.PDFReportGenerador', compact('all', 'rfn','mesDesc'));
             //return $pdf->Stream('Reporte.pdf');
-            return $pdf->setPaper('carta', 'landscape')->Stream('Reporte_General_bitacoras.pdf');
+            return $pdf->setPaper('carta', 'landscape')->Stream('Reporte_General_Generadores.pdf');
         } else {
-            return redirect('reportes')->with('mensajeall', 'No se Encontraron Registros');
+            return redirect('reportesge')->with('mensaje', 'No se Encontraron Registros');
         }
     }
 }
