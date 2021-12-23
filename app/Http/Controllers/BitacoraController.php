@@ -67,7 +67,6 @@ class BitacoraController extends Controller
             $dmes = [];
 
          
-            //return $ynow;
 
             for ($i = 1; $i <= 12; $i++) {
 

@@ -109,7 +109,7 @@
     <br>
     <div class="page-break"></div>
     <p>
-        @if ($vr == 1)
+    @if ($vr == 1)
     <h5>Promedio de Temperatura y humedad de "{{$mesini}}" hasta "{{$mesfin}}"</h5>
     @else
     <h5>Promedio mensual de Temperatura y humedad de {{$mesini}}</h5>

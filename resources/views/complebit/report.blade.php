@@ -49,19 +49,16 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                         <form action="{{ route('PDFAll')}}" method="GET">
 
-             
                                             <div class="mb-3">
                                                 <label for="formGroupExampleInput" class="form-label">De: </label>
                                                 <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                             </div>
                                             <br>
-                                 
+
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-success" type="submit" value="Generar Reporte">
                                             </div>
-
-
 
                                         </form>
 
@@ -86,7 +83,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                 @foreach($agencias as $agencia)
                                                 <option value="{{ $agencia->agencia }}">
-                                                @endforeach
+                                                    @endforeach
 
                                             </datalist>
                                             <br>
@@ -95,7 +92,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 <label for="formGroupExampleInput" class="form-label">Mes: </label>
                                                 <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Ejemplo: enero 2021" required>
                                             </div>
-                                           
+
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-primary" type="submit" value="Generar Reporte">
@@ -106,8 +103,8 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <hr>
                                         <br>
 
-                                        
-  <!-- GENERA REPORTE CON INTERVALOS DE FECHAS-->
+
+                                        <!-- GENERA REPORTE CON INTERVALOS DE FECHAS-->
                                         @if(Session::has('mensaje2'))
                                         <div class="alert alert-danger alert-dismissible" role="alert">
                                             {{ Session::get('mensaje2')}}
@@ -118,7 +115,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         @endif
 
 
-                                      
+
 
                                         <h4 class="text-center">Reporte con Intervalos
                                             <br>
@@ -261,7 +258,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                             $a = $datos[1];
                                             $dias = implode($dmes[0]);
-                                            $b = round(($a*100)/$dias);                                
+                                            $b = round(($a*100)/$dias);
                                             if( $b >= 100){
                                             $b=100;
                                             }
@@ -797,11 +794,11 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                                 $a = $datos[10];
                                                 $dias = implode($dmes[9]);
-                                            
-                                                
-                                            
+
+
+
                                                 $b = round(($a*100)/$dias);
-                                                
+
                                                 if( $b >= 100){
                                                 $b=100;
                                                 }
@@ -855,7 +852,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                                 @php
 
                                                 $a = $datos[11];
-                                            
+
                                                 $dias = implode($dmes[10]);
                                                 $b = round(($a*100)/$dias);
 
@@ -978,7 +975,7 @@ $datos = Arr::pluck($meses,'result','mes');
                         </div>
                     </div>
 
-                    @endsection
+
 
 
                 </div>
@@ -986,3 +983,5 @@ $datos = Arr::pluck($meses,'result','mes');
         </div>
     </div>
 </div>
+
+@endsection

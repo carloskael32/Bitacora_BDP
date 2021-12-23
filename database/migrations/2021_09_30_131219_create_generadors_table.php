@@ -25,7 +25,7 @@ class CreateGeneradorsTable extends Migration
             $table->text('observaciones');
 
 
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

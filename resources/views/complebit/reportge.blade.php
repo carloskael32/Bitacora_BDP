@@ -30,19 +30,11 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                                     </div>
 
                                     <div class="card-body">
-
-                                        <!-- Genera reportes segun agencia y mes -->
-
-
                                         @if (Auth::user()->acceso == "yes")
-                                        <!-- Generar reporte general  -->
 
 
 
-
-
-                                        <h4 class="text-center">Reporte general de Agencias</h4>
-                                        <br>
+                                        <h4 class="text-center">Reporte general mensual <br> de todas Agencias</h4>
 
                                         <!-- Alerta de consultas por mes en todas las agencias -->
                                         @if(Session::has('mensaje'))
@@ -57,39 +49,71 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
 
                                         <form action="{{ route('PDF_GENERADOR')}}" method="GET">
 
-
                                             <div class="mb-3">
-
-                                                <label for="exampleDataList" class="form-label">Elija una Agencia: </label>
-                                                <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
-                                                <datalist name="agencia" id="datalistOptions">
-
-                                                    @foreach($agencias as $agencia)
-                                                    <option value="{{ $agencia->agencia }}">
-                                                        @endforeach
-
-                                                </datalist>
-                                                <br>
-                                                <label for="exampleDataList" class="form-label">Seleccione un Mes: </label>
+                                                <label for="formGroupExampleInput" class="form-label">De: </label>
                                                 <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                             </div>
-                                            <br>
+
+
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-success" type="submit" value="Generar Reporte">
                                             </div>
 
-
-
                                         </form>
+                                        <br>
                                         <hr>
 
 
 
-                                        @else
-                                        @if(Session::has('mensaje'))
+                                        <!-- REPORTE DE AGENCIAS POR INTERVALOS  -->
+                                        <h4 class="text-center">Reporte por intervalos de fechas</h4>
+                                        <br>
+
+                                        <!-- Alerta de consultas anual de todas las agencias -->
+                                        @if(Session::has('mensaje2'))
                                         <div class="alert alert-danger alert-dismissible" role="alert">
-                                            {{ Session::get('mensaje')}}
+                                            {{ Session::get('mensaje2')}}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @endif
+
+
+                                        <form action="{{ route('PDF_GENERADOR_INTERVALO')}}" method="GET">
+                                            <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
+                                            <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
+                                            <datalist name="agencia" id="datalistOptions">
+
+                                                @foreach($agencias as $agencia)
+                                                <option value="{{ $agencia->agencia }}">
+                                                    @endforeach
+
+                                            </datalist>
+                                            <br>
+
+                                            <div class="mb-3">
+                                                <label for="formGroupExampleInput" class="form-label">De: </label>
+                                                <input name="date1" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                            </div>
+                                            <br>
+                                            <div class="mb-3">
+                                                <label for="formGroupExampleInput" class="form-label">Hasta: </label>
+                                                <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                            </div>
+
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                <input class="btn btn-primary" type="submit" value="Generar Reporte">
+                                            </div>
+
+                                        </form>
+
+
+                                        @else
+                                        @if(Session::has('mensaje2'))
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            {{ Session::get('mensaje2')}}
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -97,22 +121,26 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                                         @endif
 
                                         <h4 class="text-center">Reportes por Mes</h4>
-                                        <form action="{{ route('PDFBitacorareporte')}}" method="GET">
-                                            <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
+                                        <br>
+                                        <form action="{{ route('PDF_GENERADOR_INTERVALO')}}" method="GET">
+                                            <label for="exampleDataList" class="form-label">Corresponde a la Agencia: </label>
                                             <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" value="{{ Auth::user()->agencia }}" readonly>
 
                                             <br>
 
                                             <div class="mb-3">
-                                                <label for="formGroupExampleInput" class="form-label">Mes: </label>
-                                                <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Ejemplo: enero 2021" required>
+                                                <label for="formGroupExampleInput" class="form-label">De: </label>
+                                                <input name="date1" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                             </div>
-
+                                            <br>
+                                            <div class="mb-3">
+                                                <label for="formGroupExampleInput" class="form-label">Hasta: </label>
+                                                <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                            </div>
 
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                 <input class="btn btn-primary" type="submit" value="Generar Reporte">
                                             </div>
-
                                         </form>
 
                                         <hr>
@@ -145,7 +173,7 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                                         <tr>
                                             <th>#</th>
                                             <th>Fecha</th>
-                                            <th>Tiempo</th>
+                                            <th>Tiempo (min.)</th>
                                             <th>Marca</th>
                                             <th>Modelo</th>
                                             <th>Agencia</th>
@@ -166,7 +194,7 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                                             <td>{{ $gen->marca }}</td>
                                             <td>{{ $gen->modelo }}</td>
                                             <td>{{ $gen->agencia }}</td>
-                                            <td>{{ $gen->EncargadoOP }}</td>
+                                            <td>{{ $gen->encargadoop }}</td>
                                             <td>{{ $gen->observaciones }}</td>
 
 
@@ -563,11 +591,10 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                         </div>
                     </div>
 
-                    @endsection
-
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection

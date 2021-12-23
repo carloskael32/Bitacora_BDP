@@ -7,6 +7,7 @@ use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Generador;
+use DateTime;
 
 
 
@@ -29,7 +30,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+       // calcula los dias de cada mes sin los domingos
+         $starDate = new DateTime();
+        $starDate->modify('first day of this month');
+        
+        $ct = 0;
+        $cd = 0;
+        $endDate = new DateTime();
+        $endDate->modify('last day of this month');
+        while ($starDate <= $endDate) {
+            if ($starDate->format('l') == 'Sunday') {
+                //echo $starDate->format('y-m-d (D)') . "<br/>";
+                $cd++;
+            }
+            $starDate->modify("+1 days");
+            $ct++;
+        }
+        $dias = $ct - $cd; 
 
 
         $bitacoras = DB::select('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
@@ -40,9 +57,6 @@ class HomeController extends Controller
 
         $puntos = [];
         $array = json_decode(json_encode($bitacoras), true);
-
-        $dias = 21;
-
 
         foreach ($array as $bitac) {
 
