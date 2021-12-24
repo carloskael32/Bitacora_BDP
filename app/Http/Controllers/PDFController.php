@@ -28,11 +28,11 @@ class PDFController extends Controller
 
         $agencia = Auth::user()->agencia;
 
-        $mes1 = $request->get('mes1');//literal
-        $mes = $request->get('mes');//numeral
+        $mes1 = $request->get('mes1'); //literal
+        $mes = $request->get('mes'); //numeral
 
         $ms = Date("Y-$mes");
-   
+
         setlocale(LC_TIME, "spanish");
         $fe = $ms;
         $fe = str_replace("/", "-", $fe);
@@ -47,7 +47,7 @@ class PDFController extends Controller
 
         $vr = 0;
 
-            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'datosu','vr','mesini','resumen'));
+        $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'datosu', 'vr', 'mesini', 'resumen'));
         //return $pdf->Stream('Reporte.pdf');
 
         return $pdf->setPaper('carta', 'landscape')->download($mes1 . '_Reporte.pdf');
@@ -192,8 +192,9 @@ class PDFController extends Controller
 
         $agencia = $request->get('agencia');
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and (Temperatura > 40 or Humedad > 85) order by fecha desc', [$agencia]);
+        $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
         //return response()->json($alerta);
-        $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras'));
+        $pdf = PDF::loadView('complebit.PDFAlertas', compact('bitacoras', 'datosu'));
         return $pdf->setPaper('carta', 'landscape')->Stream('Resumen.pdf');
     }
 }

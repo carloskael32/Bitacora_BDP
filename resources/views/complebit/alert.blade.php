@@ -12,10 +12,6 @@
                 </div>
                 <div class="card-body">
 
-                    <h5>Parametros fuera de los parametros establecidos</h5>
-                    <hr>
-
-
                     <!-- Tabla datos -->
                     <div class="container col-3 border border-dark">
                         <div class="row">
@@ -42,10 +38,14 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <br>
                     <!-- Tabla Central -->
+                    <h5>Lista general de temperatura y humedad fuera de los parametros establecidos.</h5>
+                    <hr>
 
-                    <div class="container col-10">
+                    <div class="container col-11">
                         <div class="row">
                             <div class="col">
 
@@ -74,13 +74,13 @@
 
                                             <td>{{ $bitacora->id }}</td>
                                             <td>{{ $bitacora->agencia }}</td>
-                                            <td>{{ $bitacora->EncargadoOP }}</td>
-                                            <td>{{ $bitacora->Temperatura }}</td>
-                                            <td>{{ $bitacora->Humedad }}</td>
-                                            <td>{{ $bitacora->Filtracion }}</td>
+                                            <td>{{ $bitacora->encargadoOP }}</td>
+                                            <td>{{ $bitacora->temperatura }}</td>
+                                            <td>{{ $bitacora->humedad }}</td>
+                                            <td>{{ $bitacora->filtracion }}</td>
                                             <td>{{ $bitacora->UPS }}</td>
-                                            <td>{{ $bitacora->Generador }}</td>
-                                            <td>{{ $bitacora->Observaciones }}</td>
+                                            <td>{{ $bitacora->generador }}</td>
+                                            <td>{{ $bitacora->observaciones }}</td>
                                             <td>{{ $bitacora->Fecha }}</td>
 
 
@@ -89,7 +89,7 @@
                                                 <form action="{{ route('reportAlert')}}" method="GET">
 
                                                     <input name="agencia" type="hidden" class="form-control" id="formGroupExampleInput" value="{{ $bitacora->agencia}}">
-                                                    <input class="btn btn-success" type="submit" value="Ver Eventos">
+                                                    <input class="btn btn-primary btn-sm rounded-0" type="submit" value="Ver Eventos">
 
 
                                                 </form>
@@ -98,10 +98,10 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                
+
 
                                 </table>
-                              
+
                             </div>
                         </div>
                     </div>

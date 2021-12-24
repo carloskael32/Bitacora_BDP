@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GeneradorController;
 use App\Http\Controllers\AgenciaController;
 use App\Http\Controllers\PDFGeneradorController;
+use App\Http\Controllers\ParametroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,6 +120,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/agencia/{id}', [AgenciaController::class, 'destroy'])->name('agencia.destroy');
     
 
+    //Parametros
+    Route::get('/parametros',[ParametroController::class,'index'])->name('parametro');
    
     Route::get('/emails', function () {
         return view('emails.EmailAlert');
@@ -137,7 +140,8 @@ Route::get('/report2', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacor
 
 Route::get('/reporte_general_mensual', [PDFController::class, 'PDFAll'])->name('PDFAll');
 
-Route::get('/reportAlert', [PDFController::class, 'PDFAlertas'])->name('reportAlert');
+//PDF alertas de temperatura y humedad
+Route::get('/reporte de alertas de parametros', [PDFController::class, 'PDFAlertas'])->name('reportAlert');
 
 
 

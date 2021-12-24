@@ -47,10 +47,13 @@ class BitacoraController extends Controller
     public function alertas()
     {
         //GENERADOR DE ALERTAS
-        $datos = DB::select('select * from bitacoras where fecha = date(now()) and (Temperatura > 40 or Humedad > 85) ');
-        //return response()->json($datos);
+        $fc = date("Y-m");
+    
+        $datos = DB::select('select * from bitacoras where date_format(fecha, "%Y-%m") = ? and (Temperatura > 40 or Humedad > 85)',[$fc]);
 
-        //return view('complebit.alert', $datos);
+        
+
+
 
         return view('complebit.alert')->with(['bitacoras' => $datos, 'tapal' => 'active']);
     }
