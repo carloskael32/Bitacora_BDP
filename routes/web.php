@@ -121,8 +121,13 @@ Route::group(['middleware' => 'auth'], function () {
     
 
     //Parametros
-    Route::get('/parametros',[ParametroController::class,'index'])->name('parametro');
-   
+    Route::get('/parametro',[ParametroController::class,'index'])->name('parametro');
+    Route::get('/parametro/{id}/edit',[ParametroController::class,'edit'])->name('parametro.edit');
+    Route::patch('parametro/{id}', [ParametroController::class, 'update'])->name('parametro.update');
+
+
+
+   //Correo de alertas a Encargados operativos
     Route::get('/emails', function () {
         return view('emails.EmailAlert');
     });

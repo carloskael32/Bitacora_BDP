@@ -24,11 +24,11 @@ class ParametroController extends Controller
         return view('bitacora.index', $datos);
         */
 
-        $datos = DB::select('select * from parametros');
+        $parametro = DB::select('select * from parametros');
 
 
         //return view('bitacora.bitacora', $datos);
-        return view('parametro.index')->with(['dtpa' => $datos]);
+        return view('complebit.alert')->with(['parametro' => $parametro]);
     }
 
     /**
@@ -69,9 +69,13 @@ class ParametroController extends Controller
      * @param  \App\Models\parametro  $parametro
      * @return \Illuminate\Http\Response
      */
-    public function edit(parametro $parametro)
+    public function edit($id)
     {
-        //
+        
+        $parametro = Parametro::findOrFail($id);
+
+        //return $parametro;
+        return view('parametro.modal', compact('parametro'));
     }
 
     /**
@@ -81,9 +85,15 @@ class ParametroController extends Controller
      * @param  \App\Models\parametro  $parametro
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, parametro $parametro)
+    public function update($id)
     {
-        //
+        $id =1;
+        $dParametro = request()->except(['_token', '_method']);
+        Parametro::where('id', '=', $id)->update($dParametro);
+
+        $generador = Parametro::findOrFail($id);
+    
+        return redirect('complebit.alert')->with('mensaje', 'Registro Modificado..');
     }
 
     /**

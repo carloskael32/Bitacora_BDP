@@ -10,13 +10,13 @@
 
 
 
-        <div class="col-md-6">
+        <div class="col-md-10">
 
 
 
             <div class="card">
                 <div class="card-header">
-                    
+
                     <h2 class="text-center">Administradores</h2>
                 </div>
                 <div class="card-body">
@@ -33,8 +33,8 @@
 
 
 
-                    <a href="{{ route('user.create') }}" class="btn btn-success">Nuevo Registro</a>
-                    <hr>
+                    <!--   <a href="{{ route('user.create') }}" class="btn btn-success">Nuevo Registro</a> -->
+
 
 
                     <table class=" table table-light">
@@ -43,39 +43,46 @@
                             <tr>
                                 <th>#</th>
                                 <th>User Name</th>
+                                <th>Nombres</th>
                                 <th>Correo</th>
+                                <th>Descripcion</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
 
                         <tbody class="text-center">
 
-
+                            @php
+                            $a = 1;
+                            @endphp
                             @foreach( $users as $user)
 
                             <tr>
 
 
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $a }}</td>
+                                <td>{{ $user->user }}</td>
+                                <td>{{$user->nombre}}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{$user->descripcion}}</td>
 
 
                                 <td>
-                                    <a href="{{ url('/user/'.$user->id.'/edit') }}" class="btn btn-warning"> Editar </a>
-
-
-                                    <!-- {{ url('/user/'.$user->id.'/edit') }}-->
-                                    &nbsp;
+                                    <!--  <a href="{{ url('/user/'.$user->id.'/edit') }}" class="btn btn-warning"> Editar </a>                                    
+                                    &nbsp; -->
 
                                     <form action="{{ url('/user/'.$user->id) }}" class="d-inline" method="POST">
                                         @csrf
 
-                                        <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+                                        <input class="btn btn-danger rounded-0" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
                                     </form>
                                 </td>
 
                             </tr>
+
+                            @php
+                            $a++;
+                            @endphp
                             @endforeach
                         </tbody>
 

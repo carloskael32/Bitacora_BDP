@@ -8,12 +8,12 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">Alertas en CPD´s</h2>
+                    <h2 class="text-center">Alertas en CPD's</h2>
                 </div>
                 <div class="card-body">
 
                     <!-- Tabla datos -->
-                    <div class="container col-3 border border-dark">
+                    <div class="container col-3">
                         <div class="row">
                             <div class="col">
                                 <table class="table text-center">
@@ -21,30 +21,42 @@
                                         <th></th>
                                         <th>Temperatura</th>
                                         <th>Humedad</th>
+                                        <th>Acciones</th>
                                     </thead>
+
                                     <tr>
+                                        @foreach ($parametro as $par)
                                         <td>Valor Mínimo</td>
-                                        <td>0°C</td>
-                                        <td>10%</td>
+                                        <td>{{$par->temmin}}°C</td>
+                                        <td>{{$par->hummin}}%</td>
+                                        @endforeach
+                                        <td>
+                                            <a href="#" class="btn btn-success rounded-0" data-toggle="modal" data-target="#ModalCreate" style="color:white">
+                                                <span style="color:white"> </span>{{_('Editar')}}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
+                                    @foreach ($parametro as $par)
                                         <td>Valor Máximo</td>
-                                        <td>40°C</td>
-                                        <td>85%</td>
+                                        <td>{{ $par->temmax}}°C</td>
+                                        <td>{{ $par->hummax}}%</td>
+                                        @endforeach
                                     </tr>
-                                    <tr>
-                                    </tr>
+
                                 </table>
+
+
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+
+
                     <br>
                     <!-- Tabla Central -->
                     <h5>Lista general de temperatura y humedad fuera de los parametros establecidos.</h5>
                     <hr>
-
                     <div class="container col-11">
                         <div class="row">
                             <div class="col">
@@ -112,6 +124,6 @@
         </div>
     </div>
 </div>
-
+@include('parametro.modal')
 
 @endsection

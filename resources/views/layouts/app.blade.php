@@ -97,10 +97,10 @@
                             <a class="nav-link" href="{{ route('user') }}">{{ __('Administrador') }}</a>
                         </li> -->
 
-                        <li class="nav-item">
+                      <!--   <li class="nav-item">
                             <a class="nav-link  {{ isset($tapag)?$tapag:old('') }}" href="{{ route('agencia') }}">{{ __('Agencias') }}</a>
                         </li>
-
+ -->
 
 
 
