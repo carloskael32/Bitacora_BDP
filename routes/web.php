@@ -122,7 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Parametros
     Route::get('/parametro',[ParametroController::class,'index'])->name('parametro');
-    Route::get('/parametro/{id}/edit',[ParametroController::class,'edit'])->name('parametro.edit');
+    //Route::get('/parametro/{id}/edit',[ParametroController::class,'edit'])->name('parametro.edit');
     Route::patch('parametro/{id}', [ParametroController::class, 'update'])->name('parametro.update');
 
 

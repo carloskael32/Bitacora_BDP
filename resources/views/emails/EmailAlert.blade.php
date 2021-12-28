@@ -57,6 +57,7 @@
 
 
     <div class="card">
+        <img src="{{asset('/img/logo.png')}}"  width="250" alt="">
 
         <hr>
         <h2>Buenos Dias Estimad@.</h2>

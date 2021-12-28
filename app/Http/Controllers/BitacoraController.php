@@ -48,12 +48,18 @@ class BitacoraController extends Controller
     {
 
         $parametro = DB::select('select * from parametros');
-        //return view('bitacora.bitacora', $datos);
-        //return view('complebit.alert')->with(['parametro' => $parametro]);
         //GENERADOR DE ALERTAS
+
+        foreach ($parametro as $pa) {
+            $temmax =  $pa->temmax;
+            $hummax =  $pa->hummax;
+        }
+
+
+
         $fc = date("Y-m");
-        $datos = DB::select('select * from bitacoras where date_format(fecha, "%Y-%m") = ? and (Temperatura > 40 or Humedad > 85)',[$fc]);
-        return view('complebit.alert')->with(['bitacoras' => $datos,'parametro'=>$parametro]);
+        $datos = DB::select('select * from bitacoras where date_format(fecha, "%Y-%m") = ? and (Temperatura > ? or Humedad > ?)', [$fc, $temmax, $hummax]);
+        return view('complebit.alert')->with(['bitacoras' => $datos, 'parametro' => $parametro]);
     }
 
     public function reportes()
@@ -67,7 +73,7 @@ class BitacoraController extends Controller
 
             $dmes = [];
 
-         
+
 
             for ($i = 1; $i <= 12; $i++) {
 
@@ -121,8 +127,9 @@ class BitacoraController extends Controller
      */
     public function create()
     {
-
-        return view('bitacora.create');
+        $parametro = DB::select('select * from parametros');
+        return view('bitacora.create')->with(['parametro'=>$parametro]);
+        
     }
 
     /**
@@ -167,7 +174,15 @@ class BitacoraController extends Controller
         $temperatura = $request->get('Temperatura');
         $humedad = $request->get('Humedad');
 
-        if ($temperatura >= 40 or $humedad >= 85) {
+        $parametro = DB::select('select * from parametros');
+
+        foreach ($parametro as $pa){
+            $temmax =  $pa->temmax;
+            $hummax =  $pa->hummax;
+       }
+   
+
+        if ($temperatura >= $temmax or $humedad >= $hummax) {
 
             $adm = DB::select('select email from users where acceso = "yes"');
 

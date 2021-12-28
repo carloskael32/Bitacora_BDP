@@ -91,9 +91,9 @@ class ParametroController extends Controller
         $dParametro = request()->except(['_token', '_method']);
         Parametro::where('id', '=', $id)->update($dParametro);
 
-        $generador = Parametro::findOrFail($id);
+        //$generador = Parametro::findOrFail($id);
     
-        return redirect('complebit.alert')->with('mensaje', 'Registro Modificado..');
+        return redirect('alertas')->with('mensaje', 'Registro Modificado..');
     }
 
     /**

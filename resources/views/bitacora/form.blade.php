@@ -17,14 +17,18 @@
                             <th style="background-color: #1565C0; color: white;">Humedad</th>
                         </thead>
                         <tr>
+                            @foreach ($parametro as $par)
                             <td>Valor Mínimo</td>
-                            <td>0°C</td>
-                            <td>10%</td>
+                            <td>{{$par->temmin}}°C</td>
+                            <td>{{$par->hummin}}%</td>
+                            @endforeach
                         </tr>
                         <tr>
+                            @foreach ($parametro as $par)
                             <td>Valor Máximo</td>
-                            <td>40°C</td>
-                            <td>85%</td>
+                            <td>{{ $par->temmax}}°C</td>
+                            <td>{{ $par->hummax}}%</td>
+                            @endforeach
                         </tr>
                         <tr>
                         </tr>
@@ -105,17 +109,17 @@
                         <label for="UPS">UPS</label>
                         <br>
                         <select class="form-control" name="UPS">
-                        <option value="Fuera de linea">Fuera de linea</option>
-                            <option value="En linea" selected>En linea</option> 
+                            <option value="Fuera de linea">Fuera de linea</option>
+                            <option value="En linea" selected>En linea</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group">
                         <label for="Generador">Generador</label>
-                       <br>
-                       
-                       <select class="form-control" name="Generador">
+                        <br>
+
+                        <select class="form-control" name="Generador">
                             <option value="Fuera de linea">Fuera de linea</option>
                             <option value="En linea" selected>En linea</option>
                         </select>

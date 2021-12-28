@@ -21,7 +21,7 @@
                                         <th></th>
                                         <th>Temperatura</th>
                                         <th>Humedad</th>
-                                        <th>Acciones</th>
+                                 
                                     </thead>
 
                                     <tr>
@@ -30,11 +30,7 @@
                                         <td>{{$par->temmin}}°C</td>
                                         <td>{{$par->hummin}}%</td>
                                         @endforeach
-                                        <td>
-                                            <a href="#" class="btn btn-success rounded-0" data-toggle="modal" data-target="#ModalCreate" style="color:white">
-                                                <span style="color:white"> </span>{{_('Editar')}}
-                                            </a>
-                                        </td>
+                                                                                                                  
                                     </tr>
                                     <tr>
                                     @foreach ($parametro as $par)
@@ -43,9 +39,21 @@
                                         <td>{{ $par->hummax}}%</td>
                                         @endforeach
                                     </tr>
+                                    <tr>
+                                      
+                                        <td colspan="3">
+                                        <a href="#" class="btn btn-success rounded-0 btn-sm" data-toggle="modal" data-target="#ModalCreate" style="color:white">
+                                                <span style="color:white"> </span>{{_('Modificar Parametros')}}
+                                            </a>
+
+                                        </td>
+                                
+                                    </tr>
+
+
 
                                 </table>
-
+                               
 
                             </div>
                         </div>
