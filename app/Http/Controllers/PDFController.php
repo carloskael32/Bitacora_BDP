@@ -72,7 +72,7 @@ class PDFController extends Controller
 
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
-        $vr = 1;
+        $vr = 0;
         if ($bitacoras != null) {
 
             $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu', 'mesini', 'vr'));
