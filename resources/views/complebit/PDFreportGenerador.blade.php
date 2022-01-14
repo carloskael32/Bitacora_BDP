@@ -59,8 +59,8 @@
                
                 <tr> 
                     @foreach ( $datosu as $du)
-                    <td><b>Nombre</b></td>
-                    <td colspan="4"><b>{{ $du->nombre }}</b></td>
+                    <td><b>name</b></td>
+                    <td colspan="4"><b>{{ $du->name }}</b></td>
                     <td>x</td>
                     <td>x</td>
                     @endforeach

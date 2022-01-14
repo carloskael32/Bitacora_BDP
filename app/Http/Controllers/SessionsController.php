@@ -57,15 +57,15 @@ class SessionsController extends Controller
                  $con =  DB::select('select user from users where user = ?', [$dldap[1]]);
                  if ($con == null) {
                      if($dldap[3] == 'GERENCIA DE SISTEMAS Y TECNOLOGIA DE LA INFORMACION' || 'PASANTE - GERENCIA DE SISTEMAS Y TECNOLOGIA DE LA INFORMACION'){
-                         DB::insert('insert into users (nombre, user, email, descripcion, agencia, acceso, password) values (?,?,?,?,?,?,?)', [$dldap[0], $dldap[1], $dldap[2], $dldap[3], $age[1], 'yes', Hash::make($dldap[1])]);
+                         DB::insert('insert into users (name, user, email, descripcion, agencia, acceso, password) values (?,?,?,?,?,?,?)', [$dldap[0], $dldap[1], $dldap[2], $dldap[3], $age[1], 'yes', Hash::make($dldap[1])]);
                      }else{
-                         DB::insert('insert into users (nombre, user, email, descripcion, agencia, acceso, password) values (?,?,?,?,?,?,?)', [$dldap[0], $dldap[1], $dldap[2], $dldap[3], $age[1], 'no', Hash::make($dldap[1])]);
+                         DB::insert('insert into users (name, user, email, descripcion, agencia, acceso, password) values (?,?,?,?,?,?,?)', [$dldap[0], $dldap[1], $dldap[2], $dldap[3], $age[1], 'no', Hash::make($dldap[1])]);
                      }                    
                  }
              } else {
                  echo "error de datos de usuario";
                  return back()->withErrors([
-                     'message' => 'El nombre o contraseña son incorrectos',
+                     'message' => 'El name o contraseña son incorrectos',
                  ]);
              }
              

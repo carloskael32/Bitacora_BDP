@@ -19,7 +19,7 @@ class DatosSeeder extends Seeder
         //
       /*    $useradmin=User::create([
             'user'=> 'rcondori',
-            'nombre'=> 'Rodrigo Condori Mamani',
+            'name'=> 'Rodrigo Condori Mamani',
             'agencia'=> 'La Paz',
             'email'=>'rodrigo.condori@bdp.com.bo',
             'descripcion'=>'ENCARGADO OPERATIVO ADMINISTRATIVO',

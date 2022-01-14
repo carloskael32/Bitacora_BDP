@@ -22,7 +22,7 @@
 
 
         <div class="form-group row">
-            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de usuario') }}</label>
+            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('name de usuario') }}</label>
 
             <div class="col-md-6">
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ isset($user->name)?$user->name:old('name') }}" autocomplete="name" autofocus>

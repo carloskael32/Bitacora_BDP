@@ -58,7 +58,7 @@
                     </tr>
 
                     <tr>
-                        <td><b>Nombre</b></td>
+                        <td><b>name</b></td>
                         <td colspan="4"><b>{{$all[$i][$j]->encargadoOP}}</b></td>
                         <td>x</td>
                         <td>x</td>

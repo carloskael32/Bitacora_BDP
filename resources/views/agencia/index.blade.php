@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="agencia">ingrese un nombre: </label>
+                                    <label for="agencia">ingrese un name: </label>
                                     <input type="text" class="form-control" name="agencia" id="agencia" required autofocus>
 
                                 </div>

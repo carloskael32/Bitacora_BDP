@@ -64,7 +64,7 @@ class PDFGeneradorController extends Controller
 
 
         /* $resumen = DB::select('select  CONCAT(ROUND(AVG(temperatura))," %") as pTemperatura, CONCAT(ROUND(AVG(Humedad))," %") as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]); */
-        $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
 
         $all = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from generadors where agencia = ? and Fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
         $vr = 1;

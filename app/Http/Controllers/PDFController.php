@@ -43,7 +43,7 @@ class PDFController extends Controller
         $resumen = DB::select('select  ROUND(AVG(temperatura),2) as pTemperatura, ROUND(AVG(Humedad),2) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ', [$agencia, $mes]);
-        $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
 
         $vr = 0;
 
@@ -68,7 +68,7 @@ class PDFController extends Controller
 
 
         $resumen = DB::select('select  ROUND(AVG(temperatura),2) as pTemperatura, ROUND(AVG(Humedad),2) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
-        $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
 
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
@@ -106,7 +106,7 @@ class PDFController extends Controller
 
 
         $resumen = DB::select('select  CONCAT(ROUND(AVG(temperatura))," %") as pTemperatura, CONCAT(ROUND(AVG(Humedad))," %") as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
-        $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
         $vr = 1;
@@ -171,8 +171,8 @@ class PDFController extends Controller
             $a = $datos[$i];
             $all[] = $con = DB::select('select agencia,encargadoOP,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ?   order by Fecha desc', [$a, $mes]);
 
-            //consulta para sacar los nombres de cada encargado ok para DESPUES
-            //$all[] = $con = DB::select('select b.*, u.nombre from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ?', [$a]);
+            //consulta para sacar los names de cada encargado ok para DESPUES
+            //$all[] = $con = DB::select('select b.*, u.name from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ?', [$a]);
         }
 
 
@@ -192,7 +192,7 @@ class PDFController extends Controller
 
         $agencia = $request->get('agencia');
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and (Temperatura > 40 or Humedad > 85) order by fecha desc', [$agencia]);
-        $datosu = DB::select('select nombre,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
         //return response()->json($alerta);
         $pdf = PDF::loadView('complebit.PDFAlertas', compact('bitacoras', 'datosu'));
         return $pdf->setPaper('carta', 'landscape')->Stream('Resumen.pdf');

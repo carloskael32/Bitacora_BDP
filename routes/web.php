@@ -62,7 +62,7 @@ Route::get('/bitacora/create',[BitacoraController::class,'create']);
 
 //login
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
-Route::get('/logout', [SessionsController::class, 'destroy'])->name('logout.destroy')->middleware('auth');
+Route::post('/logout', [SessionsController::class, 'destroy'])->name('logout.destroy')->middleware('auth');
 Route::get('/login', [SessionsController::class, 'index'])->name('login.index')->middleware('guest');
 
 Route::group(['middleware' => 'auth'], function () {

@@ -1,5 +1,13 @@
-@extends('layouts.app')
-@section('title', __('Dashboard'))
+
+
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
+
 @section('content')
 <div class="container-fluid	">
 	<div class="row justify-content-center">
@@ -107,7 +115,13 @@
 
 
 
+@stop
 
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
 <script src="https://code.highcharts.com/highcharts.js"></script>
 
 <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
@@ -172,8 +186,4 @@
 
 	});
 </script>
-
-
-
-
-@endsection
+@stop

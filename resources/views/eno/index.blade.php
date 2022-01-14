@@ -42,7 +42,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>User Name</th>
-                                <th>Nombres</th>
+                                <th>names</th>
                                 <th>Agencia</th>
                                 <th>Correo</th>
                                 <th>Descripcion</th>
@@ -63,7 +63,7 @@
 
                                 <td>{{ $a }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->nombres}}</td>
+                                <td>{{ $user->names}}</td>
                                 <td>{{ $user->agencia}}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->descripcion}}</td>
