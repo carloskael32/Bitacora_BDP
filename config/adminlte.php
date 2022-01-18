@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => '',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => ' | Bitacora',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Bitacora</b> BDP',
     'logo_img' => '/img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-4',
     'logo_img_xl' => null,
@@ -127,9 +127,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-cyan elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-cyan navbar-dark ',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -145,7 +145,7 @@ return [
     |
     */
 
-    'sidebar_mini' => 'lg',
+    'sidebar_mini' => 'sm',
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
@@ -237,10 +237,10 @@ return [
         ],
 
         // Sidebar items:
-        [
+       /*  [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
-        ],
+        ], */
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -253,6 +253,13 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ], */
+        ['header' => 'Inicio'],
+        [
+            'text'        => 'Home',
+            'url'         => '/home',
+            'icon'        => 'fas fa-home',
+            'label_color' => 'success',
+        ],
 
         ['header' => 'Alertas'],
         [
@@ -273,18 +280,19 @@ return [
             'url'  => '/reportesge',
             'icon' => 'fas fa-book',
         ],
-
         ['header' => 'Usuarios'],
         [
             'text' => 'Administradores',
-            'url'  => 'admin/settings',
+            'url'  => '/user',
             'icon' => 'fas fa-user-tie',
+            //'can' => 'administrador',
         ],
         [
             'text' => 'Encargados Operativos',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'url'  => '/eno',
+            'icon' => 'fas fa-user',
         ],
+       
 
         /*     ['header' => 'account_settings'],
         [
