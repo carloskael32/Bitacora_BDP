@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h2><span class="text-center fa fa-home"></span> Bitacora</h2>
+        <h2><span class="text-center"></span> Bitacora</h2>
     </div>
     <br>
     <div class="container-fluid">

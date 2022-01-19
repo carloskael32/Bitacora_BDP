@@ -39,7 +39,8 @@ class GeneradorController extends Controller
             //users
             $agencia = Auth::user()->agencia;
             //$meses = DB::select('select MONTH(fecha) as mes, count(agencia) as result from generadors where agencia = ? group by mes', [$agencia]);
-            $meses = DB::select('select MONTH(fecha) as mes ,fecha from generadors where agencia = ?  order by mes asc ',[$agencia]);
+            $meses = DB::select('select MONTH(fecha) as mes ,fecha from generadors where agencia = ? and year(fecha) = YEAR(NOW())  order by mes asc ',[$agencia]);
+            //$meses = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? and year(Fecha) = YEAR(NOW()) group by mes', [$agencia]);
             //return response()->json($meses);
             return view('complebit.reportge')->with(['meses' => $meses]);
            

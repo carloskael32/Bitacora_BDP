@@ -1,14 +1,23 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+  
+@stop
 
 @section('content')
+
 <br>
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
 
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-center">Bitacora</h2>
+                    <br>
+                    <h5>Estimad@.  recuerde que debe realizar la bitacora del CPD diariamente  gracias...</15>
                 </div>
                 <div class="card-body">
 
@@ -22,11 +31,12 @@
                     @endif
 
                                    
-                    <h5>Estimad@.  recuerde que debe realizar la bitacora del CPD diariamente  gracias...</15>
-                    <hr>
+                   
+ 
 
                     <a href="{{ url('bitacora/create') }}" class="btn btn-success">Nuevo Registro</a>
-                    <hr>
+              <br>
+              <br>
                     
                     
                     <table class=" table table-light">
@@ -90,7 +100,16 @@
     </div>
 </div>
 
+@stop
+
+@section('css')
+    
+    
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
 
 
 
-@endsection

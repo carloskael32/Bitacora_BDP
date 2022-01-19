@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>Bitacora</b> BDP',
-    'logo_img' => '/img/logo.png',
+    'logo_img' => '/img/icono.png',
     'logo_img_class' => 'brand-image img-circle elevation-4',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -124,7 +124,7 @@ return [
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_content_wrapper' => '',
+    'classes_content_wrapper' => '/css/wrapper.css',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-light-cyan elevation-4',
@@ -147,13 +147,14 @@ return [
 
     'sidebar_mini' => 'sm',
     'sidebar_collapse' => false,
-    'sidebar_collapse_auto_size' => false,
-    'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => true,
+    'sidebar_collapse_auto_size' => true,
+    'sidebar_collapse_remember' => true,
+    'sidebar_collapse_remember_no_transition' => false,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -237,14 +238,14 @@ return [
         ],
 
         // Sidebar items:
-       /*  [
+        /*  [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ], */
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'can'  => 'admin',
         ],
         /*   [
             'text'        => 'pages',
@@ -261,13 +262,32 @@ return [
             'label_color' => 'success',
         ],
 
-        ['header' => 'Alertas'],
         [
+            'header' => 'Alertas',
+            'can'  => 'admin',
+        ],
+        [
+
             'text'        => 'Alertas',
             'url'         => '/alertas',
             'icon'        => 'fas fa-exclamation-triangle',
             'label_color' => 'success',
+            'can'  => 'admin',
         ],
+        ['header' => 'Registros'],
+        [
+            'text'        => 'CPD',
+            'url'         => '/bitacora',
+            'icon'        => 'fas fa-server',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Generadores',
+            'url'         => '/generador',
+            'icon'        => 'fas fa-car-battery',
+            'label_color' => 'success',
+        ],
+
 
         ['header' => 'Reporteria'],
         [
@@ -280,19 +300,23 @@ return [
             'url'  => '/reportesge',
             'icon' => 'fas fa-book',
         ],
-        ['header' => 'Usuarios'],
+        [
+            'header' => 'Usuarios',
+            'can'  => 'admin',
+        ],
         [
             'text' => 'Administradores',
             'url'  => '/user',
             'icon' => 'fas fa-user-tie',
-            //'can' => 'administrador',
+            'can'  => 'admin',
         ],
         [
             'text' => 'Encargados Operativos',
             'url'  => '/eno',
             'icon' => 'fas fa-user',
+            'can'  => 'admin',
         ],
-       
+
 
         /*     ['header' => 'account_settings'],
         [
@@ -360,7 +384,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
