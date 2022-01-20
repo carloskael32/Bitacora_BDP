@@ -30,7 +30,7 @@ class BitacoraController extends Controller
     public function index()
     {
 
-        $user = Auth::user()->agencia;
+        $age = Auth::user()->agencia;
 
 
         /*
@@ -38,10 +38,11 @@ class BitacoraController extends Controller
         return view('bitacora.index', $datos);
         */
 
-        $datos = DB::table('bitacoras')->where('Agencia', '=', $user)->orderByDesc('id')->paginate(10);
+        $bitacoras = DB::select('select * from bitacoras where agencia = ?',[$age]);
+
 
         //return view('bitacora.bitacora', $datos);
-        return view('bitacora.bitacora')->with(['bitacoras' => $datos, 'tapbi' => 'active']);
+        return view('bitacora.bitacora', compact('bitacoras'));
     }
 
     public function alertas()

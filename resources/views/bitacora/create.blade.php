@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
- 
+
 @stop
 
 @section('content')
@@ -12,24 +12,25 @@
 
 
 
-<form action="{{ url('/bitacora') }}" method="POST">
+    <form action="{{ url('/bitacora') }}" method="POST">
 
 
-    @csrf
-    @include('bitacora.form',['modo'=>'Registrar'])
+        @csrf
+        @include('bitacora.form',['modo'=>'Registrar'])
 
 
 
-</form>
+    </form>
 </div>
 
 @stop
 
-<!-- @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+@section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+<script>
+    console.log('Hi!');
+</script>
 @stop
- -->

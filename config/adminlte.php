@@ -145,14 +145,14 @@ return [
     |
     */
 
-    'sidebar_mini' => 'sm',
+    'sidebar_mini' => 'lg',
     'sidebar_collapse' => false,
-    'sidebar_collapse_auto_size' => true,
+    'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => true,
     'sidebar_collapse_remember_no_transition' => false,
     'sidebar_scrollbar_theme' => 'os-theme-light',
-    'sidebar_scrollbar_auto_hide' => 'l',
-    'sidebar_nav_accordion' => true,
+    'sidebar_scrollbar_auto_hide' => '1',
+    'sidebar_nav_accordion' => false,
     'sidebar_nav_animation_speed' => 300,
     
 
