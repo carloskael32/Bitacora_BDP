@@ -11,10 +11,10 @@
 <br>
 
 
-<div class="card">
+<div class="card" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
     <div class="card-header">
-        <h3 class="text-center">Bitacora - Centro de Procesamiento de Datos (CPD)</h3>
-  <hr>
+        <h4 class="text-center">Bitacora - Centro de Procesamiento de Datos (CPD)</h4>
+        <hr>
         <h5>Estimad@. recuerde que debe realizar la bitacora del CPD diariamente gracias...</h5>
     </div>
     <div class="card-body">
@@ -28,48 +28,47 @@
         </div>
         @endif
 
-        
+
 
         <a href="{{ url('bitacora/create') }}" class="btn btn-sm btn-flat btn-success bg-gradient-success">Nuevo Registro</a>
         <br>
         <br>
 
         <div class="table-responsive">
-        <table class="table table-striped" style=" font-family: Arial, Helvetica, sans-serif;
-            font-size: 12px;" id="bitacoras">
+            <table class="table table-striped"  id="bitacoras">
 
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Agencia</th>
-                    <th>EncargadoOP.</th>
-                    <th>Temperatura</th>
-                    <th>Humedad</th>
-                    <th>Filtracion</th>
-                    <th>UPS</th>
-                    <th>Generador</th>
-                    <th>Observaciones</th>
-                    <th>Fecha</th>
+                <thead class="bg-cyan">
+                    <tr>
+                        <th>#</th>
+                        <th>Agencia</th>
+                        <th>EncargadoOP.</th>
+                        <th>Temperatura</th>
+                        <th>Humedad</th>
+                        <th>Filtracion</th>
+                        <th>UPS</th>
+                        <th>Generador</th>
+                        <th>Observaciones</th>
+                        <th>Fecha</th>
 
-                </tr>
-            </thead>
+                    </tr>
+                </thead>
 
-            <tbody>
-                @foreach( $bitacoras as $bitacora)
-                <tr>
+                <tbody>
+                    @foreach( $bitacoras as $bitacora)
+                    <tr>
 
-                    <td>{{ $bitacora->id }}</td>
-                    <td>{{ $bitacora->agencia }}</td>
-                    <td>{{ $bitacora->encargadoOP }}</td>
-                    <td>{{ $bitacora->temperatura }}</td>
-                    <td>{{ $bitacora->humedad }}</td>
-                    <td>{{ $bitacora->filtracion }}</td>
-                    <td>{{ $bitacora->UPS }}</td>
-                    <td>{{ $bitacora->generador }}</td>
-                    <td>{{ $bitacora->observaciones }}</td>
-                    <td>{{ $bitacora->Fecha }}</td>
+                        <td>{{ $bitacora->id }}</td>
+                        <td>{{ $bitacora->agencia }}</td>
+                        <td>{{ $bitacora->encargadoOP }}</td>
+                        <td>{{ $bitacora->temperatura }}</td>
+                        <td>{{ $bitacora->humedad }}</td>
+                        <td>{{ $bitacora->filtracion }}</td>
+                        <td>{{ $bitacora->UPS }}</td>
+                        <td>{{ $bitacora->generador }}</td>
+                        <td>{{ $bitacora->observaciones }}</td>
+                        <td>{{ $bitacora->Fecha }}</td>
 
-                    <!--
+                        <!--
                         <td>
                             <a href="{{ url('/bitacora/'.$bitacora->id.'/edit') }}" class="btn btn-warning"> Editar </a>
 
@@ -83,11 +82,11 @@
                         </td>
                         -->
 
-                </tr>
-                @endforeach
-            </tbody>
+                    </tr>
+                    @endforeach
+                </tbody>
 
-        </table>
+            </table>
         </div>
 
     </div>
@@ -97,6 +96,7 @@
 @stop
 
 @section('css')
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">

@@ -1,8 +1,9 @@
 <br>
+
+
 <div class="card">
 
     <div class="card-body">
-      
         <div class="container col-5 border border-info">
             <div class="row">
                 <div class="col">
@@ -38,10 +39,10 @@
         </div>
 
 
-        <div class="container-fluid">
+        <div class="container-fluid" >
 
             <br>
-            <h5>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</15>
+            <h5>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</h5>
                 <hr>
                 @if(count($errors)>0)
 

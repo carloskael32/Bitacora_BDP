@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<br>
+
 <div class="container">
 
 

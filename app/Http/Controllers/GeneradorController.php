@@ -18,7 +18,7 @@ class GeneradorController extends Controller
     public function index()
     {
         //
-        $user = Auth::user()->agencia;
+        $age = Auth::user()->agencia;
 
 
         /*
@@ -26,10 +26,15 @@ class GeneradorController extends Controller
         return view('bitacora.index', $datos);
         */
 
-        $datos = DB::table('generadors')->where('agencia', '=', $user)->orderByDesc('id')->paginate(12);
+        //$datos = DB::table('generadors')->where('agencia', '=', $user)->orderByDesc('id');
+        $datos = DB::select('select * from generadors where agencia = ? order by id desc',[$age]);
 
         //return view('generador.index', $datos);
-        return view('generador.index')->with(['generador' => $datos, 'tapge' => 'active']);
+        return view('generador.index')->with(['generador' => $datos]);
+
+
+
+      
     }
 
     public function reportesge()
