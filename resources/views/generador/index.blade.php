@@ -10,7 +10,7 @@
 <br>
 <div class="card" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
     <div class="card-header">
-        <h2 class="text-center">Generador</h2>
+        <h3 class="text-center">Generador</h3>
     </div>
     <div class="card-body">
 
@@ -24,46 +24,46 @@
         @endif
 
         <h5>Estimad@.. recuerde que debe realizar la prueba del generador una vez al mes</h5>
-            <hr>
+        <hr>
 
 
-            <a href="{{ url('generador/create') }}" class="btn btn-sm btn-flat btn-success bg-gradient-success">Nuevo Registro</a>
-            <hr>
+        <a href="{{ url('generador/create') }}" class="btn btn-sm btn-flat btn-success bg-gradient-success">Nuevo Registro</a>
+        <hr>
 
 
-            <div class="table-responsive">
-                <table class="table table-striped" id="generadores">
+        <div class="table-responsive">
+            <table class="table table-striped" id="generadores">
 
-                    <thead class="bg-cyan">
-                        <tr>
-                            <th>#</th>
-                            <th>Fecha</th>
-                            <th>Tiempo</th>
-                            <th>Marca</th>
-                            <th>Modelo</th>
-                            <th>Agencia</th>
-                            <th>Encargado OP.</th>
-                            <th>Observaciones</th>
+                <thead class="bg-cyan">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha</th>
+                        <th>Tiempo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Agencia</th>
+                        <th>Encargado OP.</th>
+                        <th>Observaciones</th>
 
 
-                        </tr>
-                    </thead>
-                    @php
-                    $a=1;
-                    @endphp
-                    <tbody>
-                        @foreach( $generador as $gen)
-                        <tr>
-                            <td>{{ $a}}</td>
-                            <td>{{ $gen->fecha }}</td>
-                            <td>{{ $gen->tiempo }} min</td>
-                            <td>{{ $gen->marca }}</td>
-                            <td>{{ $gen->modelo }}</td>
-                            <td>{{ $gen->agencia }}</td>
-                            <td>{{ $gen->encargadoop }}</td>
-                            <td>{{ $gen->observaciones }}</td>
+                    </tr>
+                </thead>
+                @php
+                $a=1;
+                @endphp
+                <tbody>
+                    @foreach( $generador as $gen)
+                    <tr>
+                        <td>{{ $a}}</td>
+                        <td>{{ $gen->fecha }}</td>
+                        <td>{{ $gen->tiempo }} min</td>
+                        <td>{{ $gen->marca }}</td>
+                        <td>{{ $gen->modelo }}</td>
+                        <td>{{ $gen->agencia }}</td>
+                        <td>{{ $gen->encargadoop }}</td>
+                        <td>{{ $gen->observaciones }}</td>
 
-                            <!--     <td>
+                        <!--     <td>
                             <a href="{{ url('/generador/'.$gen->id.'/edit') }}" class="btn btn-warning"> Editar </a>
 
                             &nbsp;
@@ -76,16 +76,16 @@
                                  </td> 
                                  -->
 
-                        </tr>
-                        @php
-                        $a++;
-                        @endphp
-                        @endforeach
-                    </tbody>
+                    </tr>
+                    @php
+                    $a++;
+                    @endphp
+                    @endforeach
+                </tbody>
 
-                </table>
-            </div>
-           
+            </table>
+        </div>
+
     </div>
 
 </div>
@@ -109,6 +109,27 @@
 
 
 <script>
-    $('#generadores').DataTable();
+    $('#generadores').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar " +
+                `<select class="custom-select custom-select-sm form-control form-control-sm"> 
+            <option value ='10' >10</option>
+            <option value ='25' >25</option>
+            <option value ='50' >50</option>
+            <option value ='100'>100</option>
+            <option value ='-1' >all</option>
+            </select>` +
+                " registros por pagina",
+            "zeroRecords": "Nada encontrado",
+            "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+            "search": 'Buscar:',
+            "paginate": {
+                'next': 'Siguiente',
+                'previous': 'Anterior'
+            }
+        }
+    });
 </script>
 @stop

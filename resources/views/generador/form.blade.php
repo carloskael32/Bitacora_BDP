@@ -1,14 +1,13 @@
 <br>
 <div class="card">
     <div class="card-header">
-        <h2 class="text-center">Pruebas con el Generador</h2>
-    </div>
-
-    <div class="card-body">
-
-
+        <h3 class="text-center">Registro de pruebas con el Generador</h3>
+        <br>
         <h5>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</h5>
-        <hr>
+    </div>
+    <div class="card-body">
+      
+  
         @if(count($errors)>0)
 
         <div class="alert alert-danger" role="alert">
@@ -95,3 +94,4 @@
 
 
 </div>
+

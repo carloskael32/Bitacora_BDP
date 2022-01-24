@@ -38,11 +38,12 @@ class BitacoraController extends Controller
         return view('bitacora.index', $datos);
         */
 
-        $bitacoras = DB::select('select * from bitacoras where agencia = ?',[$age]);
-
+        $bitacoras = DB::select('select * from bitacoras where agencia = ? order by fecha desc',[$age]);
+        
 
         //return view('bitacora.bitacora', $datos);
-        return view('bitacora.bitacora', compact('bitacoras'));
+        
+        return view('bitacora.bitacora')->with(['bitacoras' => $bitacoras]);
     }
 
     public function alertas()

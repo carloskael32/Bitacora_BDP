@@ -35,7 +35,7 @@
         <br>
 
         <div class="table-responsive">
-            <table class="table table-striped"  id="bitacoras">
+            <table class="table table-striped" id="bitacoras">
 
                 <thead class="bg-cyan">
                     <tr>
@@ -52,12 +52,14 @@
 
                     </tr>
                 </thead>
-
+                @php
+                $a=1;
+                @endphp
                 <tbody>
                     @foreach( $bitacoras as $bitacora)
                     <tr>
 
-                        <td>{{ $bitacora->id }}</td>
+                        <td>{{ $a}}</td>
                         <td>{{ $bitacora->agencia }}</td>
                         <td>{{ $bitacora->encargadoOP }}</td>
                         <td>{{ $bitacora->temperatura }}</td>
@@ -83,6 +85,9 @@
                         -->
 
                     </tr>
+                    @php
+                    $a++;
+                    @endphp
                     @endforeach
                 </tbody>
 
@@ -111,6 +116,27 @@
 
 
 <script>
-    $('#bitacoras').DataTable();
+    $('#bitacoras').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar "+
+            `<select class="custom-select custom-select-sm form-control form-control-sm"> 
+            <option value ='10' >10</option>
+            <option value ='25' >25</option>
+            <option value ='50' >50</option>
+            <option value ='100'>100</option>
+            <option value ='-1' >all</option>
+            </select>` +
+            " registros por pagina",
+            "zeroRecords": "Nada encontrado",
+            "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+            "search": 'Buscar:',
+            "paginate": {
+                'next': 'Siguiente',
+                'previous': 'Anterior'
+            }
+        }
+    });
 </script>
 @stop

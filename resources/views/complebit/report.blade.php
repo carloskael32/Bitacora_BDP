@@ -18,7 +18,6 @@ $datos = Arr::pluck($meses,'result','mes');
 <br>
 <div class="card">
     <div class="card-header">
-
         <h2 class="text-center">Reporte de Bitacoras en Agencias </h2>
     </div>
     <div class="card-body">
@@ -296,6 +295,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         </div>
                                     </div>
                                 </div>
+                                
 
 
                                 @else
@@ -966,6 +966,9 @@ $datos = Arr::pluck($meses,'result','mes');
                                     @endif
 
                                 </div>
+                                <div class="info-box">
+  
+
                             </div>
 
                         </div>
