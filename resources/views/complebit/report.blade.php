@@ -17,8 +17,8 @@ $datos = Arr::pluck($meses,'result','mes');
 
 <br>
 <div class="card">
-    <div class="card-header">
-        <h2 class="text-center">Reporte de Bitacoras en Agencias </h2>
+    <div class="card-header border bg-ligth">
+        <h2 class="text-center">Reporteria del Centro de Procesamiento de Datos - CPD </h2>
     </div>
     <div class="card-body">
 
@@ -26,17 +26,9 @@ $datos = Arr::pluck($meses,'result','mes');
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-3">
-
+                    @if (Auth::user()->acceso == "yes")
                     <div class="card">
-                        <div class="card-header text-center">
-                            Reporte de Agencias
-
-                        </div>
-
                         <div class="card-body">
-
-                            @if (Auth::user()->acceso == "yes")
-
                             <!-- Generar reporte general  -->
                             <h4 class="text-center">Reporte general de Agencias</h4>
 
@@ -120,7 +112,6 @@ $datos = Arr::pluck($meses,'result','mes');
 
 
 
-
                             <h4 class="text-center">Reporte con Intervalos
                                 <br>
                                 de Fechas
@@ -152,21 +143,24 @@ $datos = Arr::pluck($meses,'result','mes');
                                 </div>
 
                             </form>
-                            @else
+                        </div>
+                    </div>
+                    @else
 
 
+                    <div class="card border border-cyan">
 
-                            <h4 class="text-center">Reporte con Intervalos
-                                <br>
-                                de Fechas
-                            </h4>
+                        <div class="card-head text-center bg-cyan p-2">
+                            Reporte por Intervalos
+                            <br>
+                            de Fechas
+                        </div>
+                        <div class="card-body">
 
                             <form action="{{ route('PDFBitacorareporte2')}}" method="GET">
-                                <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
+                                <label for="exampleDataList" class="form-label">Su Agencia es: </label>
                                 <input name="agencia" class="form-control" value="{{Auth::user()->agencia}}" id="exampleDataList" readonly>
-
                                 <br>
-
                                 <div class="mb-3">
                                     <label for="formGroupExampleInput" class="form-label">De: </label>
                                     <input name="date1" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
@@ -176,23 +170,16 @@ $datos = Arr::pluck($meses,'result','mes');
                                     <label for="formGroupExampleInput" class="form-label">Hasta: </label>
                                     <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                 </div>
-
-
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                    <input class="btn btn-primary" type="submit" value="Generar Reporte">
+                                    <input class="btn btn-sm btn-flat  bg-gradient-info" type="submit" value="Generar Reporte">
                                 </div>
-
                             </form>
-
-                            @endif
-
-
                         </div>
-
-                        <div class="card-footer text-muted text-center">
+                        <div class="card-footer border border-cyan text-center bg-ligth">
                             BDP-SAM
                         </div>
                     </div>
+                    @endif
                 </div>
 
 
@@ -254,7 +241,6 @@ $datos = Arr::pluck($meses,'result','mes');
                     <div class="card">
 
                         <div class="card-body">
-
                             <div class="row">
 
                                 @if (!empty($datos[1]))
@@ -268,26 +254,25 @@ $datos = Arr::pluck($meses,'result','mes');
                                 }
                                 @endphp
                                 <div class="col-md-3">
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Enero</h4>
+                                        <div class="text-center">
+                                            <spam><b>Enero</b></spam>
                                         </div>
-                                        <div class="text-info text-center mt-2">
+                                        <div class="text-center">
 
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }} </h1>
-
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a }} </h2>
 
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="1">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Enero">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
 
                                             </form>
@@ -295,20 +280,18 @@ $datos = Arr::pluck($meses,'result','mes');
                                         </div>
                                     </div>
                                 </div>
-                                
-
 
                                 @else
                                 <div class="col-md-3">
                                     <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Enero</h4>
+                                            <spam><b>Enero</b></spam>
                                         </div>
                                         <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                            <h5>No se envio ningun reporte.!! </h5>
                                         </div>
                                     </div>
                                 </div>
@@ -327,26 +310,25 @@ $datos = Arr::pluck($meses,'result','mes');
                                 }
                                 @endphp
                                 <div class="col-md-3">
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Febrero</h4>
+                                        <div class="text-center">
+                                            <spam><b>Febrero</b></spam>
                                         </div>
-                                        <div class="text-info text-center mt-2">
+                                        <div class="text-center">
 
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }} </h1>
-
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
 
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="2">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Febrero">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
 
                                             </form>
@@ -358,15 +340,15 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                    <div class="card border border-danger mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Febrero</h4>
+                                            <spam><b>Febrero</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
                                 </div>
@@ -385,26 +367,25 @@ $datos = Arr::pluck($meses,'result','mes');
                                 }
                                 @endphp
                                 <div class="col-md-3">
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Marzo</h4>
+                                        <div class="text-center">
+                                            <spam><b>Marzo</b></spam>
                                         </div>
-                                        <div class="text-info text-center mt-2">
+                                        <div class="text-center">
 
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }} </h1>
-
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
 
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="3">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Marzo">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
 
                                             </form>
@@ -416,15 +397,15 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                    <div class="card border border-danger mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Marzo</h4>
+                                            <spam><b>Marzo</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
                                 </div>
@@ -442,30 +423,25 @@ $datos = Arr::pluck($meses,'result','mes');
                                 }
                                 @endphp
                                 <div class="col-md-3">
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Abril</h4>
+                                        <div class="text-center">
+                                            <spam><b>Abril</b></spam>
                                         </div>
-                                        <div class="text-info text-center mt-2">
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }} </h1>
-
-
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="4">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Abril">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
-
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>
@@ -473,23 +449,24 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                    <div class="card border border-danger mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Abril</h4>
+                                            <spam><b>Abril</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
                                 </div>
                                 @endif
-
                             </div>
-                            <br>
+
+
                             <hr>
+
                             <div class="row">
 
                                 @if (!empty($datos[5]))
@@ -504,30 +481,25 @@ $datos = Arr::pluck($meses,'result','mes');
                                 }
                                 @endphp
                                 <div class="col-md-3">
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Mayo</h4>
+                                        <div class="text-center">
+                                            <spam><b>Mayo</b></spam>
                                         </div>
-                                        <div class="text-info text-center mt-2">
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }} </h1>
-
-
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="5">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Mayo">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
-
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>
@@ -535,15 +507,15 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                    <div class="card border mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Mayo</h4>
+                                            <spam><b>Mayo</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
                                 </div>
@@ -561,30 +533,25 @@ $datos = Arr::pluck($meses,'result','mes');
                                 }
                                 @endphp
                                 <div class="col-md-3">
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Junio</h4>
+                                        <div class="text-center">
+                                            <spam><b>Junio</b></spam>
                                         </div>
-                                        <div class="text-info text-center mt-2">
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }} </h1>
-
-
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="6">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Junio">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
-
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>
@@ -592,15 +559,15 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                    <div class="card border mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Junio</h4>
+                                            <spam><b>Junio</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
                                 </div>
@@ -620,30 +587,25 @@ $datos = Arr::pluck($meses,'result','mes');
                                 }
                                 @endphp
                                 <div class="col-md-3">
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Julio</h4>
+                                        <div class="text-center">
+                                            <spam><b>Julio</b></spam>
                                         </div>
-                                        <div class="text-info text-center mt-2">
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }} </h1>
-
-
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="7">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Julio">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
-
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>
@@ -651,343 +613,312 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                    <div class="card border mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Julio</h4>
+                                            <spam><b>Julio</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if (!empty($datos[8]))
+                                @php
+
+                                $a = $datos[8];
+                                $dias = implode($dmes[7]);
+                                $b = round(($a*100)/$dias);
+
+                                if( $b >= 100){
+                                $b=100;
+                                }
+                                @endphp
+                                <div class="col-md-3">
+                                    <div class="card border p-2 mx-sm-1 shadow">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <spam><b>Agosto</b></spam>
+                                        </div>
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
+                                            <form action="{{ route('reportBit')}}" method="GET">
+                                                <div>
+                                                    <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="8">
+                                                    <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Agosto">
+                                                </div>
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @else
+                                <div class="col-md-3">
+                                    <div class="card border mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
+                                        </div>
+                                        <div class="text-danger text-center mt-3">
+                                            <spam><b>Agosto</b></spam>
+                                        </div>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+
+                                @if (!empty($datos[9]))
+                                @php
+
+                                $a = $datos[9];
+                                $dias = implode($dmes[8]);
+                                $b = round(($a*100)/$dias);
+
+                                if( $b >= 100){
+                                $b=100;
+                                }
+                                @endphp
+                                <div class="col-md-3">
+                                    <div class="card border p-2 mx-sm-1 shadow">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <spam><b>Septiembre</b></spam>
+                                        </div>
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
+                                            <form action="{{ route('reportBit')}}" method="GET">
+                                                <div>
+                                                    <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="9">
+                                                    <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Septiembre">
+                                                </div>
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @else
+                                <div class="col-md-3">
+                                    <div class="card border mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
+                                        </div>
+                                        <div class="text-danger text-center mt-3">
+                                            <spam><b>Septiembre</b></spam>
+                                        </div>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
                                 </div>
                                 @endif
 
 
+                                @if (!empty($datos[10]))
+                                @php
+
+                                $a = $datos[10];
+                                $dias = implode($dmes[9]);
+
+
+
+                                $b = round(($a*100)/$dias);
+
+                                if( $b >= 100){
+                                $b=100;
+                                }
+                                @endphp
                                 <div class="col-md-3">
-
-                                    @if (!empty($datos[8]))
-                                    @php
-
-                                    $a = $datos[8];
-                                    $dias = implode($dmes[7]);
-                                    $b = round(($a*100)/$dias);
-
-                                    if( $b >= 100){
-                                    $b=100;
-                                    }
-                                    @endphp
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Agosto</h4>
+                                        <div class="text-center">
+                                            <spam><b>Octubre</b></spam>
                                         </div>
-                                        <div class="text-info text-center mt-2">
-
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }}</h1>
-
-
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
-                                                    <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="8">
-                                                    <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Agosto">
-                                                </div>
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
-                                                </div>
-
-                                            </form>
-
-
-                                        </div>
-                                    </div>
-
-
-                                    @else
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
-                                        </div>
-                                        <div class="text-danger text-center mt-3">
-                                            <h4>Agosto</h4>
-                                        </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
-                                        </div>
-                                    </div>
-                                    @endif
-
-                                </div>
-                            </div>
-                            <br>
-                            <hr>
-
-                            <div class="row">
-
-                                <div class="col-md-3">
-
-
-                                    @if (!empty($datos[9]))
-                                    @php
-
-                                    $a = $datos[9];
-                                    $dias = implode($dmes[8]);
-                                    $b = round(($a*100)/$dias);
-
-                                    if( $b >= 100){
-                                    $b=100;
-                                    }
-                                    @endphp
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
-                                        </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Septiembre</h4>
-                                        </div>
-
-                                        <div class="text-info text-center mt-2">
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }}</h1>
-
-
-                                            <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
-                                                    <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="9">
-                                                    <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Septiembre">
-                                                </div>
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
-                                                </div>
-
-                                            </form>
-
-
-
-                                        </div>
-
-                                    </div>
-
-
-
-                                    @else
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
-                                        </div>
-                                        <div class="text-danger text-center mt-3">
-                                            <h4>Septiembre</h4>
-                                        </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
-                                        </div>
-                                    </div>
-                                    @endif
-                                </div>
-
-
-                                <div class="col-md-3">
-                                    @if (!empty($datos[10]))
-                                    @php
-
-                                    $a = $datos[10];
-                                    $dias = implode($dmes[9]);
-
-
-
-                                    $b = round(($a*100)/$dias);
-
-                                    if( $b >= 100){
-                                    $b=100;
-                                    }
-                                    @endphp
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
-                                        </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Octubre</h4>
-                                        </div>
-
-                                        <div class="text-info text-center mt-2">
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }}</h1>
-
-
-                                            <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="10">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Octubre">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-
-
-                                    @else
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                </div>
+                                @else
+                                <div class="col-md-3">
+                                    <div class="card border mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Octubre</h4>
+                                            <spam><b>Octubre</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
-                                    @endif
                                 </div>
+                                @endif
 
 
 
+                                @if (!empty($datos[11]))
+                                @php
+
+                                $a = $datos[11];
+
+                                $dias = implode($dmes[10]);
+                                $b = round(($a*100)/$dias);
+
+                                if( $b >= 100){
+                                $b=100;
+                                }
+                                @endphp
                                 <div class="col-md-3">
-                                    @if (!empty($datos[11]))
-                                    @php
-
-                                    $a = $datos[11];
-
-                                    $dias = implode($dmes[10]);
-                                    $b = round(($a*100)/$dias);
-
-                                    if( $b >= 100){
-                                    $b=100;
-                                    }
-                                    @endphp
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Noviembre</h4>
+                                        <div class="text-center">
+                                            <spam><b>Noviembre</b></spam>
                                         </div>
-
-                                        <div class="text-info text-center mt-2">
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }}</h1>
-
-
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="11">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Noviembre">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
+                                </div>
 
-
-                                    @else
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                @else
+                                <div class="col-md-3">
+                                    <div class="card border mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Noviembre</h4>
+                                            <spam><b>Noviembre</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
-                                    @endif
-
-
-
                                 </div>
+                                @endif
 
+
+
+                                @if (!empty($datos[12]))
+                                @php
+
+                                $a = $datos[12];
+                                $dias = implode($dmes[11]);
+                                $b = round(($a*100)/$dias);
+
+                                if( $b >= 100){
+                                $b=100;
+                                }
+                                @endphp
 
                                 <div class="col-md-3">
-
-                                    @if (!empty($datos[12]))
-                                    @php
-
-                                    $a = $datos[12];
-                                    $dias = implode($dmes[11]);
-                                    $b = round(($a*100)/$dias);
-
-                                    if( $b >= 100){
-                                    $b=100;
-                                    }
-                                    @endphp
-                                    <div class="card border-primary mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
+                                    <div class="card border p-2 mx-sm-1 shadow ">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $b; ?>%"><?php echo $b; ?>%</div>
                                         </div>
-                                        <div class="text-info text-center mt-3">
-                                            <h4>Diciembre</h4>
+                                        <div class="text-center">
+                                            <spam><b>Diciembre</b></spam>
                                         </div>
-
-                                        <div class="text-info text-center mt-2">
-
-                                            <h6>Reportes enviados:</h6>
-                                            <h1>{{ $a }}</h1>
-
-
+                                        <div class="text-center">
+                                            <spam>Reportes enviados</spam>
+                                            <h2>{{ $a}} </h2>
                                             <form action="{{ route('reportBit')}}" method="GET">
-                                                <div class="mb-3">
+                                                <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="12">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Diciembre">
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                    <input class="btn btn-success btn-sm" type="submit" value="Descargar Reporte">
+                                                    <input class="btn btn-xs btn-flat btn-success bg-gradient-success" type="submit" value="Descargar Reporte">
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
+                                </div>
 
 
-                                    @else
-                                    <div class="card border-danger mx-sm-1 p-3">
-                                        <div class="progress" style="height: 30px;">
+                                @else
+                                <div class="col-md-3">
+                                    <div class="card border mx-sm-1 p-2">
+                                        <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
-                                            <h4>Diciembre</h4>
+                                            <spam><b>Diciembre</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se Envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
-                                    @endif
-
                                 </div>
-                                <div class="info-box">
-  
-
+                                @endif
                             </div>
+
 
                         </div>
                     </div>
 
-
-                    @endif
-
-                    @endauth
-
                 </div>
+
             </div>
         </div>
 
 
+        @endif
 
+        @endauth
 
     </div>
 </div>
+
+
+
+
+
 
 
 @stop

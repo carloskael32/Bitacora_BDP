@@ -141,7 +141,7 @@ Route::get('/reportBit', [PDFController::class, 'PDFBit'])->name('reportBit');
 
 Route::get('/report', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorareporte');
 
-Route::get('/report2', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
+Route::get('/Reporte por intervalo', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
 
 Route::get('/reporte_general_mensual', [PDFController::class, 'PDFAll'])->name('PDFAll');
 

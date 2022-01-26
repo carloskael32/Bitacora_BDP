@@ -28,7 +28,7 @@ class DatosSeeder extends Seeder
        
         ]); */
 
-        $bit=Bitacora::create([
+      /*   $bit=Bitacora::create([
             'agencia'=> 'La Paz',
             'encargadoOP'=>'rcondori',
             'temperatura'=>'16.9',
@@ -148,6 +148,127 @@ class DatosSeeder extends Seeder
             'generador'=>'En linea',
             'observaciones'=>'Sin Observaciones',
             'Fecha'=>'2021-05-02',
+        ]); */
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-02-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-03-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-04-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-05-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-06-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-07-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-08-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-09-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-10-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-11-02',
+        ]);
+        $bit=Bitacora::create([
+            'agencia'=> 'Yacuiba',
+            'encargadoOP'=>'cmamani',
+            'temperatura'=>'18.5',
+            'humedad'=>'35',
+            'filtracion'=>'No',
+            'UPS'=>'En linea',
+            'generador'=>'En linea',
+            'observaciones'=>'Sin Observaciones',
+            'Fecha'=>'2022-12-02',
         ]);
  
     
