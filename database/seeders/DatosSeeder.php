@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Bitacora;
+use App\Models\parametro;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -269,6 +270,12 @@ class DatosSeeder extends Seeder
             'generador'=>'En linea',
             'observaciones'=>'Sin Observaciones',
             'Fecha'=>'2022-12-02',
+        ]);
+        $prm=parametro::create([
+            'temmin'=> '0',
+            'temmax'=> '40',
+            'hummin'=> '10',
+            'hummax'=> '85',
         ]);
  
     

@@ -191,10 +191,19 @@ class PDFController extends Controller
     {
 
         $agencia = $request->get('agencia');
-        $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and (Temperatura > 40 or Humedad > 85) order by fecha desc', [$agencia]);
+
+        $parametro = DB::select('select * from parametros');
+
+        foreach ($parametro as $pa) {
+            $temmax =  $pa->temmax;
+            $hummax =  $pa->hummax;
+        }
+
+        $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and (Temperatura > ? or Humedad > ?) order by fecha desc', [$agencia,$temmax,$hummax]);
         $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
+
         //return response()->json($alerta);
         $pdf = PDF::loadView('complebit.PDFAlertas', compact('bitacoras', 'datosu'));
-        return $pdf->setPaper('carta', 'landscape')->Stream('Resumen.pdf');
+        return $pdf->setPaper('carta', 'landscape')->stream('Resumen.pdf');
     }
 }

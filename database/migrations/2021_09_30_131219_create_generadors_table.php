@@ -23,6 +23,12 @@ class CreateGeneradorsTable extends Migration
             $table->String('agencia');
             $table->String('encargadoop');
             $table->text('observaciones');
+            $table->text('cod_activo');
+            $table->text('num_serie');
+            
+
+
+
 
 
             //$table->timestamps();

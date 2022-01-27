@@ -1,9 +1,9 @@
 <br>
-<div class="card">
-    <div class="card-header">
-        <h3 class="text-center">Registro de pruebas con el Generador</h3>
-        <br>
-        <h5>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</h5>
+<div class="card border shadow">
+    <div class="card-header bg-light">
+        <h5 class="text-center"><b>Registro de pruebas con el Generador</b></h5>
+        <hr>
+        <h6><b>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</b></h6>
     </div>
     <div class="card-body">
       

@@ -10,8 +10,13 @@
 <br>
 <div class="card" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
     <div class="card-header">
-        <h3 class="text-center">Generador</h3>
+        <h5 class="text-center"><b>Generadores</b></h5>
+
+        <hr>
+    <h6><b>Estimad@.. recuerde que debe realizar la prueba del generador una vez al mes</b></h6>
+    
     </div>
+  
     <div class="card-body">
 
         @if(Session::has('mensaje'))
@@ -23,8 +28,7 @@
         </div>
         @endif
 
-        <h5>Estimad@.. recuerde que debe realizar la prueba del generador una vez al mes</h5>
-        <hr>
+     
 
 
         <a href="{{ url('generador/create') }}" class="btn btn-sm btn-flat btn-success bg-gradient-success">Nuevo Registro</a>

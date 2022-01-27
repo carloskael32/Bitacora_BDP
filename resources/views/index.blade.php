@@ -9,10 +9,9 @@
 @stop
 
 @section('content')
-<div class="container-fluid	">
-	<div class="row justify-content-center">
-		<div class="col-md-12">
-			<div class="card">
+<br>
+
+			<div class="card shadow">
 
 				<div class="card-body">
 				
@@ -21,24 +20,17 @@
 
 				</div>
 			</div>
-		</div>
 
-	</div>
-</div>
 
-<hr>
-<div class="container-fluid">
+
 	<div class="row">
-
-
-
 		<div class="col-md-6">
 			<div class="card">
 				<table class="table table-striped text-center">
 					<thead>
-						<tr>
+						<tr class="bg-cyan">
 							<th colspan="3">
-								<h4>Reportes de CPD´s</h4>
+								<spam>Reportes de CPD`s</spam>
 							</th>
 						</tr>
 						<tr>
@@ -76,9 +68,9 @@
 			
 			<table class="table table-striped text-center">
 				<thead>
-					<tr>
+				<tr class="bg-cyan">
 						<th colspan="3">
-							<h4>Reportes de Generadores</h4>
+							<spam>Reportes de Generadores</spam>
 						</th>
 					</tr>
 					<tr>
@@ -110,7 +102,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+
 
 
 

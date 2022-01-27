@@ -43,7 +43,7 @@
         <table>
             <tbody>
                 <tr>
-                    <th colspan="5" rowspan="2">Datos de los Encargados</th>
+                    <th colspan="5" rowspan="2">Datos del Encargado Operativo</th>
                     <th colspan="2">turno</th>
                 </tr>
                 <tr>
@@ -52,7 +52,7 @@
                 </tr>
                 @foreach ($datosu as $user)
                 <tr>
-                    <td><b>name</b></td>
+                    <td><b>Nombre</b></td>
                     <td colspan="4"><b>{{$user->name}}</b></td>
                     <td>x</td>
                     <td>x</td>
@@ -75,7 +75,7 @@
 
             <thead class="thead">
                 <tr>
-                    <th>Lista de temperatura y humedad fuera de los parametros establecidos. </th>        
+                    <th>Lista de temperatura y humedad fuera de los parametros establecidos. </th>
                 </tr>
             </thead>
 
@@ -108,7 +108,7 @@
                     <td>{{ $bitacora->Fecha }}</td>
                     <td>{{ $bitacora->agencia }}</td>
                     <td>{{ $bitacora->encargadoOP }}</td>
-                    <td>{{ $bitacora->temperatura }}</td>
+                    <td>{{ $bitacora->temperatura}}</td>
                     <td>{{ $bitacora->humedad }}</td>
                     <td>{{ $bitacora->filtracion }}</td>
                     <td>{{ $bitacora->UPS }}</td>

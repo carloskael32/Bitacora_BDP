@@ -1,7 +1,7 @@
 <br>
 
 
-<div class="card">
+<div class="card border shadow">
 
     <div class="card-body">
         <div class="container col-5 border border-info">
@@ -42,7 +42,7 @@
         <div class="container-fluid" >
 
             <br>
-            <h5>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</h5>
+            <h6><b>Por Favor Registre los datos Requeridos en el Fomulario Gracias..</b></h6>
                 <hr>
                 @if(count($errors)>0)
 

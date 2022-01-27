@@ -242,11 +242,7 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ], */
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'admin',
-        ],
+      
         /*   [
             'text'        => 'pages',
             'url'         => 'admin/pages',

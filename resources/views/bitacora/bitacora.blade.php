@@ -9,13 +9,11 @@
 @section('content')
 
 <br>
-
-
 <div class="card" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
     <div class="card-header">
-        <h4 class="text-center">Bitacora - Centro de Procesamiento de Datos (CPD)</h4>
+        <h5 class="text-center"><b>Bitacora - Centro de Procesamiento de Datos (CPD)</b></h5>
         <hr>
-        <h5>Estimad@. recuerde que debe realizar la bitacora del CPD diariamente gracias...</h5>
+        <h6><b>Estimad@. recuerde que debe realizar la bitacora del CPD diariamente gracias...</b></h6>
     </div>
     <div class="card-body">
 
@@ -118,15 +116,15 @@
 <script>
     $('#bitacoras').DataTable({
         "language": {
-            "lengthMenu": "Mostrar "+
-            `<select class="custom-select custom-select-sm form-control form-control-sm"> 
+            "lengthMenu": "Mostrar " +
+                `<select class="custom-select custom-select-sm form-control form-control-sm"> 
             <option value ='10' >10</option>
             <option value ='25' >25</option>
             <option value ='50' >50</option>
             <option value ='100'>100</option>
             <option value ='-1' >all</option>
             </select>` +
-            " registros por pagina",
+                " registros por pagina",
             "zeroRecords": "Nada encontrado",
             "info": "Mostrando la pagina _PAGE_ de _PAGES_",
             "infoEmpty": "No records available",

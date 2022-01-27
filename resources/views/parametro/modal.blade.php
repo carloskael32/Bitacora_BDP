@@ -3,16 +3,14 @@
     @csrf
     {{ method_field('PATCH') }}
     <div class="modal fade text-left" id="ModalCreate" tableindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-tittle ">{{ _('Actualizar Parametros')}}</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-header bg-cyan">
+                    <h5 class="modal-title w-100 text-center">Cambio de valores de los Parametros</h5>
+                    <button class="bg-danger" type="button" className="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <h5>Recuerde que las alertas se generan de acuerdo a los parametros</h5>
+                    <h6>Recuerde que las alertas se generan de acuerdo a los parametros</h6>
                     <hr>
 
                     <div class="row justify-content-center">
@@ -45,7 +43,7 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <input class="btn btn-success rounded-0" type="submit" value="Guardar cambios">
+                        <input class="btn btn-sm btn-flat btn-success bg-gradient-success" type="submit" value="Guardar cambios">
                     </div>
 
                 </div>
