@@ -27,10 +27,6 @@ class CreateGeneradorsTable extends Migration
             $table->String('num_serie')->nullable();
             
 
-
-
-
-
             //$table->timestamps();
         });
     }
