@@ -68,6 +68,22 @@
 
             </div>
         </div>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="cod_activo">cod. activo</label>
+                    <input type="text" class="form-control" name="cod_activo" id="cod_activo">
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="num_serie">num. serie</label>
+                    <input type="text" class="form-control" name="num_serie" id="num_serie">
+                </div>
+            </div>
+      
+        </div>
 
 
 
@@ -78,7 +94,7 @@
             <div class="col-md">
                 <div class="form-floating">
                     <label for="observaciones">Observaciones</label>
-                    <textarea class="form-control" name="observaciones" value="{{ isset($generador->observaciones)?$generador->observaciones:('') }}" placeholder="dejar las observaciones aqui.." id="floatingTextarea2" style="height: 100px" required></textarea>
+                    <textarea class="form-control" name="observaciones" value="{{ isset($generador->observaciones)?$generador->observaciones:('') }}" placeholder="dejar las observaciones aqui.." id="floatingTextarea2" style="height: 100px"></textarea>
                 </div>
             </div>
         </div>

@@ -142,9 +142,6 @@ class BitacoraController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
         $campos = [
 
             'Agencia' => 'required|string|max:100',
@@ -156,12 +153,9 @@ class BitacoraController extends Controller
             'Generador' => 'required|string|max:50',
             'Observaciones' => 'required|string|max:100',
             'Fecha' => 'required|date|max:50',
-
-
         ];
         $mensaje = [
             'required' => 'El :attribute es requerido'
-
         ];
 
         $this->validate($request, $campos, $mensaje);

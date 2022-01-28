@@ -23,34 +23,33 @@
                             <th></th>
                             <th>Temperatura</th>
                             <th>Humedad</th>
-
                         </thead>
-                        <tr>
+                        <tbody>
                             @foreach ($parametro as $par)
-                            <td>Valor Mínimo</td>
-                            <td>{{$par->temmin}}°C</td>
-                            <td>{{$par->hummin}}%</td>
+                            <tr>
+                                <td>Valor Mínimo</td>
+                                <td>{{$par->temmin}}°C</td>
+                                <td>{{$par->hummin}}%</td>
+                            </tr>
+                            <tr>
+                                <td>Valor Máximo</td>
+                                <td>{{$par->temmax}}°C</td>
+                                <td>{{$par->hummax}}%</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <a href="#" class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" data-toggle="modal" data-target="#ModalCreate">
+                                        {{_('Modificar Parametros')}}
+                                    </a>
+                                </td>
+                            </tr>
                             @endforeach
-                        </tr>
-                        <tr>
-                            @foreach ($parametro as $par)
-                            <td>Valor Máximo</td>
-                            <td>{{ $par->temmax}}°C</td>
-                            <td>{{ $par->hummax}}%</td>
-                            @endforeach
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <a href="#" class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" data-toggle="modal" data-target="#ModalCreate">
-                                   {{_('Modificar Parametros')}}
-                                </a>
-                            </td>
-                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        
+
 
 
         <br>
@@ -60,7 +59,7 @@
 
         <div class="table-responsive">
 
-            <table class=" table table-light" id="alertas">
+            <table class="table table-light" id="alertas">
 
                 <thead class="bg-cyan">
                     <tr>

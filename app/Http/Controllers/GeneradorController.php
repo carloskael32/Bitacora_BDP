@@ -27,7 +27,7 @@ class GeneradorController extends Controller
         */
 
         //$datos = DB::table('generadors')->where('agencia', '=', $user)->orderByDesc('id');
-        $datos = DB::select('select * from generadors where agencia = ? order by id desc',[$age]);
+        $datos = DB::select('select * from generadors where agencia = ? order by fecha desc',[$age]);
 
         //return view('generador.index', $datos);
         return view('generador.index')->with(['generador' => $datos]);
@@ -84,9 +84,24 @@ class GeneradorController extends Controller
      */
     public function store(Request $request)
     {
+
+        $campos = [
+
+            'tiempo' => 'required|string|max:100',
+            'marca' => 'required|string|max:100',
+            
+             
+        ];
+        $mensaje = [
+            'required' => 'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje); 
+
+
         $datosGenerador = request()->except('_token');
         Generador::insert($datosGenerador);
-        return redirect('generador')->with('mensaje', 'Reporte registrado con Exito..');
+        return redirect('generador')->with('mensaje','Reporte registrado con Exito..');
     }
 
     /**

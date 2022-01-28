@@ -45,6 +45,8 @@
                         <th>Tiempo</th>
                         <th>Marca</th>
                         <th>Modelo</th>
+                        <th>Cod. activo</th>
+                        <th>Num. Serie</th>
                         <th>Agencia</th>
                         <th>Encargado OP.</th>
                         <th>Observaciones</th>
@@ -63,6 +65,8 @@
                         <td>{{ $gen->tiempo }} min</td>
                         <td>{{ $gen->marca }}</td>
                         <td>{{ $gen->modelo }}</td>
+                        <td>{{ $gen->cod_activo }}</td>
+                        <td>{{ $gen->num_serie }}</td>                        
                         <td>{{ $gen->agencia }}</td>
                         <td>{{ $gen->encargadoop }}</td>
                         <td>{{ $gen->observaciones }}</td>

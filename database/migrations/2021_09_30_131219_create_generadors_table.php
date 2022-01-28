@@ -19,12 +19,12 @@ class CreateGeneradorsTable extends Migration
             $table->date('fecha');
             $table->integer('tiempo');
             $table->string('marca');
-            $table->string('modelo');
+            $table->string('modelo')->nullable();
             $table->String('agencia');
             $table->String('encargadoop');
-            $table->text('observaciones');
-            $table->text('cod_activo');
-            $table->text('num_serie');
+            $table->text('observaciones')->nullable();
+            $table->String('cod_activo')->nullable();
+            $table->String('num_serie')->nullable();
             
 
 
