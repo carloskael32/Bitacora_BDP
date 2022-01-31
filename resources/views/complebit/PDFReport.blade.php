@@ -67,7 +67,48 @@
             </tbody>
         </table>
     </div>
+    <br>
+    <div class="container col-11">
 
+        <div>
+            <table>
+                <thead class="thead">
+                    <tr>
+                        <th colspan="7">GENERADOR</th>
+                    </tr>
+                    <tr>
+                        <th>agencia</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Cod_activo</th>
+                        <th>Num_serie</th>
+                        <th>Fecha de prueba</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($generador !=null)
+                    @foreach ($generador as $gen)
+                    <tr>
+                        <td>{{ $gen->agencia }}</td>
+                        <td>{{ $gen->marca }}</td>
+                        <td>{{ $gen->modelo }}</td>
+                        <td>{{ $gen->cod_activo }}</td>
+                        <td>{{ $gen->num_serie }}</td>
+                        <td>{{ $gen->fecha }}</td>
+                        <td>{{ $gen->observaciones }}</td>
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td colspan="7">no se realizo las pruebas con el generador este mes.</td>
+                    </tr>
+                    @endif
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <br>
 
@@ -109,7 +150,7 @@
     <br>
     <div class="page-break"></div>
     <p>
-    @if ($vr == 1)
+        @if ($vr == 1)
     <h5>Promedio de Temperatura y humedad de "{{$mesini}}" hasta "{{$mesfin}}"</h5>
     @else
     <h5>Promedio mensual de Temperatura y humedad de {{$mesini}}</h5>

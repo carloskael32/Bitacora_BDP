@@ -175,11 +175,23 @@ $datos = Arr::pluck($meses,'result','mes');
                                 </div>
                             </form>
                         </div>
+
+
+
                         <div class="card-footer border border-cyan text-center bg-ligth">
                             BDP-SAM
                         </div>
                     </div>
                     @endif
+                    @if(Session::has('mensaje2'))
+                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                        <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensaje2')}}</b>
+                        <button type="button" class="close bg-danger" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+
                 </div>
 
 
@@ -283,7 +295,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border-danger mx-sm-1 p-3">
+                                    <div class="card border mx-sm-1 p-3">
                                         <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
@@ -340,7 +352,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border border-danger mx-sm-1 p-2">
+                                    <div class="card border mx-sm-1 p-2">
                                         <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
@@ -397,7 +409,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border border-danger mx-sm-1 p-2">
+                                    <div class="card border mx-sm-1 p-2">
                                         <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
@@ -449,7 +461,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border border-danger mx-sm-1 p-2">
+                                    <div class="card border mx-sm-1 p-2">
                                         <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>

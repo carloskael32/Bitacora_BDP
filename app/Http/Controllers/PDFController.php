@@ -45,12 +45,15 @@ class PDFController extends Controller
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ', [$agencia, $mes]);
         $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
 
+        $generador = DB::select('select * from generadors where agencia = ? and MONTH(fecha) = ? and YEAR(fecha) = YEAR(NOW())',[$agencia, $mes]);
+        //return $generador;
+
         $vr = 0;
 
-        $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'datosu', 'vr', 'mesini', 'resumen'));
+        $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'datosu', 'vr', 'mesini', 'resumen','generador'));
         //return $pdf->Stream('Reporte.pdf');
 
-        return $pdf->setPaper('carta', 'landscape')->download($mes1 . '_Reporte.pdf');
+        return $pdf->setPaper('carta', 'landscape')->stream($mes1 . '_Reporte.pdf');
     }
 
     public function PDFBitacora(Request $request)
@@ -72,14 +75,17 @@ class PDFController extends Controller
 
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
+
+        $generador = DB::select('select * from generadors where agencia = ? and date_format(Fecha, "%Y-%m") = ?',[$agencia, $mes]);
+
         $vr = 0;
         if ($bitacoras != null) {
 
-            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu', 'mesini', 'vr'));
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu', 'mesini', 'vr','generador'));
             //return $pdf->Stream('Reporte.pdf');
-            return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
+            return $pdf->setPaper('carta', 'landscape')->stream('Reporte.pdf');
         } else {
-            return redirect('reportes')->with('mensaje', 'No se Encontraron Registros');
+            return redirect('reportes')->with('mensaje', 'no se encontraron registros');
         }
     }
 
@@ -109,14 +115,16 @@ class PDFController extends Controller
         $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
+        
+        $generador = DB::select('select * from generadors where agencia = ? and fecha BETWEEN ? AND ? order by id asc',[$agencia, $ini, $fin]);
         $vr = 1;
         //return response()->json($bitacoras);
         if ($bitacoras != null) {
 
-            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu', 'mesini', 'mesfin', 'vr'));
+            $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu', 'mesini', 'mesfin', 'vr','generador'));
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
         } else {
-            return redirect('reportes')->with('mensaje2', 'No se Encontraron Registros');
+            return redirect('reportes')->with('mensaje2', 'no se encontraron registros');
         }
     }
 
