@@ -28,7 +28,7 @@ $datos = Arr::pluck($meses,'result','mes');
             <div class="row justify-content-center">
                 <div class="col-md-3">
                     @if (Auth::user()->acceso == "yes")
-                    <div class="">
+                    <div>
 
                         <div class="card border border-cyan">
                             <div class="card-head text-center bg-cyan p-2">
@@ -59,91 +59,101 @@ $datos = Arr::pluck($meses,'result','mes');
                                 </form>
                             </div>
                         </div>
-                        <hr>
-                        <br>
+                   
+
 
                         <!-- Genera reportes segun agencia y mes -->
-                        @if(Session::has('mensaje'))
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            {{ Session::get('mensaje')}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+
+
+                        <div class="card border border-cyan">
+                            <div class="card-head text-center bg-cyan p-2">
+                                Reportes por agencia al mes
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('PDFBitacorareporte')}}" method="GET">
+                                    <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
+                                    <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
+                                    <datalist name="agencia" id="datalistOptions">
+
+                                        @foreach($agencias as $agencia)
+                                        <option value="{{ $agencia->agencia }}">
+                                            @endforeach
+
+                                    </datalist>
+                                    <br>
+
+                                    <div class="mb-3">
+                                        <label for="formGroupExampleInput" class="form-label">Mes: </label>
+                                        <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Ejemplo: enero 2021" required>
+                                    </div>
+
+                                    @if(Session::has('mensaje'))
+                                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                                        <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensaje')}}</b>
+                                        <button type="button" class="close bg-danger" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @endif
+
+
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                        <input class="btn btn-sm btn-flat  bg-gradient-info" type="submit" value="Generar Reporte">
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
-                        @endif
+                      
 
-                        <h4 class="text-center">Reportes por Mes</h4>
-                        <form action="{{ route('PDFBitacorareporte')}}" method="GET">
-                            <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
-                            <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
-                            <datalist name="agencia" id="datalistOptions">
-
-                                @foreach($agencias as $agencia)
-                                <option value="{{ $agencia->agencia }}">
-                                    @endforeach
-
-                            </datalist>
-                            <br>
-
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Mes: </label>
-                                <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Ejemplo: enero 2021" required>
-                            </div>
-
-
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <input class="btn btn-primary" type="submit" value="Generar Reporte">
-                            </div>
-
-                        </form>
-
-                        <hr>
-                        <br>
 
 
                         <!-- GENERA REPORTE CON INTERVALOS DE FECHAS-->
-                        @if(Session::has('mensaje2'))
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            {{ Session::get('mensaje2')}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="card border border-cyan">
+                            <div class="card-head text-center bg-cyan p-2">
+                                Reporte con Intervalos
+                                <br>
+                                de Fechas
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('PDFBitacorareporte2')}}" method="GET">
+                                    <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
+                                    <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
+                                    <datalist name="agencia" id="datalistOptions">
+
+                                        @foreach($agencias as $agencia)
+                                        <option value="{{ $agencia->agencia }}">
+                                            @endforeach
+
+                                    </datalist>
+                                    <br>
+
+                                    <div class="mb-3">
+                                        <label for="formGroupExampleInput" class="form-label">De: </label>
+                                        <input name="date1" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                    </div>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="formGroupExampleInput" class="form-label">Hasta: </label>
+                                        <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                    </div>
+
+                                    @if(Session::has('mensaje2'))
+                                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                                        <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensaje2')}}</b>
+                                        <button type="button" class="close bg-danger" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @endif
+
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                        <input class="btn btn-sm btn-flat  bg-gradient-info" type="submit" value="Generar Reporte">
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
-                        @endif
-
-
-
-                        <h4 class="text-center">Reporte con Intervalos
-                            <br>
-                            de Fechas
-                        </h4>
-                        <form action="{{ route('PDFBitacorareporte2')}}" method="GET">
-                            <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
-                            <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
-                            <datalist name="agencia" id="datalistOptions">
-
-                                @foreach($agencias as $agencia)
-                                <option value="{{ $agencia->agencia }}">
-                                    @endforeach
-
-                            </datalist>
-                            <br>
-
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">De: </label>
-                                <input name="date1" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
-                            </div>
-                            <br>
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Hasta: </label>
-                                <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
-                            </div>
-
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <input class="btn btn-primary" type="submit" value="Generar Reporte">
-                            </div>
-
-                        </form>
 
                     </div>
                     @else
@@ -199,60 +209,73 @@ $datos = Arr::pluck($meses,'result','mes');
 
                 <div class="col-md-9">
 
-
                     @auth
                     @if (Auth::user()->acceso == "yes")
-                    <h5 class="text-center">Bitacoras registradas el dia Hoy.. <b>{{ date('Y-m-d') }} </b></h5>
-                    <hr>
-                    <table class=" table table-light">
 
-                        <thead class="thead-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Agencia</th>
-                                <th>EncargadoOP.</th>
-                                <th>Temperatura</th>
-                                <th>Humedad</th>
-                                <th>Filtracion</th>
-                                <th>UPS</th>
-                                <th>Generador</th>
-                                <th>Observaciones</th>
-                                <th>Fecha</th>
+                    <div class="card border border-cyan" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
 
-                            </tr>
-                        </thead>
+                        <div class="card-head text-center border bg-light p-2">
+                            <h5 class="text-center">Bitacoras registradas el dia Hoy.. <b>{{ date('Y-m-d') }} </b></h5>
+                        </div>
+                        <div class="card-body">
 
-                        <tbody>
-                            @foreach( $bitacoras as $bitacora)
-                            <tr>
 
-                                <td>{{ $bitacora->id }}</td>
-                                <td>{{ $bitacora->agencia }}</td>
-                                <td>{{ $bitacora->encargadoOP }}</td>
-                                <td>{{ $bitacora->temperatura }}</td>
-                                <td>{{ $bitacora->humedad }}</td>
-                                <td>{{ $bitacora->filtracion }}</td>
-                                <td>{{ $bitacora->UPS }}</td>
-                                <td>{{ $bitacora->generador }}</td>
-                                <td>{{ $bitacora->observaciones }}</td>
-                                <td>{{ $bitacora->Fecha }}</td>
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="bitacoras">
 
-                            </tr>
-                            @endforeach
-                        </tbody>
+                                    <thead class="bg-cyan">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Agencia</th>
+                                            <th>EncargadoOP.</th>
+                                            <th>Temperatura</th>
+                                            <th>Humedad</th>
+                                            <th>Filtracion</th>
+                                            <th>UPS</th>
+                                            <th>Generador</th>
+                                            <th>Observaciones</th>
+                                            <th>Fecha</th>
 
-                    </table>
+                                        </tr>
+                                    </thead>
+                                    @php
+                                    $a=1;
+                                    @endphp
+                                    <tbody>
+                                        @foreach( $bitacoras as $bitacora)
+                                        <tr>
 
-                    <div class="pagination justify-content-center">
+                                            <td>{{ $a}}</td>
+                                            <td>{{ $bitacora->agencia }}</td>
+                                            <td>{{ $bitacora->encargadoOP }}</td>
+                                            <td>{{ $bitacora->temperatura }}</td>
+                                            <td>{{ $bitacora->humedad }}</td>
+                                            <td>{{ $bitacora->filtracion }}</td>
+                                            <td>{{ $bitacora->UPS }}</td>
+                                            <td>{{ $bitacora->generador }}</td>
+                                            <td>{{ $bitacora->observaciones }}</td>
+                                            <td>{{ $bitacora->Fecha }}</td>
 
-                        {!! $bitacoras->links() !!}
+                                        </tr>
+                                        @php
+                                        $a++;
+                                        @endphp
+                                        @endforeach
+                                    </tbody>
 
+                                </table>
+                            </div>
+
+                            <div class="pagination justify-content-center">
+
+                                {!! $bitacoras->links() !!}
+
+                            </div>
+                        </div>
                     </div>
-
                     @else
 
                     <div class="card">
-
                         <div class="card-body">
                             <div class="row">
 
@@ -937,11 +960,41 @@ $datos = Arr::pluck($meses,'result','mes');
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+<!-- 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css"> -->
 @stop
 
 @section('js')
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+
+
 <script>
-    console.log('Hi!');
+    $('#bitacoras').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar " +
+                `<select class="custom-select custom-select-sm form-control form-control-sm"> 
+            <option value ='10' >10</option>
+            <option value ='25' >25</option>
+            <option value ='50' >50</option>
+            <option value ='100'>100</option>
+            <option value ='-1' >all</option>
+            </select>` +
+                " registros por pagina",
+            "zeroRecords": "Nada encontrado",
+            "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+            "search": 'Buscar:',
+            "paginate": {
+                'next': 'Siguiente',
+                'previous': 'Anterior'
+            }
+        }
+    });
 </script>
 @stop

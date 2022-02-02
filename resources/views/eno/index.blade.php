@@ -10,16 +10,8 @@
 <br>
 <div class="container-fluid">
 
-
-
     <div class="row justify-content-center">
-
-
-
         <div class="col-md-10">
-
-
-
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-center">Encargados Operativos</h2>
@@ -69,7 +61,7 @@
 
                                 <td>{{ $a }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->names}}</td>
+                                <td>{{ $user->user}}</td>
                                 <td>{{ $user->agencia}}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->descripcion}}</td>

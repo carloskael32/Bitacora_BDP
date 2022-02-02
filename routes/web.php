@@ -139,11 +139,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/reportBit', [PDFController::class, 'PDFBit'])->name('reportBit');
 
-Route::get('/report', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorareporte');
+Route::get('/Reporte mensual por agencia', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorareporte');
 
 Route::get('/Reporte por intervalo', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
 
-Route::get('/reporte_general_mensual', [PDFController::class, 'PDFAll'])->name('PDFAll');
+Route::get('/reporte general mensual', [PDFController::class, 'PDFAll'])->name('PDFAll');
 
 //PDF alertas de temperatura y humedad
 Route::get('/reporte de alertas de parametros', [PDFController::class, 'PDFAlertas'])->name('reportAlert');

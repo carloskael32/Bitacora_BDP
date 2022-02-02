@@ -177,19 +177,23 @@ class PDFController extends Controller
         for ($i = 0; $i < count($datos); $i++) {
             //echo $datos[$i];
             $a = $datos[$i];
-            $all[] = $con = DB::select('select agencia,encargadoOP,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ?   order by Fecha desc', [$a, $mes]);
+            //$all[] = $con = DB::select('select agencia,encargadoOP,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ?   order by Fecha desc', [$a, $mes]);
 
             //consulta para sacar los names de cada encargado ok para DESPUES
-            //$all[] = $con = DB::select('select b.*, u.name from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ?', [$a]);
+            $all[] = $con = DB::select('select b.*, u.name from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ? and date_format(Fecha, "%Y-%m") = ? order by fecha desc', [$a,$mes]);
+          
+             
         }
-
-
+        $generador = DB::select('select * from generadors where date_format(Fecha, "%Y-%m") = ? order by fecha desc',[$mes]);
+        
+        //return response()->json($generador);
+        
 
         if (!empty($all[0])) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
-            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all', 'rfn', 'mesDesc'));
+            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all', 'rfn', 'mesDesc','generador'));
             //return $pdf->Stream('Reporte.pdf');
-            return $pdf->setPaper('carta', 'landscape')->Stream('Reporte_General_bitacoras.pdf');
+            return $pdf->setPaper('carta', 'landscape')->stream('Reporte_General_bitacoras.pdf');
         } else {
             return redirect('reportes')->with('mensajeall', 'No se Encontraron Registros');
         }

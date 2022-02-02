@@ -18,7 +18,11 @@
 
 
 
-    @for ($i = 0; $i < count($all); $i++) @if ($all[$i] !=null) @php $j=0; @endphp <!-- cabecera -->
+    @for ($i = 0; $i < count($all); $i++)
+     @if ($all[$i] !=null) 
+     @php 
+     $j=0; 
+     @endphp <!-- cabecera -->
         <div class="container col-12">
 
 
@@ -58,8 +62,8 @@
                     </tr>
 
                     <tr>
-                        <td><b>name</b></td>
-                        <td colspan="4"><b>{{$all[$i][$j]->encargadoOP}}</b></td>
+                        <td><b>Nombre</b></td>
+                        <td colspan="4"><b>{{$all[$i][$j]->name}}</b></td>
                         <td>x</td>
                         <td>x</td>
                     </tr>
@@ -121,7 +125,52 @@
 
         @endfor
 
-        <p> <h5>Resumen de bitácoras de todas las agencias del mes de {{$mesDesc}}</h5></p>
+        <div class="container col-11">
+            <div>
+                <table>
+                    <thead class="thead">
+                        <tr>
+                            <th colspan="7">GENERADOR</th>
+                        </tr>
+                        <tr>
+                            <th>agencia</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Cod_activo</th>
+                            <th>Num_serie</th>
+                            <th>Fecha de prueba</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if($generador !=null)
+                        @foreach ($generador as $gen)
+                        <tr>
+                            <td>{{ $gen->agencia }}</td>
+                            <td>{{ $gen->marca }}</td>
+                            <td>{{ $gen->modelo }}</td>
+                            <td>{{ $gen->cod_activo }}</td>
+                            <td>{{ $gen->num_serie }}</td>
+                            <td>{{ $gen->fecha }}</td>
+                            <td>{{ $gen->observaciones }}</td>
+                        </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td colspan="7">no se realizo las pruebas con el generador este mes.</td>
+                        </tr>
+                        @endif
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="page-break"></div>
+
+
+        <p>
+        <h5>Resumen de bitácoras de todas las agencias del mes de {{$mesDesc}}</h5>
+        </p>
         <br>
         <div class="container col-5">
             <table>
