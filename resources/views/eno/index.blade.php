@@ -30,7 +30,7 @@
 
 
 
-                   <!--  <a href="{{ route('eno.create') }}" class="btn btn-success">Nuevo Registro</a> -->
+                   <a href="{{ route('eno.create') }}" class="btn btn-success">Nuevo Registro</a>
                    
 
 

@@ -154,7 +154,7 @@ return [
     'sidebar_scrollbar_auto_hide' => '1',
     'sidebar_nav_accordion' => false,
     'sidebar_nav_animation_speed' => 300,
-    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -242,7 +242,7 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ], */
-      
+
         /*   [
             'text'        => 'pages',
             'url'         => 'admin/pages',
@@ -270,18 +270,28 @@ return [
             'label_color' => 'success',
             'can'  => 'admin',
         ],
-        ['header' => 'Registros'],
+        [
+            'header' => 'Registros',
+            'can'  => 'user',
+        ],
+
         [
             'text'        => 'CPD',
             'url'         => '/bitacora',
             'icon'        => 'fas fa-server',
             'label_color' => 'success',
+            'can'  => 'user',
+           
+
         ],
         [
             'text'        => 'Generadores',
             'url'         => '/generador',
             'icon'        => 'fas fa-car-battery',
             'label_color' => 'success',
+            'can'  => 'user',
+           
+
         ],
 
 
@@ -291,11 +301,11 @@ return [
             'url'  => '/reportes',
             'icon' => 'fas fa-book',
         ],
-        [
+        /*  [
             'text' => 'Reportes Generadores',
             'url'  => '/reportesge',
             'icon' => 'fas fa-book',
-        ],
+        ], */
         [
             'header' => 'Usuarios',
             'can'  => 'admin',

@@ -37,8 +37,8 @@ class BitacoraController extends Controller
         $datos['bitacoras'] = Bitacora::paginate(5);
         return view('bitacora.index', $datos);
         */
-
-        $bitacoras = DB::select('select * from bitacoras where agencia = ? order by fecha desc',[$age]);
+        $fc = date("Y-m");
+        $bitacoras = DB::select('select * from bitacoras where agencia = ? and date_format(fecha, "%Y-%m") = ? order by fecha desc',[$age,$fc]);
         
 
         //return view('bitacora.bitacora', $datos);

@@ -16,7 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        //permisos para las paginas , se usa en las rutas
         if (auth()->check() && auth()->user()->acceso == 'yes') {
+            
             return $next($request);
         }
 

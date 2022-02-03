@@ -27,7 +27,7 @@ class GeneradorController extends Controller
         */
 
         //$datos = DB::table('generadors')->where('agencia', '=', $user)->orderByDesc('id');
-        $datos = DB::select('select * from generadors where agencia = ? order by fecha desc',[$age]);
+        $datos = DB::select('select * from generadors where agencia = ? and year(fecha) = YEAR(NOW()) order by fecha desc',[$age]);
 
         //return view('generador.index', $datos);
         return view('generador.index')->with(['generador' => $datos]);

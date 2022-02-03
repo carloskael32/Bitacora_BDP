@@ -27,17 +27,16 @@ class EnoController extends Controller
     public function store(Request $request)
     {
         $campos = [
-            'agencia'=> 'required',
-            'name' => 'required',
+            'name'=> 'required',
+            'user' => 'required',
             'email' => 'required',
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'descripcion' => 'required',
+            'agencia'=> 'required',
+            
 
         ];
         $mensaje = [
             'required' => 'El :attribute es requerido',
-            'confirmed' => 'las contraseñas no coinciden',
-            'min:8'=>'la contraseña tiene que tener al menos 8 caracteres',
-
         ];
         $this->validate($request, $campos, $mensaje);
 
@@ -45,10 +44,12 @@ class EnoController extends Controller
         
         User::insert([
             'name' => request('name'),
-            'agencia' => request('agencia'),
-            'acceso' => 'no',
-            'email' => request('email'),
-            'password' => Hash::make(request('password')),
+            'user'=> request('user'),  
+            'email' => request('email'),          
+            'descripcion' => request('descripcion'),
+            'agencia'=> request('agencia'),
+            'acceso' => 'no',            
+            'password' => Hash::make(request('user')),
         ]);
 
         return redirect()->to('/eno');
