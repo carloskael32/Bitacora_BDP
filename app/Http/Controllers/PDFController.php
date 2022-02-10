@@ -212,7 +212,7 @@ class PDFController extends Controller
         }
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and (Temperatura > ? or Humedad > ?) order by fecha desc', [$agencia,$temmax,$hummax]);
-        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select distinct name,agencia from bitacoras where 1 = 1 order by fecha desc limit 1');
 
         //return response()->json($alerta);
         $pdf = PDF::loadView('complebit.PDFAlertas', compact('bitacoras', 'datosu'));

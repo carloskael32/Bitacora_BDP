@@ -21,7 +21,7 @@
                         <div class="form-floating mb-3">
                             <input type="text" name="user" class="form-control" id="floatingInput" placeholder="name@example.com" required autocomplete="name" autofocus>
 
-                            <label for="floatingInput"><i class="bi bi-person-circle"></i> name de Usuario</label>
+                            <label for="floatingInput"><i class="bi bi-person-circle"></i> Name de usuario</label>
                         </div>
 
                         <div class="form-floating mb-3">

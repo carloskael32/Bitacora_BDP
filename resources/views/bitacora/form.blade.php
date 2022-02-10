@@ -71,6 +71,9 @@
                             <input type="text" class="form-control" name="EncargadoOP" value="{{ Auth::user()->user }}" id="EncargadoOP" readonly>
                         </div>
                     </div>
+                                            
+                            <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" id="name" hidden>
+                       
                     <div class="col-md">
                         @if($modo == 'Registrar')
                         <div class="form-group">
