@@ -12,6 +12,7 @@ font-size: 14px;
 
 }
 
+
 /* header{
     position: fixed;
     top: 0cm;
@@ -23,6 +24,13 @@ font-size: 14px;
     text-align: center;
     line-height: 30px;
 } */
+header{
+    position: fixed;
+    top: 10px;
+    left: 0px;
+    right: 0px;
+    height: 100px;
+}
 
 table{
     width: 100%;

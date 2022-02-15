@@ -130,7 +130,7 @@
                 <table>
                     <thead class="thead">
                         <tr>
-                            <th colspan="7">GENERADOR</th>
+                            <th colspan="7">Reporte Generadores</th>
                         </tr>
                         <tr>
                             <th>agencia</th>

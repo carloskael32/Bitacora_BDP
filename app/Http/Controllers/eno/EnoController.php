@@ -29,8 +29,7 @@ class EnoController extends Controller
         $campos = [
             'name'=> 'required',
             'user' => 'required',
-            'email' => 'required',
-            'descripcion' => 'required',
+            'email' => 'required',          
             'agencia'=> 'required',
             
 

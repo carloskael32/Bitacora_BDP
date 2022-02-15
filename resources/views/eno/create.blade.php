@@ -1,5 +1,11 @@
-@extends('layouts.app')
-@section ('title','Encargados Operativos')
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+
+@stop
+
 @section('content')
 <div class="container">
 
@@ -12,4 +18,14 @@
 
     </form>
 </div>
-@endsection
+@stop
+
+@section('css')
+
+@stop
+
+@section('js')
+<script>
+    console.log('Hi!');
+</script>
+@stop

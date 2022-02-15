@@ -66,12 +66,25 @@
                 @enderror
             </div>
         </div>
+        <div class="form-group row">
+            <label for="descripcion" class="col-md-4 col-form-label text-md-right">{{ __('Descripcion') }}</label>
+
+            <div class="col-md-6">
+                <input id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" autocomplete="descripcion" autofocus>
+
+                @error('descripcion')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
 
         <div class="form-group row">
             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
             <div class="col-md-6">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($user->email)?$user->email:old('email') }}" autocomplete="email" readonly>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($user->email)?$user->email:old('email') }}" autocomplete="email">
 
                 @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -81,16 +94,8 @@
             </div>
         </div>
 
-
-
-
-
         @endauth
-
-
-
     </div>
-
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
             <input class="btn btn-success" type="submit" value="{{ $modo }} ">

@@ -52,7 +52,7 @@
                 </tr>
                 @foreach ($datosu as $user)
                 <tr>
-                    <td><b>name</b></td>
+                    <td><b>Nombre</b></td>
                     <td colspan="4"><b>{{$user->name}}</b></td>
                     <td>x</td>
                     <td>x</td>

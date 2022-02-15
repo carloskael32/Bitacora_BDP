@@ -302,7 +302,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a }} </h2>
 
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="1">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Enero">
@@ -358,7 +358,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
 
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="2">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Febrero">
@@ -415,7 +415,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
 
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="3">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Marzo">
@@ -469,7 +469,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="4">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Abril">
@@ -527,7 +527,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="5">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Mayo">
@@ -579,7 +579,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="6">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Junio">
@@ -633,7 +633,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="7">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Julio">
@@ -685,7 +685,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="8">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Agosto">
@@ -741,7 +741,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="9">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Septiembre">
@@ -796,7 +796,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="10">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Octubre">
@@ -849,7 +849,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="11">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Noviembre">
@@ -903,7 +903,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <div class="text-center">
                                             <spam>Reportes enviados</spam>
                                             <h2>{{ $a}} </h2>
-                                            <form action="{{ route('reportBit')}}" method="GET">
+                                            <form action="{{ route('reportBit')}}" target="_blank" method="GET">
                                                 <div>
                                                     <input name="mes" type="hidden" class="form-control" id="formGroupExampleInput" value="12">
                                                     <input name="mes1" type="hidden" class="form-control" id="formGroupExampleInput" value="Diciembre">

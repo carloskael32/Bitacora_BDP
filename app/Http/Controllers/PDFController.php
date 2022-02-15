@@ -25,9 +25,9 @@ class PDFController extends Controller
     public function PDFBit(Request $request)
     //REPORTE MENSUALMENTE LADO DEL USUARIO
     {
-
         $agencia = Auth::user()->agencia;
-
+        $name = Auth::user()->name;
+        
         $mes1 = $request->get('mes1'); //literal
         $mes = $request->get('mes'); //numeral
 
@@ -43,7 +43,7 @@ class PDFController extends Controller
         $resumen = DB::select('select  ROUND(AVG(temperatura),2) as pTemperatura, ROUND(AVG(Humedad),2) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and MONTH(Fecha) = ? and YEAR(Fecha) = YEAR(NOW()) ', [$agencia, $mes]);
-        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select name,agencia from users where name = ? ', [$name]);
 
         $generador = DB::select('select * from generadors where agencia = ? and MONTH(fecha) = ? and YEAR(fecha) = YEAR(NOW())',[$agencia, $mes]);
         //return $generador;
@@ -60,7 +60,7 @@ class PDFController extends Controller
     //REPORTE MENSUALMENTE - LADO ADMINISTRADOR 
     {
 
-        $agencia = $request->get('agencia');
+        $agencia = $request->get('agencia');    
         $mes = $request->get('mes');
 
         setlocale(LC_TIME, "spanish");
@@ -71,7 +71,7 @@ class PDFController extends Controller
 
 
         $resumen = DB::select('select  ROUND(AVG(temperatura),2) as pTemperatura, ROUND(AVG(Humedad),2) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
-        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select distinct name,agencia from users where 1=1 and agencia = ? order by id desc limit 1 ', [$agencia]);
 
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
@@ -112,7 +112,7 @@ class PDFController extends Controller
 
 
         $resumen = DB::select('select  CONCAT(ROUND(AVG(temperatura))," %") as pTemperatura, CONCAT(ROUND(AVG(Humedad))," %") as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
-        $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
+        $datosu = DB::select('select distinct name,agencia from users where 1=1 and agencia = ? order by id desc limit 1 ', [$agencia]);
 
         $bitacoras = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and Fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
         
@@ -180,9 +180,12 @@ class PDFController extends Controller
             //$all[] = $con = DB::select('select agencia,encargadoOP,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(Fecha, "%d-%m-%Y") as Fecha from bitacoras where agencia = ? and date_format(Fecha, "%Y-%m") = ?   order by Fecha desc', [$a, $mes]);
 
             //consulta para sacar los names de cada encargado ok para DESPUES
-            $all[] = $con = DB::select('select b.*, u.name from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ? and date_format(Fecha, "%Y-%m") = ? order by fecha desc', [$a,$mes]);
-          
-             
+            //$all[] = $con = DB::select('select b.*, u.name from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ? and date_format(Fecha, "%Y-%m") = ? order by fecha asc', [$a,$mes]);
+            $all[] = $con = DB::select('select b.*,(select distinct name from users where 1=1 and agencia = ? order by id desc limit 1) as name from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ? and date_format(Fecha, "%Y-%m") = ? order by fecha asc', [$a,$a,$mes]);
+            
+            
+            //return response()->json($all);
+            
         }
         $generador = DB::select('select * from generadors where date_format(Fecha, "%Y-%m") = ? order by fecha desc',[$mes]);
         
