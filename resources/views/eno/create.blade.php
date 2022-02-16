@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Operativos')
 
 @section('content_header')
 
@@ -12,7 +12,7 @@
 
     <form action="{{ route('eno.store') }}" method="POST">
         @csrf
-        @include('eno.form',['modo'=>'Crear Usuario'])
+        @include('eno.form',['modo'=>'Agregar'])
 
 
 

@@ -1,12 +1,11 @@
+<br>
 <div class="card">
-    <div class="card-header">
-
-        <h1>{{ $modo }} Encargados Operativos</h1>
+    <div class="card-header bg-light">
+        <h5> <b> {{ $modo }} Encargados Operativos</b></h5>
     </div>
+
+
     <div class="card-body">
-
-
-
         @if(count($errors)>0)
 
         <div class="alert alert-danger" role="alert">
@@ -98,13 +97,18 @@
     </div>
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
-            <input class="btn btn-success" type="submit" value="{{ $modo }} ">
-            <a class="btn btn-primary" href="{{ url('eno/') }}">Regresar</a>
+            <input class="btn btn-sm btn-flat btn-success bg-gradient-success" type="submit" value="{{ $modo }} ">
+            <a class="btn btn-sm btn-flat btn-primary bg-gradient-primary" href="{{ url('eno/') }}">Regresar</a>
         </div>
-
     </div>
+    <br>
+    
+    <div class="card-footer bg-light text-center ">
+        BDP - SAM
+    </div>
+
 </div>
-</div>
+
 
 
 
