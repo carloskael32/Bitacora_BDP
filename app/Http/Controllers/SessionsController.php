@@ -82,7 +82,7 @@ class SessionsController extends Controller
                     }
                 }
             } else {
-                echo "error de datos de usuario";
+                //echo "error de datos de usuario";
                 return back()->withErrors([
                     'message' => 'El nombre o contraseña son incorrectos',
                 ]);

@@ -150,7 +150,7 @@ class DatosSeeder extends Seeder
             'observaciones'=>'Sin Observaciones',
             'Fecha'=>'2021-05-02',
         ]); */
-        $bit=Bitacora::create([
+       /*  $bit=Bitacora::create([
             'agencia'=> 'Yacuiba',
             'encargadoOP'=>'cmamani',
             'temperatura'=>'18.5',
@@ -416,7 +416,7 @@ class DatosSeeder extends Seeder
             'observaciones'=>'Sin Observaciones',
             'Fecha'=>'2022-02-28',
         ]);
-
+ */
         $prm=parametro::create([
             'temmin'=> '0',
             'temmax'=> '40',

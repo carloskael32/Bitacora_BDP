@@ -10,7 +10,7 @@
 <br>
 
 
-<div class="card">
+<div class="card" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
     <div class="card-header  bg-light">
         <h5 class="text-center"> <b> Encargados Operativos</b></h5>
     </div>
@@ -37,100 +37,105 @@
         <div class="table-responsive">
             <table class="table table-striped" id="operativos">
 
-            <thead class="bg-cyan">
-                <tr>
-                    <th>#</th>
-                    <th>User Name</th>
-                    <th>names</th>
-                    <th>Agencia</th>
-                    <th>Correo</th>
-                    <th>Descripcion</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
+                <thead class="bg-cyan text-center">
+                    <tr>
+                        <th>#</th>
+                        <th>Usuario</th>
+                        <th>Nombre completo</th>
+                        <th>Agencia</th>
+                        <th>Correo</th>
+                        <th>Descripcion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
 
-            <tbody class="text-center">
+                <tbody class="text-center">
 
-                @php
-                $a = 1;
-                @endphp
+                    @php
+                    $a = 1;
+                    @endphp
 
-                @foreach( $users as $user)
+                    @foreach( $users as $user)
 
-                <tr>
-
-
-                    <td>{{ $a }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->user}}</td>
-                    <td>{{ $user->agencia}}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->descripcion}}</td>
+                    <tr>
 
 
-                    <td>
-                        <!-- <a href="{{ url('/eno/'.$user->id.'/edit') }}" class="btn btn-warning"> Editar </a> -->
+                        <td>{{ $a }}</td>
+                        <td>{{ $user->user}}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->agencia}}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->descripcion}}</td>
 
 
-                        <form action="{{ url('/eno/'.$user->id) }}" class="d-inline" method="POST">
-                            @csrf
+                        <td>
+                            <!-- <a href="{{ url('/eno/'.$user->id.'/edit') }}" class="btn btn-warning"> Editar </a> -->
 
-                            <input class="btn btn-sm btn-flat btn-danger bg-gradient-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Eliminar">
-                        </form>
-                    </td>
 
-                </tr>
-                @php
-                $a++;
-                @endphp
+                            <form action="{{ url('/eno/'.$user->id) }}" class="d-inline" method="POST">
+                                @csrf
 
-                @endforeach
-            </tbody>
-        </table>
+                                <input class="btn btn-sm btn-flat btn-danger bg-gradient-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="borrar"> 
+                                
+                                
+                            </form>
+                        </td>
+
+                    </tr>
+                    @php
+                    $a++;
+                    @endphp
+
+                    @endforeach
+                </tbody>
+            </table>
+
+        </div>
+        <hr>
        
+
     </div>
-
 </div>
+    @stop
 
-@stop
+    @section('css')
+    
 
-@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
+    @stop
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
-@stop
+    @section('js')
 
-@section('js')
-
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
 
 
-<script>
-    $('#operativos').DataTable({
-        "language": {
-            "lengthMenu": "Mostrar " +
-                `<select class="custom-select custom-select-sm form-control form-control-sm"> 
+    <script>
+        $('#operativos').DataTable({
+            "language": {
+                "lengthMenu": "Mostrar " +
+                    `<select class="custom-select custom-select-sm form-control form-control-sm"> 
             <option value ='10' >10</option>
             <option value ='25' >25</option>
             <option value ='50' >50</option>
             <option value ='100'>100</option>
             <option value ='-1' >all</option>
             </select>` +
-                " registros por pagina",
-            "zeroRecords": "Nada encontrado",
-            "info": "Mostrando la pagina _PAGE_ de _PAGES_",
-            "infoEmpty": "No records available",
-            "infoFiltered": "(Filtrado de _MAX_ registros totales)",
-            "search": 'Buscar:',
-            "paginate": {
-                'next': 'Siguiente',
-                'previous': 'Anterior'
+                    " registros por pagina",
+                "zeroRecords": "Nada encontrado",
+                "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+                "search": 'Buscar:',
+                "paginate": {
+                    'next': 'Siguiente',
+                    'previous': 'Anterior'
+                }
             }
-        }
-    });
-</script>
-@stop
+        });
+    </script>
+    @stop

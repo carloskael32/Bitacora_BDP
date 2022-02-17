@@ -265,13 +265,14 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 </table>
                             </div>
-
-                            <div class="pagination justify-content-center">
+                            <hr>
+      <!--                       <div class="pagination justify-content-center">
 
                                 {!! $bitacoras->links() !!}
 
-                            </div>
+                            </div> -->
                         </div>
+                     
                     </div>
                     @else
 

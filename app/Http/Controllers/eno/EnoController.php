@@ -73,7 +73,7 @@ class EnoController extends Controller
     public function update(Request $request, $id)
     {
 
-        $campos = [
+      /*   $campos = [
             'name' => 'required',
             'email' => 'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -99,7 +99,7 @@ class EnoController extends Controller
             return redirect('eno')->with('mensaje', 'Usuario Modificado..');
         }else{
             return redirect('/bitacora')->with('mensaje','Contraseña Modificada..');
-        }
+        } */
         
     }
 

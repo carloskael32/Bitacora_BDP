@@ -25,29 +25,28 @@ class RegisterUser extends Controller
     public function store(Request $request)
     {
         $campos = [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'min'=>'la contraseña tiene que tener al menos 8 caracteres',
+            'name'=> 'required',
+            'user' => 'required',
+            'email' => 'required',          
+            'agencia'=> 'required',
+            
 
         ];
         $mensaje = [
             'required' => 'El :attribute es requerido',
-            'confirmed' => 'las contraseñas no coinciden'
-
         ];
         $this->validate($request, $campos, $mensaje);
 
 
-
-
-        //$user = User::create(request(['name', 'email', Hash::make('password')]));
+        
         User::insert([
             'name' => request('name'),
-            'agencia' => '',
-            'acceso' => 'yes',
-            'email' => request('email'),
-            'password' => Hash::make(request('password')),
+            'user'=> request('user'),  
+            'email' => request('email'),          
+            'descripcion' => request('descripcion'),
+            'agencia'=> request('agencia'),
+            'acceso' => 'yes',            
+            'password' => Hash::make(request('user')),
         ]);
 
         return redirect()->to('/user');
@@ -71,7 +70,7 @@ class RegisterUser extends Controller
 */
     public function update(Request $request, $id)
     {
-
+/* 
         $campos = [
             'name' => 'required',
             'email' => 'required',
@@ -95,7 +94,7 @@ class RegisterUser extends Controller
 
         $user->save();
 
-        return redirect('user')->with('mensaje', 'Registro Modificado..');
+        return redirect('user')->with('mensaje', 'Registro Modificado..'); */
     }
 
     public function destroy($id)

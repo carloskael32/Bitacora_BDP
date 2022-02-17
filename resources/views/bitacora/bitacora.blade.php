@@ -35,7 +35,7 @@
         <div class="table-responsive">
             <table class="table table-striped" id="bitacoras">
 
-                <thead class="bg-cyan">
+            <thead class="bg-cyan text-center">
                     <tr>
                         <th>#</th>
                         <th>Agencia</th>

@@ -59,9 +59,9 @@
 
         <div class="table-responsive">
 
-            <table class="table table-light" id="alertas">
+            <table class="table table-striped" id="alertas">
 
-                <thead class="bg-cyan">
+                <thead class="bg-cyan text-center">
                     <tr>
                         <th>#</th>
                         <th>Agencia</th>
@@ -113,8 +113,10 @@
             </table>
 
         </div>
+        <hr>
     </div>
-
+ 
+</div>
 
     @include('parametro.modal')
     @stop

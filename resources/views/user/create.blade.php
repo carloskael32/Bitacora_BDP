@@ -1,4 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('title', 'Administrador')
+
+@section('content_header')
+
+@stop
 
 @section('content')
 <div class="container">
@@ -6,7 +12,7 @@
 
     <form action="{{ route('user.store') }}" method="POST">
         @csrf
-        @include('user.form',['modo'=>'Crear Usuario'])
+        @include('user.form',['modo'=>'Agregar '])
 
 
 
