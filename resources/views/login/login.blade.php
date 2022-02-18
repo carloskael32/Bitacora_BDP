@@ -8,12 +8,16 @@
         <div class="col-md-5">
             <br>
             <br>
+            <br>
+            <br>
+            <br>
+            <br><br>
 
-            <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded">
-                <div class="card-header">
+            <div class="card text-center shadow-lg ">
+                <div class="card-header bg-light">
                     <h2> <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesion </h2>
                 </div>
-                <div class="card-body text">
+                <div class="card-body">
 
                     <form method="POST" action="">
                         @csrf
@@ -43,9 +47,9 @@
                      
                         @enderror
 
-                        <div class="md-4 ">
-                            <button type="submit" class="btn btn-primary">
-                                Ingresar
+                        <div class="md-2 ">
+                            <button type="submit" class="btn btn-primary btn-sm ">
+                                ingresar
                             </button>
                         </div>
 

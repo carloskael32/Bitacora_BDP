@@ -21,10 +21,6 @@
 
         @auth
 
-
-
-
-
         <div class="form-group row">
             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('nombre completo') }}</label>
 
@@ -102,7 +98,7 @@
         </div>
     </div>
     <br>
-    
+
     <div class="card-footer bg-light text-center ">
         BDP - SAM
     </div>
