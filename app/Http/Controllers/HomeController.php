@@ -30,10 +30,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-       // calcula los dias de cada mes sin los domingos
-         $starDate = new DateTime();
+        // calcula los dias de cada mes sin los domingos
+        $starDate = new DateTime();
         $starDate->modify('first day of this month');
-        
+
         $ct = 0;
         $cd = 0;
         $endDate = new DateTime();
@@ -46,7 +46,7 @@ class HomeController extends Controller
             $starDate->modify("+1 days");
             $ct++;
         }
-        $dias = $ct - $cd; 
+        $dias = $ct - $cd;
 
 
         $bitacoras = DB::select('select agencia, COUNT(EncargadoOP) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
@@ -73,9 +73,9 @@ class HomeController extends Controller
 
         $generador = DB::select('select distinct agencia, fecha, agencia from generadors where MONTH(fecha) = MONTH(date(NOW())) and  1 = 1 order by fecha desc');
         //return response()->json($generador);
-
-
+        $agt = DB::select('select COUNT(agencia) totalag from users where acceso = ?',['no']);
+        
         //return view("index", ["datos1" => json_encode($puntos)],$resultado2);
-        return view('index')->with(["datos1" => json_encode($puntos), 'generador' => $generador,'registros'=>$bitacora, 'tapin'=>'active']);
+        return view('index')->with(["datos1" => json_encode($puntos), 'generador' => $generador, 'registros' => $bitacora,'totalag'=>$agt]);
     }
 }

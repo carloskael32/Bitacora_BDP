@@ -1,74 +1,91 @@
-
-
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
 
 @section('content_header')
-    
+
 @stop
 
 @section('content')
 <br>
 
-			<div class="card shadow">
+<div class="card shadow">
 
-				<div class="card-body">
-				
-					<div id="container">
-					</div>
+	<div class="card-body">
 
-				</div>
-			</div>
-
-
-
-	<div class="row">
-		<div class="col-md-6">
-			<div class="card">
-				<table class="table table-striped text-center">
-					<thead>
-						<tr class="bg-cyan">
-							<th colspan="3">
-								<spam>Reportes de CPD`s</spam>
-							</th>
-						</tr>
-						<tr>
-
-							<th scope="col">#</th>
-							<th scope="col">Agencias</th>
-							<th scope="col">Nro. de Registros</th>
-
-						</tr>
-					</thead>
-					<tbody>
-						@php
-						$a = 1;
-						@endphp
-						@foreach ($registros as $regis)
-						<tr>
-							<th scope="row">{{ $a }}</th>
-							<td>{{ $regis->agencia }}</td>
-							<td>{{ $regis->total }}</td>
-
-						</tr>
-
-						@php
-						$a++;
-						@endphp
-						@endforeach
-					</tbody>
-				</table>
-
-			</div>
+		<div id="container">
 		</div>
-		<div class="col-md-6">
-			<div class="card">
 
-			
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+<div class="small-box bg-gradient-success">
+
+	
+	<div class="inner">
+	@foreach ($totalag as $agt)
+		<h3>{{ $agt->totalag }}</h3>
+		@endforeach
+		<p>Agencias registradas</p>
+	</div>
+	<div class="icon">
+	<i class="fas fa-laptop-house"></i>
+	</div>
+	<a href="#" class="small-box-footer">
+		More info <i class="fas fa-arrow-circle-right"></i>
+	</a>
+</div>
+
+</div>
+
+
+	<div class="col-md-4">
+		<div class="card">
 			<table class="table table-striped text-center">
 				<thead>
-				<tr class="bg-cyan">
+					<tr class="bg-cyan">
+						<th colspan="3">
+							<spam>Reportes de CPD`s</spam>
+						</th>
+					</tr>
+					<tr>
+
+						<th scope="col">#</th>
+						<th scope="col">Agencias</th>
+						<th scope="col">Nro. de Registros</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					@php
+					$a = 1;
+					@endphp
+					@foreach ($registros as $regis)
+					<tr>
+						<th scope="row">{{ $a }}</th>
+						<td>{{ $regis->agencia }}</td>
+						<td>{{ $regis->total }}</td>
+
+					</tr>
+
+					@php
+					$a++;
+					@endphp
+					@endforeach
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card">
+
+
+			<table class="table table-striped text-center">
+				<thead>
+					<tr class="bg-cyan">
 						<th colspan="3">
 							<spam>Reportes de Generadores</spam>
 						</th>
@@ -99,9 +116,9 @@
 					@endforeach
 				</tbody>
 			</table>
-			</div>
 		</div>
 	</div>
+</div>
 
 
 
@@ -110,13 +127,13 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+<link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
 <script src="https://code.highcharts.com/highcharts.js"></script>
 
-<!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+<!-- <script src="https://code.highcharts.com/modules/exporting.js"></script>  -->
 
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
@@ -129,8 +146,7 @@
 			type: 'column'
 		},
 		title: {
-			text: 'Resumen mensual. <?php setlocale(LC_ALL, 'spanish'); echo strftime('%B del %Y'); ?>'
-		},
+			text: 'Resumen mensual. <?php setlocale(LC_ALL, 'spanish');echo strftime('%B del %Y'); ?>'},
 		//setlocale(LC_ALL, 'spanish'); echo strftime('%d de %B del %Y');
 
 		/* 	subtitle: {
@@ -146,7 +162,7 @@
 		},
 		yAxis: {
 			title: {
-				text: 'Total percent market share'
+				text: 'Porcentaje total del mes'
 			}
 
 		},

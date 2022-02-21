@@ -60,19 +60,20 @@ class SessionsController extends Controller
 
 
                 $dldap = array(
-                    $userDN3 = $entries[0]["displayname"][0],
-                    $userDN4 = $entries[0]["samaccountname"][0],
-                    $userDN5 = $entries[0]["mail"][0],
-                    $userDN = $entries[0]["description"][0],
+                    $userDN3 = $entries[0]["displayname"][0],       //0
+                    $userDN4 = $entries[0]["samaccountname"][0],    //1
+                    $userDN5 = $entries[0]["mail"][0],              //2
+                    $userDN = $entries[0]["description"][0],        //3
                     $age[1],
                     $grp,
                 );
 
 
-                $con =  DB::select('select user from users where user = ?', [$dldap[1]]);
+                $con =  DB::select('select user from users where user = ? ', [$dldap[1]]);
+               
                 if ($con == null) {
                     if ($dldap[3] == 'GERENCIA DE SISTEMAS Y TECNOLOGIA DE LA INFORMACION' || 'PASANTE - GERENCIA DE SISTEMAS Y TECNOLOGIA DE LA INFORMACION') {
-                        DB::insert('insert into users (name, user, email, descripcion, agencia, acceso, password) values (?,?,?,?,?,?,?)', [$dldap[0], $dldap[1], $dldap[2], $dldap[3], $age[1], 'yes', Hash::make($dldap[1])]);
+                        DB::insert('insert into users (name, user, email, descripcion, agencia, acceso, password) values (?,?,?,?,?,?,?)', [$dldap[0], $dldap[1], $dldap[2], $dldap[3],'central', 'yes', Hash::make($dldap[1])]);
                     } elseif ($grp == 'Operativos') {
                         DB::insert('insert into users (name, user, email, descripcion, agencia, acceso, password) values (?,?,?,?,?,?,?)', [$dldap[0], $dldap[1], $dldap[2], $dldap[3], $age[1], 'no', Hash::make($dldap[1])]);
                     }else{
@@ -80,6 +81,12 @@ class SessionsController extends Controller
                             'message' => 'El cargo no tiene acceso al sistema',
                         ]);
                     }
+                }else{
+                    $vn = DB::select('select user from users where user = ? and agencia = ?',[$dldap[1],$age[1]]);
+                    if($vn == null){
+                        $up = DB::select('update users set agencia = ? where user = ?',[$age[1],$dldap[1]]); 
+                    }
+                                   
                 }
             } else {
                 //echo "error de datos de usuario";
