@@ -112,13 +112,13 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //Agencias
-    Route::get('/agencia',[AgenciaController::class,'index'])->name('agencia');
+ /*    Route::get('/agencia',[AgenciaController::class,'index'])->name('agencia');
     Route::get('agencia/create',[AgenciaController::class,'create'])->name('agencia.create');
     Route::post('/registerage',[AgenciaController::class,'store'])->name('agencia.store');
     Route::get('/agencia/{id}/edit', [AgenciaController::class, 'edit'])->name('agencia.edit');
     Route::patch('agencia/{id}', [AgenciaController::class, 'update'])->name('agencia.update');
     Route::post('/agencia/{id}', [AgenciaController::class, 'destroy'])->name('agencia.destroy');
-    
+     */
 
     //Parametros
     Route::get('/parametro',[ParametroController::class,'index'])->name('parametro');
@@ -144,6 +144,10 @@ Route::get('/Reporte mensual por agencia', [PDFController::class, 'PDFBitacora']
 Route::get('/Reporte por intervalo', [PDFController::class, 'PDFBitacora2'])->name('PDFBitacorareporte2');
 
 Route::get('/reporte general mensual', [PDFController::class, 'PDFAll'])->name('PDFAll');
+
+Route::get('/Resumen mensual CPD',[PDFController::class,'PDFindexb'])->name('PDFindexb');
+
+Route::get('/Resumen mensual generadores',[PDFController::class,'PDFindexg'])->name('PDFindexg');
 
 //PDF alertas de temperatura y humedad
 Route::get('/reporte de alertas de parametros', [PDFController::class, 'PDFAlertas'])->name('reportAlert');

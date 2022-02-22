@@ -68,14 +68,23 @@ class HomeController extends Controller
             }
         }
 
-
+        
         $bitacora = DB::select('select agencia, COUNT(agencia) total from bitacoras where MONTH(fecha) = MONTH(date(NOW())) group by agencia order by total desc');
 
         $generador = DB::select('select distinct agencia, fecha, agencia from generadors where MONTH(fecha) = MONTH(date(NOW())) and  1 = 1 order by fecha desc');
         //return response()->json($generador);
         $agt = DB::select('select COUNT(agencia) totalag from users where acceso = ?',['no']);
+
+        $mes = date("Y-m");
+
+        $gent = DB::select('select COUNT(agencia) as totalge from generadors where 1=1 and date_format(fecha, "%Y-%m") = ? ',[$mes]);
+
+        $users = DB::select('select COUNT(user) as totalus from users where acceso = ? ',['yes']);
+ 
+
+        //$generador = DB::select('select * from generadors where date_format(Fecha, "%Y-%m") = ? order by fecha desc', [$mes]);
         
         //return view("index", ["datos1" => json_encode($puntos)],$resultado2);
-        return view('index')->with(["datos1" => json_encode($puntos), 'generador' => $generador, 'registros' => $bitacora,'totalag'=>$agt]);
+        return view('index')->with(["datos1" => json_encode($puntos), 'generador' => $generador, 'registros' => $bitacora,'totalag'=>$agt,'totalge'=>$gent,'totalu'=>$users]);
     }
 }

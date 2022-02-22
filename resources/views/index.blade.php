@@ -21,107 +21,64 @@
 
 <div class="row">
 	<div class="col-md-4">
-<div class="small-box bg-gradient-success">
+		<div class="small-box bg-gradient-success">
+
+
+			<div class="inner">
+				@foreach ($totalag as $agt)
+				<h3>{{ $agt->totalag }}</h3>
+				@endforeach
+				<p>Agencias registradas</p>
+			</div>
+			<div class="icon">
+				<span class="iconify" data-icon="ion:stats-chart"></span>
+			</div>
+			<a href="{{ route('PDFindexb') }}"  target="_blank" class="small-box-footer">
+				mas información <i class="fas fa-arrow-circle-right"></i>
+			</a>
+		</div>
+
+	</div>
+
 
 	
-	<div class="inner">
-	@foreach ($totalag as $agt)
-		<h3>{{ $agt->totalag }}</h3>
-		@endforeach
-		<p>Agencias registradas</p>
-	</div>
-	<div class="icon">
-	<i class="fas fa-laptop-house"></i>
-	</div>
-	<a href="#" class="small-box-footer">
-		More info <i class="fas fa-arrow-circle-right"></i>
-	</a>
-</div>
-
-</div>
-
-
 	<div class="col-md-4">
-		<div class="card">
-			<table class="table table-striped text-center">
-				<thead>
-					<tr class="bg-cyan">
-						<th colspan="3">
-							<spam>Reportes de CPD`s</spam>
-						</th>
-					</tr>
-					<tr>
+		<div class="small-box bg-gradient-cyan">
 
-						<th scope="col">#</th>
-						<th scope="col">Agencias</th>
-						<th scope="col">Nro. de Registros</th>
 
-					</tr>
-				</thead>
-				<tbody>
-					@php
-					$a = 1;
-					@endphp
-					@foreach ($registros as $regis)
-					<tr>
-						<th scope="row">{{ $a }}</th>
-						<td>{{ $regis->agencia }}</td>
-						<td>{{ $regis->total }}</td>
-
-					</tr>
-
-					@php
-					$a++;
-					@endphp
-					@endforeach
-				</tbody>
-			</table>
-
+			<div class="inner">
+				@foreach ($totalge as $agt)
+				<h3>{{ $agt->totalge }}</h3>
+				@endforeach
+				<p>Pruebas de generadores</p>
+			</div>
+			<div class="icon">
+			<span class="iconify" data-icon="arcticons:coinstats"></span>
+			</div>
+			<a href="{{ route('PDFindexg') }}" target="_blank" class="small-box-footer">
+				mas información <i class="fas fa-arrow-circle-right"></i>
+			</a>
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="card">
+		<div class="small-box bg-gradient-blue">
 
 
-			<table class="table table-striped text-center">
-				<thead>
-					<tr class="bg-cyan">
-						<th colspan="3">
-							<spam>Reportes de Generadores</spam>
-						</th>
-					</tr>
-					<tr>
-
-						<th scope="col">#</th>
-						<th scope="col">Agencias</th>
-						<th scope="col">Fecha de Prueba</th>
-
-					</tr>
-				</thead>
-				<tbody>
-					@php
-					$a = 1;
-					@endphp
-					@foreach ($generador as $gen)
-					<tr>
-						<th scope="row">{{ $a }}</th>
-						<td>{{ $gen->agencia }}</td>
-						<td>{{ $gen->fecha }}</td>
-
-					</tr>
-
-					@php
-					$a++;
-					@endphp
-					@endforeach
-				</tbody>
-			</table>
+			<div class="inner">
+				@foreach ($totalu as $us)
+				<h3>{{ $us->totalus }}</h3>
+				@endforeach
+				<p>Administradores</p>
+			</div>
+			<div class="icon">
+			<span class="iconify" data-icon="entypo:users"></span>
+			</div>
+			<a href="{{ url('/user') }}"  class="small-box-footer">
+				mas información <i class="fas fa-arrow-circle-right"></i>
+			</a>
 		</div>
 	</div>
 </div>
-
-
-
 
 
 @stop
@@ -137,6 +94,7 @@
 
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 
 
 <script>
