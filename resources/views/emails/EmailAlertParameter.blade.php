@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
+
 
     <title>Bitacora BDP</title>
 
@@ -45,7 +45,7 @@
 
         button:hover,
         a:hover {
-            opacity: 0.7;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -54,30 +54,31 @@
 
     <br><br>
 
- 
+
 
     <div class="card">
-        
+        <img src="{{asset('/img/logo.png')}}"  width="250" alt="">
+
         <hr>
         <h2>Buenos Dias Estimad@.</h2>
         <br>
-        <p style=" font-size: 18px;">Reporte Mensual del los CPD´s de agencias </p>
+        <p style=" font-size: 18px;">Se han registrado irregularidades en los parametros de algunas agencias </p>
+        
+        <p class="title">entre en el siguiente enlace para ver mas detalles.
+        </p>
+
+        
+            
+      
+
+        <a href="{{url('/alertas')}}" style="color:black;" ><button>Mas Informacion</button></a>
 
 
-        <hr>
-       
-  
-        <p><button> <a href="http://localhost/Bitacora_BDP/public/bitacora/create" style="color:white;">Descargar Reporte</a></button></p>
 
     </div>
 
 
-
-
-
-
-
-  
 </body>
 
 </html>
+

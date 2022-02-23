@@ -91,7 +91,7 @@
 
             <thead class="thead">
                 <tr>
-                    <th>Fecha</th>
+                    <th>fecha</th>
                     <th>Tiempo (min.)</th>
                     <th>Marca</th>
                     <th>Modelo</th>

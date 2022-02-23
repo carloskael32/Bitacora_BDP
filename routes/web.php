@@ -129,8 +129,10 @@ Route::group(['middleware' => 'auth'], function () {
 
    //Correo de alertas a Encargados operativos
     Route::get('/emails', function () {
-        return view('emails.EmailAlert');
+        return view('emails.EmailAlertParameter');
     });
+ 
+
 
 });
 

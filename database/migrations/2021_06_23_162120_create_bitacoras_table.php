@@ -17,16 +17,14 @@ class CreateBitacorasTable extends Migration
             $table->id();
 
             $table->string('agencia');
-            $table->string('encargadoOP');
+            $table->string('encargadoop');
             $table->double('temperatura');
             $table->double('humedad');
             $table->string('filtracion');
             $table->string('UPS');
             $table->text('generador');
-            $table->text('observaciones');
-           
-
-            $table->date('Fecha');
+            $table->text('observaciones');        
+            $table->dateTime('fecha');
         });
 
     

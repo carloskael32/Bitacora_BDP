@@ -119,7 +119,7 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                     <div class="card-head text-center bg-cyan p-2">
                             Reporte por Intervalos
                             <br>
-                            de Fechas
+                            de fechas
                         </div>
 
                         <div class="card-body">
@@ -176,7 +176,7 @@ $datos2 = Arr::pluck($meses,'fecha','mes');
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
-                                <th>Fecha</th>
+                                <th>fecha</th>
                                 <th>Tiempo (min.)</th>
                                 <th>Marca</th>
                                 <th>Modelo</th>

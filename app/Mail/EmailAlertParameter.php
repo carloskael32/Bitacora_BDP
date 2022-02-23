@@ -7,11 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EmailAlert extends Mailable
+class EmailAlertParameter extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "CPD - Bitacora";
+    public $subject = "CPD - Alertas ";
 
     /**
      * Create a new message instance.
@@ -30,6 +30,6 @@ class EmailAlert extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.EmailAlertBitacora');        
+        return $this->view('emails.EmailAlertParameter');
     }
 }

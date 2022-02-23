@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    
     <!-- cabecera -->
     <div class="container col-12">
         <table>
@@ -36,6 +37,7 @@
             </tbody>
         </table>
     </div>
+    
 
     <br><br><br><br><br>
 
@@ -74,7 +76,7 @@
             <table>
                 <thead class="thead">
                     <tr>
-                        <th colspan="7">GENERADOR</th>
+                        <th colspan="7"> Pruebas de Generador</th>
                     </tr>
                     <tr>
                         <th>agencia</th>
@@ -82,7 +84,7 @@
                         <th>Modelo</th>
                         <th>Cod_activo</th>
                         <th>Num_serie</th>
-                        <th>Fecha de prueba</th>
+                        <th>fecha de prueba</th>
                         <th>Observaciones</th>
                     </tr>
                 </thead>
@@ -117,9 +119,12 @@
 
             <thead class="thead">
                 <tr>
-                    <th>Fecha</th>
+                    <th colspan="8">Registro de datos del CPD</th>
+                </tr>
+                <tr>
+                    <th>Fecha y Hora</th>
                     <th>Agencia</th>
-                    <th>EncargadoOP.</th>
+                    <th>encargadoop.</th>
                     <th>Temp.</th>
                     <th>Humedad</th>
                     <th>Filtracion</th>
@@ -133,9 +138,9 @@
             <tbody>
                 @foreach( $bitacoras as $bitacora)
                 <tr>
-                    <td>{{ $bitacora->Fecha }}</td>
+                    <td>{{ $bitacora->fecha }}</td>
                     <td>{{ $bitacora->agencia }}</td>
-                    <td>{{ $bitacora->encargadoOP }}</td>
+                    <td>{{ $bitacora->encargadoop }}</td>
                     <td>{{ $bitacora->temperatura }}</td>
                     <td>{{ $bitacora->humedad }}</td>
                     <td>{{ $bitacora->filtracion }}</td>

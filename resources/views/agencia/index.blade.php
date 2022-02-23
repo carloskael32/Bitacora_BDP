@@ -79,7 +79,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
-                                <th>Fecha</th>
+                                <th>fecha</th>
                                 <th>Acciones</th>
 
 

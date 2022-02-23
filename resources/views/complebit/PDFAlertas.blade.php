@@ -89,9 +89,9 @@
 
             <thead class="thead">
                 <tr>
-                    <th>Fecha</th>
+                    <th>fecha</th>
                     <th>Agencia</th>
-                    <th>EncargadoOP.</th>
+                    <th>encargadoop.</th>
                     <th>Temp.</th>
                     <th>Humedad</th>
                     <th>Filtracion</th>
@@ -105,9 +105,9 @@
             <tbody>
                 @foreach( $bitacoras as $bitacora)
                 <tr>
-                    <td>{{ $bitacora->Fecha }}</td>
+                    <td>{{ $bitacora->fecha }}</td>
                     <td>{{ $bitacora->agencia }}</td>
-                    <td>{{ $bitacora->encargadoOP }}</td>
+                    <td>{{ $bitacora->encargadoop }}</td>
                     <td>{{ $bitacora->temperatura}}</td>
                     <td>{{ $bitacora->humedad }}</td>
                     <td>{{ $bitacora->filtracion }}</td>

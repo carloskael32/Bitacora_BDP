@@ -45,7 +45,7 @@
 
         button:hover,
         a:hover {
-            opacity: 0.7;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -68,10 +68,9 @@
             El Manual de Procedimiento de Infraestructura de Tecnologia de la Informacion
             <b>- Codigo: </b> 06-A06-01-024
         </p>
-        <hr>
+      
 
-
-        <p><button> <a href="http://localhost/Bitacora_BDP/public/bitacora/create" style="color:white;">Registrar Bitacora</a></button></p>
+        <a href="{{url('/bitacora/create')}}" style="color:black;" ><button>Registrar Bitacora</button></a>
 
 
 

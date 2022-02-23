@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailAlert;
 use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ use App\Models\User;
 use App\Notifications\NotiBit;
 use DateTime;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Mail;
 //use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Notification;
 
@@ -70,8 +72,8 @@ class BitacoraController extends Controller
         if (Auth::user()->acceso == "no") {
             //USUARIO
             $agencia = Auth::user()->agencia;
-            //$ene['enero'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(Fecha) = YEAR(NOW()) and agencia = ? and month(Fecha) = 1 group by agencia ',[$agencia]);
-            $meses = DB::select('select MONTH(Fecha) as mes, count(agencia) as result from bitacoras where agencia = ? and year(Fecha) = YEAR(NOW()) group by mes', [$agencia]);
+            //$ene['enero'] = DB::select('select  agencia, count(agencia) as result from bitacoras where year(fecha) = YEAR(NOW()) and agencia = ? and month(fecha) = 1 group by agencia ',[$agencia]);
+            $meses = DB::select('select MONTH(fecha) as mes, count(agencia) as result from bitacoras where agencia = ? and year(fecha) = YEAR(NOW()) group by mes', [$agencia]);
 
             $dmes = [];
 
@@ -145,14 +147,14 @@ class BitacoraController extends Controller
         $campos = [
 
             'Agencia' => 'required|string|max:100',
-            'EncargadoOP' => 'required|string|max:100',
+            'encargadoop' => 'required|string|max:100',
             'Temperatura' => 'required|string|max:50',
             'Humedad' => 'required|string|max:50',
             'Filtracion' => 'required|string|max:50',
             'UPS' => 'required|string|max:50',
             'Generador' => 'required|string|max:50',
             'Observaciones' => 'required|string|max:100',
-            'Fecha' => 'required|date|max:50',
+            'fecha' => 'required|date|max:50',
         ];
         $mensaje = [
             'required' => 'El :attribute es requerido'
@@ -169,6 +171,9 @@ class BitacoraController extends Controller
 
         $temperatura = $request->get('Temperatura');
         $humedad = $request->get('Humedad');
+        $filtracion = $request->get('Filtracion');
+        $ups = $request->get('UPS');
+        $gen = $request->get('Generador');
 
         $parametro = DB::select('select * from parametros');
 
@@ -177,18 +182,17 @@ class BitacoraController extends Controller
             $hummax =  $pa->hummax;
        }
    
-
-        if ($temperatura >= $temmax or $humedad >= $hummax) {
+        if ($temperatura >= $temmax or $humedad >= $hummax or $filtracion != 'No' or $ups != 'En linea' or $gen != 'En linea' ) {
 
             $adm = DB::select('select email from users where acceso = "yes"');
-
-            Notification::route('mail', $adm)->notify(new NotiBit('CPD'));
-
-
+            $correo = new EmailAlert;
+            Mail::to($adm)->send($correo);
+            //Notification::route('mail', $adm)->notify(new NotiBit('CPD'));
             //$user = User::find(1);
             //$user->notify(new NotiBit);
-
         }
+   
+        
         return redirect('bitacora')->with('mensaje', 'Bitacora Agregada con Exito..');
     }
 

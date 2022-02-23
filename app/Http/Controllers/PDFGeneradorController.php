@@ -42,7 +42,7 @@ class PDFGeneradorController extends Controller
         }
     }
     public function PDFINTERVALOGE(Request $request)
-    // REPORTES HECHO CON INTERVALOS DE FECHAS - LADO ADMINISTRADOR Y CLIENTE
+    // REPORTES HECHO CON INTERVALOS DE fechaS - LADO ADMINISTRADOR Y CLIENTE
     {
         $agencia = $request->get('agencia');
         $ini = $request->get('date1');
@@ -66,7 +66,7 @@ class PDFGeneradorController extends Controller
         /* $resumen = DB::select('select  CONCAT(ROUND(AVG(temperatura))," %") as pTemperatura, CONCAT(ROUND(AVG(Humedad))," %") as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]); */
         $datosu = DB::select('select name,agencia from users where agencia = ?', [$agencia]);
 
-        $all = DB::select('select *, date_format(Fecha, "%d-%m-%Y") as Fecha from generadors where agencia = ? and Fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
+        $all = DB::select('select *, date_format(fecha, "%d-%m-%Y") as fecha from generadors where agencia = ? and fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
         $vr = 1;
         //return response()->json($bitacoras);
         if ($all != null) {

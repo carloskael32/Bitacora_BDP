@@ -39,14 +39,14 @@
                     <tr>
                         <th>#</th>
                         <th>Agencia</th>
-                        <th>EncargadoOP.</th>
+                        <th>encargadoop.</th>
                         <th>Temperatura</th>
                         <th>Humedad</th>
                         <th>Filtracion</th>
                         <th>UPS</th>
                         <th>Generador</th>
                         <th>Observaciones</th>
-                        <th>Fecha</th>
+                        <th>fecha</th>
 
                     </tr>
                 </thead>
@@ -59,14 +59,14 @@
 
                         <td>{{ $a}}</td>
                         <td>{{ $bitacora->agencia }}</td>
-                        <td>{{ $bitacora->encargadoOP }}</td>
+                        <td>{{ $bitacora->encargadoop }}</td>
                         <td>{{ $bitacora->temperatura }}</td>
                         <td>{{ $bitacora->humedad }}</td>
                         <td>{{ $bitacora->filtracion }}</td>
                         <td>{{ $bitacora->UPS }}</td>
                         <td>{{ $bitacora->generador }}</td>
                         <td>{{ $bitacora->observaciones }}</td>
-                        <td>{{ $bitacora->Fecha }}</td>
+                        <td>{{ $bitacora->fecha }}</td>
 
                         <!--
                         <td>

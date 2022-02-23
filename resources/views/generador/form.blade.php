@@ -31,14 +31,14 @@
             </div>
             <div class="col-md">
                 <div class="form-group">
-                    <label for="encargadoop">EncargadoOP</label>
+                    <label for="encargadoop">encargadoop</label>
                     <input type="text" class="form-control" name="encargadoop" value="{{ Auth::user()->user }}" id="encargadoop" readonly>
                 </div>
             </div>
             <div class="col-md">
                 @if($modo == 'Registrar')
                 <div class="form-group">
-                    <label for="fecha">Fecha</label>
+                    <label for="fecha">fecha</label>
                     <input type="date" class="form-control" name="fecha" value="{{ isset($generador->fecha)?$generador->fecha:date('Y-m-d') }}" readonly>
                 </div>
                 @endif

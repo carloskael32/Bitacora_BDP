@@ -90,9 +90,9 @@
             <table>
                 <thead class="thead">
                     <tr>
-                        <th>Fecha</th>
+                        <th>fecha</th>
                         <th>Agencia</th>
-                        <th>EncargadoOP.</th>
+                        <th>encargadoop.</th>
                         <th>Temp.</th>
                         <th>Humedad</th>
                         <th>Filtracion</th>
@@ -104,9 +104,9 @@
                 <tbody>
 
                     @for ($j = 0; $j < count($all[$i]); $j++) <tr>
-                        <td>{{$all[$i][$j]->Fecha}}</td>
+                        <td>{{$all[$i][$j]->fecha}}</td>
                         <td>{{$all[$i][$j]->agencia}}</td>
-                        <td>{{$all[$i][$j]->encargadoOP}}</td>
+                        <td>{{$all[$i][$j]->encargadoop}}</td>
                         <td>{{$all[$i][$j]->temperatura}}</td>
                         <td>{{$all[$i][$j]->humedad}}</td>
                         <td>{{$all[$i][$j]->filtracion}}</td>
@@ -138,7 +138,7 @@
                             <th>Modelo</th>
                             <th>Cod_activo</th>
                             <th>Num_serie</th>
-                            <th>Fecha de prueba</th>
+                            <th>fecha de prueba</th>
                             <th>Observaciones</th>
                         </tr>
                     </thead>

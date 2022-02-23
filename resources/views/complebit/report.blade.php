@@ -36,7 +36,7 @@ $datos = Arr::pluck($meses,'result','mes');
                             </div>
                             <div class="card-body">
                                 <!-- Generar reporte general  -->
-                                <form action="{{ route('PDFAll')}}" method="GET">
+                                <form action="{{ route('PDFAll')}}" target="_blank" method="GET">
 
                                     <div class="mb-3">
 
@@ -108,15 +108,15 @@ $datos = Arr::pluck($meses,'result','mes');
 
 
 
-                        <!-- GENERA REPORTE CON INTERVALOS DE FECHAS-->
+                        <!-- GENERA REPORTE CON INTERVALOS DE fechaS-->
                         <div class="card border border-cyan">
                             <div class="card-head text-center bg-cyan p-2">
                                 Reporte con Intervalos
                                 <br>
-                                de Fechas
+                                de fechas
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('PDFBitacorareporte2')}}" method="GET">
+                                <form action="{{ route('PDFBitacorareporte2')}}" target="_blank" method="GET">
                                     <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
                                     <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
                                     <datalist name="agencia" id="datalistOptions">
@@ -164,11 +164,11 @@ $datos = Arr::pluck($meses,'result','mes');
                         <div class="card-head text-center bg-cyan p-2">
                             Reporte por Intervalos
                             <br>
-                            de Fechas
+                            de fechas
                         </div>
                         <div class="card-body">
 
-                            <form action="{{ route('PDFBitacorareporte2')}}" method="GET">
+                            <form action="{{ route('PDFBitacorareporte2')}}" target="_blank" method="GET">
                                 <label for="exampleDataList" class="form-label">Su Agencia es: </label>
                                 <input name="agencia" class="form-control" value="{{Auth::user()->agencia}}" id="exampleDataList" readonly>
                                 <br>
@@ -194,15 +194,7 @@ $datos = Arr::pluck($meses,'result','mes');
                         </div>
                     </div>
                     @endif
-                    @if(Session::has('mensaje2'))
-                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
-                        <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensaje2')}}</b>
-                        <button type="button" class="close bg-danger" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    @endif
-
+                   
                 </div>
 
 
@@ -227,14 +219,14 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <tr>
                                             <th>#</th>
                                             <th>Agencia</th>
-                                            <th>EncargadoOP.</th>
+                                            <th>encargadoop.</th>
                                             <th>Temperatura</th>
                                             <th>Humedad</th>
                                             <th>Filtracion</th>
                                             <th>UPS</th>
                                             <th>Generador</th>
                                             <th>Observaciones</th>
-                                            <th>Fecha</th>
+                                            <th>fecha</th>
 
                                         </tr>
                                     </thead>
@@ -247,14 +239,14 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                             <td>{{ $a}}</td>
                                             <td>{{ $bitacora->agencia }}</td>
-                                            <td>{{ $bitacora->encargadoOP }}</td>
+                                            <td>{{ $bitacora->encargadoop }}</td>
                                             <td>{{ $bitacora->temperatura }}</td>
                                             <td>{{ $bitacora->humedad }}</td>
                                             <td>{{ $bitacora->filtracion }}</td>
                                             <td>{{ $bitacora->UPS }}</td>
                                             <td>{{ $bitacora->generador }}</td>
                                             <td>{{ $bitacora->observaciones }}</td>
-                                            <td>{{ $bitacora->Fecha }}</td>
+                                            <td>{{ $bitacora->fecha }}</td>
 
                                         </tr>
                                         @php
@@ -961,10 +953,9 @@ $datos = Arr::pluck($meses,'result','mes');
 @stop
 
 @section('css')
-<!-- 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css"> -->
+
+
+
 @stop
 
 @section('js')

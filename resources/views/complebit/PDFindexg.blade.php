@@ -47,7 +47,7 @@
                 <thead>
                     <tr>
                         <th>Agencia</th>
-                        <th>Fecha de prueba</th>
+                        <th>fecha de prueba</th>
                         <th>Observaciones</th>
 
                     </tr>

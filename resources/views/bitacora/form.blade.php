@@ -67,8 +67,8 @@
                     </div>
                     <div class="col-md">
                         <div class="form-group">
-                            <label for="EncargadoOP">EncargadoOP</label>
-                            <input type="text" class="form-control" name="EncargadoOP" value="{{ Auth::user()->user }}" id="EncargadoOP" readonly>
+                            <label for="encargadoop">encargadoop</label>
+                            <input type="text" class="form-control" name="encargadoop" value="{{ Auth::user()->user }}" id="encargadoop" readonly>
                         </div>
                     </div>
                                             
@@ -77,8 +77,8 @@
                     <div class="col-md">
                         @if($modo == 'Registrar')
                         <div class="form-group">
-                            <label for="Fecha">Fecha</label>
-                            <input type="date" class="form-control" name="Fecha" value="{{ isset($bitacora->Fecha)?$bitacora->Fecha:date('Y-m-d') }}" readonly>
+                            <label for="fecha">Fecha y Hora</label>
+                            <input type="datetime" class="form-control" name="fecha" value="{{ isset($bitacora->fecha)?$bitacora->fecha:date('Y-m-d H:i:s') }}" readonly>
                         </div>
                         @endif
                     </div>
