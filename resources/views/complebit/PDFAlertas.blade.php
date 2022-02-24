@@ -70,7 +70,7 @@
 
 
     <br>
-    <div class="container col-12">
+    <div class="container col-11">
         <table>
 
             <thead class="thead">
@@ -81,8 +81,7 @@
 
         </table>
     </div>
-    <br>
-    <br>
+  
 
     <div class="container col-12">
         <table>
@@ -95,7 +94,7 @@
                     <th>Temp.</th>
                     <th>Humedad</th>
                     <th>Filtracion</th>
-                    <th>UPS</th>
+                    <th>ups</th>
                     <th>Observaciones</th>
 
 
@@ -111,7 +110,7 @@
                     <td>{{ $bitacora->temperatura}}</td>
                     <td>{{ $bitacora->humedad }}</td>
                     <td>{{ $bitacora->filtracion }}</td>
-                    <td>{{ $bitacora->UPS }}</td>
+                    <td>{{ $bitacora->ups }}</td>
                     <td>{{ $bitacora->observaciones }}</td>
                 </tr>
                 @endforeach

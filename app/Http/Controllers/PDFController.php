@@ -75,7 +75,7 @@ class PDFController extends Controller
 
 
         $bitacoras = DB::select('select *, fecha from bitacoras where agencia = ? and date_format(fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
-        
+
 
         $generador = DB::select('select * from generadors where agencia = ? and date_format(fecha, "%Y-%m") = ?', [$agencia, $mes]);
 
@@ -178,7 +178,7 @@ class PDFController extends Controller
         for ($i = 0; $i < count($datos); $i++) {
             //echo $datos[$i];
             $a = $datos[$i];
-            //$all[] = $con = DB::select('select agencia,encargadoop,temperatura,humedad,filtracion,UPS,generador,observaciones, date_format(fecha, "%d-%m-%Y") as fecha from bitacoras where agencia = ? and date_format(fecha, "%Y-%m") = ?   order by fecha desc', [$a, $mes]);
+            //$all[] = $con = DB::select('select agencia,encargadoop,temperatura,humedad,filtracion,ups,generador,observaciones, date_format(fecha, "%d-%m-%Y") as fecha from bitacoras where agencia = ? and date_format(fecha, "%Y-%m") = ?   order by fecha desc', [$a, $mes]);
 
             //consulta para sacar los names de cada encargado ok para DESPUES
             //$all[] = $con = DB::select('select b.*, u.name from bitacoras as b INNER JOIN users as u ON b.agencia = u.agencia where b.agencia = ? and date_format(fecha, "%Y-%m") = ? order by fecha asc', [$a,$mes]);
@@ -195,12 +195,18 @@ class PDFController extends Controller
 
         if (!empty($all[0])) {
             //SELECT * FROM tu_tabla WHERE date_format(fecha, '%m-%Y') = '12-2005'
-            $pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all', 'rfn', 'mesDesc', 'generador'));
+            //$pdf = PDF::loadView('complebit.PDFReportGeneralBit', compact('all', 'rfn', 'mesDesc', 'generador'));
             //return $pdf->Stream('Reporte.pdf');
-            return $pdf->setPaper('carta', 'landscape')->stream('Reporte_General_bitacoras.pdf');
+            //return $pdf->setPaper('carta', 'landscape')->stream('Reporte_General_bitacoras.pdf');
+
+            return view('complebit.ReportGeneralBit')->with(['all' => $all,'rfn'=>$rfn,'mesDesc'=>$mesDesc,'generador'=>$generador]);
+
         } else {
             return redirect('reportes')->with('mensajeall', 'No se Encontraron Registros');
         }
+
+
+
     }
 
     public function PDFAlertas(Request $request)
@@ -208,15 +214,10 @@ class PDFController extends Controller
 
         $agencia = $request->get('agencia');
 
-        $parametro = DB::select('select * from parametros');
 
-        foreach ($parametro as $pa) {
-            $temmax =  $pa->temmax;
-            $hummax =  $pa->hummax;
-        }
 
-        $bitacoras = DB::select('select *, date_format(fecha, "%d-%m-%Y") as fecha from bitacoras where agencia = ? and (Temperatura > ? or Humedad > ?) order by fecha desc', [$agencia, $temmax, $hummax]);
-        $datosu = DB::select('select distinct name,agencia from bitacoras where 1 = 1 order by fecha desc limit 1');
+        $bitacoras = DB::select('select *, fecha from alertas where agencia = ? order by fecha desc', [$agencia]);
+        $datosu = DB::select('select distinct name,agencia from bitacoras where 1 = 1 and agencia = ? order by fecha desc limit 1', [$agencia]);
 
         //return response()->json($alerta);
         $pdf = PDF::loadView('complebit.PDFAlertas', compact('bitacoras', 'datosu'));
@@ -267,21 +268,21 @@ class PDFController extends Controller
 
     public function PDFindexg(Request $request)
     {
-         //calcula el mes actual
-         $mes = date("Y-m");
+        //calcula el mes actual
+        $mes = date("Y-m");
 
-         setlocale(LC_TIME, "spanish");
-         $fe = $mes;
-         $fe = str_replace("/", "-", $fe);
-         $newDate = date("d-m-Y", strtotime($fe));
-         $mesDesc = strftime("%B de %Y", strtotime($newDate));
+        setlocale(LC_TIME, "spanish");
+        $fe = $mes;
+        $fe = str_replace("/", "-", $fe);
+        $newDate = date("d-m-Y", strtotime($fe));
+        $mesDesc = strftime("%B de %Y", strtotime($newDate));
 
         $generador = DB::select('select distinct agencia, fecha, observaciones, agencia from generadors where MONTH(fecha) = MONTH(date(NOW())) and  1 = 1 order by fecha desc');
-        
 
 
-        
-        $pdf = PDF::loadView('complebit.PDFindexg', compact('generador','mesDesc'));
+
+
+        $pdf = PDF::loadView('complebit.PDFindexg', compact('generador', 'mesDesc'));
         return $pdf->setPaper('carta')->stream('Resumen_generador.pdf');
     }
 }

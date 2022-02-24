@@ -87,7 +87,7 @@ CREATE TABLE `bitacoras` (
   `Temperatura` double NOT NULL,
   `Humedad` double NOT NULL,
   `Filtracion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `UPS` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ups` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Generador` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `Observaciones` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha` date NOT NULL
@@ -97,7 +97,7 @@ CREATE TABLE `bitacoras` (
 -- Volcado de datos para la tabla `bitacoras`
 --
 
-INSERT INTO `bitacoras` (`id`, `agencia`, `encargadoop`, `Temperatura`, `Humedad`, `Filtracion`, `UPS`, `Generador`, `Observaciones`, `fecha`) VALUES
+INSERT INTO `bitacoras` (`id`, `agencia`, `encargadoop`, `Temperatura`, `Humedad`, `Filtracion`, `ups`, `Generador`, `Observaciones`, `fecha`) VALUES
 (1, 'La Paz', 'cmamani', 100, 100, 'no', 'si', 'si', 'so', '2021-09-17'),
 (11, 'La Paz', 'cmamani', 150, 150, 'no', 'si', 'si', 'so', '2021-09-02'),
 (12, 'La Paz', 'cmamani', 150, 150, 'no', 'si', 'si', 'so', '2021-09-02'),

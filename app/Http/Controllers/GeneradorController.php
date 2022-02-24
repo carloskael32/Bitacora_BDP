@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailAlertGenerador;
 use App\Models\Generador;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class GeneradorController extends Controller
 {
@@ -101,6 +103,12 @@ class GeneradorController extends Controller
 
         $datosGenerador = request()->except('_token');
         Generador::insert($datosGenerador);
+
+
+        $adm = DB::select('select email from users where acceso = "yes"');
+        $correo = new EmailAlertGenerador;
+        Mail::to($adm)->send($correo);
+
         return redirect('generador')->with('mensaje','Reporte registrado con Exito..');
     }
 

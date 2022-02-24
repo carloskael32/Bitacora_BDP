@@ -69,7 +69,7 @@
                         <th>Temperatura</th>
                         <th>Humedad</th>
                         <th>Filtracion</th>
-                        <th>UPS</th>
+                        <th>ups</th>
                         <th>Generador</th>
                         <th>Observaciones</th>
                         <th>fecha</th>
@@ -88,7 +88,7 @@
                         <td>{{ $bitacora->temperatura }}</td>
                         <td>{{ $bitacora->humedad }}</td>
                         <td>{{ $bitacora->filtracion }}</td>
-                        <td>{{ $bitacora->UPS }}</td>
+                        <td>{{ $bitacora->ups }}</td>
                         <td>{{ $bitacora->generador }}</td>
                         <td>{{ $bitacora->observaciones }}</td>
                         <td>{{ $bitacora->fecha }}</td>

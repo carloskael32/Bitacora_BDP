@@ -1,18 +1,17 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\RegisterUser;
-use App\Models\Bitacora;
-use Illuminate\Routing\RouteGroup;
-use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\eno\EnoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GeneradorController;
-use App\Http\Controllers\AgenciaController;
+
+use App\Http\Controllers\AlertaController;
 use App\Http\Controllers\PDFGeneradorController;
 use App\Http\Controllers\ParametroController;
 
@@ -77,6 +76,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/bitacora', [BitacoraController::class, 'index'])->name('bitacora');
     Route::get('/alertas', [BitacoraController::class, 'alertas'])->name('alertas');
 
+    //Alertas
+    Route::get('/alertas',[AlertaController::class, 'index'])->name('alertas');
+
+
     //reportes
     Route::get('/reportes', [BitacoraController::class, 'reportes'])->name('reportes');
     Route::get('/reportesge',[GeneradorController::class, 'reportesge'])->name('reportesge');
@@ -121,7 +124,7 @@ Route::group(['middleware' => 'auth'], function () {
      */
 
     //Parametros
-    Route::get('/parametro',[ParametroController::class,'index'])->name('parametro');
+    //Route::get('/parametro',[ParametroController::class,'index'])->name('parametro');
     //Route::get('/parametro/{id}/edit',[ParametroController::class,'edit'])->name('parametro.edit');
     Route::patch('parametro/{id}', [ParametroController::class, 'update'])->name('parametro.update');
 
@@ -129,7 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
 
    //Correo de alertas a Encargados operativos
     Route::get('/emails', function () {
-        return view('emails.EmailAlertParameter');
+        return view('emails.EmailAlertGenerador');
     });
  
 
@@ -150,6 +153,8 @@ Route::get('/reporte general mensual', [PDFController::class, 'PDFAll'])->name('
 Route::get('/Resumen mensual CPD',[PDFController::class,'PDFindexb'])->name('PDFindexb');
 
 Route::get('/Resumen mensual generadores',[PDFController::class,'PDFindexg'])->name('PDFindexg');
+
+
 
 //PDF alertas de temperatura y humedad
 Route::get('/reporte de alertas de parametros', [PDFController::class, 'PDFAlertas'])->name('reportAlert');

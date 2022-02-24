@@ -3071,7 +3071,7 @@
                  * Builds or destroys the wrapper and helper DOM elements.
                  * @param destroy Indicates whether the DOM shall be build or destroyed.
                  */
-                function setupStructureDOM(destroy) {
+                function setupstructureDOM(destroy) {
                     var strParent = 'parent';
                     var classNameResizeObserverHost = 'os-resize-observer-host';
                     var classNameTextareaElementFull = _classNameTextareaElement + _strSpace + _classNameTextInherit;
@@ -3230,7 +3230,7 @@
                  * Adds or removes all wrapper elements interactivity events.
                  * @param destroy Indicates whether the Events shall be added or removed.
                  */
-                function setupStructureEvents() {
+                function setupstructureEvents() {
                     var textareaKeyDownRestrictedKeyCodes = [
                         112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 123,    //F1 to F12
                         33, 34,                                                   //page up, page down
@@ -3371,7 +3371,7 @@
                  * Builds or destroys all scrollbar DOM elements (scrollbar, track, handle)
                  * @param destroy Indicates whether the DOM shall be build or destroyed.
                  */
-                function setupScrollbarsDOM(destroy) {
+                function setupscrollbarsDOM(destroy) {
                     var selectOrGenerateScrollbarDOM = function (isHorizontal) {
                         var scrollbarClassName = isHorizontal ? _classNameScrollbarHorizontal : _classNameScrollbarVertical;
                         var scrollbar = selectOrGenerateDivByClass(_classNameScrollbar + _strSpace + scrollbarClassName, true);
@@ -3433,7 +3433,7 @@
                  * Initializes all scrollbar interactivity events. (track and handle dragging, clicking, scrolling)
                  * @param isHorizontal True if the target scrollbar is the horizontal scrollbar, false if the target scrollbar is the vertical scrollbar.
                  */
-                function setupScrollbarEvents(isHorizontal) {
+                function setupscrollbarEvents(isHorizontal) {
                     var scrollbarVars = getScrollbarVars(isHorizontal);
                     var scrollbarVarsInfo = scrollbarVars._info;
                     var insideIFrame = _windowElementNative.top !== _windowElementNative;
@@ -3918,7 +3918,7 @@
                  * Builds or destroys the scrollbar corner DOM element.
                  * @param destroy Indicates whether the DOM shall be build or destroyed.
                  */
-                function setupScrollbarCornerDOM(destroy) {
+                function setupscrollbarCornerDOM(destroy) {
                     _scrollbarCornerElement = _scrollbarCornerElement || selectOrGenerateDivByClass(_classNameScrollbarCorner, true);
 
                     if (!destroy) {
@@ -3939,7 +3939,7 @@
                 /**
                  * Initializes all scrollbar corner interactivity events.
                  */
-                function setupScrollbarCornerEvents() {
+                function setupscrollbarCornerEvents() {
                     var insideIFrame = _windowElementNative.top !== _windowElementNative;
                     var mouseDownPosition = {};
                     var mouseDownSize = {};
@@ -4584,9 +4584,9 @@
                         remove(_sizeAutoObserverElement);
 
                     //remove all generated DOM
-                    setupScrollbarsDOM(true);
-                    setupScrollbarCornerDOM(true);
-                    setupStructureDOM(true);
+                    setupscrollbarsDOM(true);
+                    setupscrollbarCornerDOM(true);
+                    setupstructureDOM(true);
 
                     //remove all generated image load events
                     for (var i = 0; i < _updateOnLoadElms[LEXICON.l]; i++)
@@ -5335,9 +5335,9 @@
                     if (_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y && !_currentPreparedOptions.nativeScrollbarsOverlaid.initialize) {
                         dispatchCallback('onInitializationWithdrawn');
                         if (_domExists) {
-                            setupStructureDOM(true);
-                            setupScrollbarsDOM(true);
-                            setupScrollbarCornerDOM(true);
+                            setupstructureDOM(true);
+                            setupscrollbarsDOM(true);
+                            setupscrollbarCornerDOM(true);
                         }
 
                         _destroyed = true;
@@ -5358,15 +5358,15 @@
                     }
 
                     //build OverlayScrollbars DOM
-                    setupStructureDOM();
-                    setupScrollbarsDOM();
-                    setupScrollbarCornerDOM();
+                    setupstructureDOM();
+                    setupscrollbarsDOM();
+                    setupscrollbarCornerDOM();
 
                     //create OverlayScrollbars events
-                    setupStructureEvents();
-                    setupScrollbarEvents(true);
-                    setupScrollbarEvents(false);
-                    setupScrollbarCornerEvents();
+                    setupstructureEvents();
+                    setupscrollbarEvents(true);
+                    setupscrollbarEvents(false);
+                    setupscrollbarCornerEvents();
 
                     //create mutation observers
                     createMutationObservers();

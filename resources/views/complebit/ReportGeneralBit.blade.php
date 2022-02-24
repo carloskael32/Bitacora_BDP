@@ -12,17 +12,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilospdf.css') }}">
+
+   
 </head>
 
 <body>
 
 
 
-    @for ($i = 0; $i < count($all); $i++)
-     @if ($all[$i] !=null) 
-     @php 
-     $j=0; 
-     @endphp <!-- cabecera -->
+    @for ($i = 0; $i < count($all); $i++) @if ($all[$i] !=null) @php $j=0; @endphp <!-- cabecera -->
         <div class="container col-12">
 
 

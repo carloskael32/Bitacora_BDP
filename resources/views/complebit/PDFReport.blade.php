@@ -128,7 +128,7 @@
                     <th>Temp.</th>
                     <th>Humedad</th>
                     <th>Filtracion</th>
-                    <th>UPS</th>
+                    <th>ups</th>
                     <th>Observaciones</th>
 
 
@@ -144,7 +144,7 @@
                     <td>{{ $bitacora->temperatura }}</td>
                     <td>{{ $bitacora->humedad }}</td>
                     <td>{{ $bitacora->filtracion }}</td>
-                    <td>{{ $bitacora->UPS }}</td>
+                    <td>{{ $bitacora->ups }}</td>
                     <td>{{ $bitacora->observaciones }}</td>
                 </tr>
                 @endforeach

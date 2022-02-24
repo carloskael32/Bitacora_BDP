@@ -114,9 +114,9 @@
                 <div class="row justify-content-center">
                     <div class="col-md">
                         <div class="form-group">
-                            <label for="UPS">UPS</label>
+                            <label for="ups">ups</label>
                             <br>
-                            <select class="form-control" name="UPS">
+                            <select class="form-control" name="ups">
                                 <option value="Fuera de linea">Fuera de linea</option>
                                 <option value="En linea" selected>En linea</option>
                             </select>

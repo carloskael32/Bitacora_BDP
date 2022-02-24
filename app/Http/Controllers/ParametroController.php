@@ -24,11 +24,11 @@ class ParametroController extends Controller
         return view('bitacora.index', $datos);
         */
 
-        $parametro = DB::select('select * from parametros');
+/*         $parametro = DB::select('select * from parametros');
 
 
         //return view('bitacora.bitacora', $datos);
-        return view('complebit.alert')->with(['parametro' => $parametro]);
+        return view('complebit.alert')->with(['parametro' => $parametro]); */
     }
 
     /**

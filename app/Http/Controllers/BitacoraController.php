@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\EmailAlert;
+use App\Mail\EmailAlertParameter;
+use App\Models\Alerta;
 use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -51,19 +53,7 @@ class BitacoraController extends Controller
     public function alertas()
     {
 
-        $parametro = DB::select('select * from parametros');
-        //GENERADOR DE ALERTAS
-
-        foreach ($parametro as $pa) {
-            $temmax =  $pa->temmax;
-            $hummax =  $pa->hummax;
-        }
-
-
-
-        $fc = date("Y-m");
-        $datos = DB::select('select * from bitacoras where date_format(fecha, "%Y-%m") = ? and (Temperatura > ? or Humedad > ?)', [$fc, $temmax, $hummax]);
-        return view('complebit.alert')->with(['bitacoras' => $datos, 'parametro' => $parametro]);
+       
     }
 
     public function reportes()
@@ -151,7 +141,7 @@ class BitacoraController extends Controller
             'Temperatura' => 'required|string|max:50',
             'Humedad' => 'required|string|max:50',
             'Filtracion' => 'required|string|max:50',
-            'UPS' => 'required|string|max:50',
+            'ups' => 'required|string|max:50',
             'Generador' => 'required|string|max:50',
             'Observaciones' => 'required|string|max:100',
             'fecha' => 'required|date|max:50',
@@ -167,12 +157,12 @@ class BitacoraController extends Controller
         Bitacora::insert($datosBitacora);
 
 
-        //Notificacion
+        //Correo de Alerta
 
         $temperatura = $request->get('Temperatura');
         $humedad = $request->get('Humedad');
         $filtracion = $request->get('Filtracion');
-        $ups = $request->get('UPS');
+        $ups = $request->get('ups');
         $gen = $request->get('Generador');
 
         $parametro = DB::select('select * from parametros');
@@ -184,8 +174,10 @@ class BitacoraController extends Controller
    
         if ($temperatura >= $temmax or $humedad >= $hummax or $filtracion != 'No' or $ups != 'En linea' or $gen != 'En linea' ) {
 
+            $datosBitacora = request()->except('_token','name');
+            Alerta::insert($datosBitacora);
             $adm = DB::select('select email from users where acceso = "yes"');
-            $correo = new EmailAlert;
+            $correo = new EmailAlertParameter;
             Mail::to($adm)->send($correo);
             //Notification::route('mail', $adm)->notify(new NotiBit('CPD'));
             //$user = User::find(1);
