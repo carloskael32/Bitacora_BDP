@@ -199,14 +199,10 @@ class PDFController extends Controller
             //return $pdf->Stream('Reporte.pdf');
             //return $pdf->setPaper('carta', 'landscape')->stream('Reporte_General_bitacoras.pdf');
 
-            return view('complebit.ReportGeneralBit')->with(['all' => $all,'rfn'=>$rfn,'mesDesc'=>$mesDesc,'generador'=>$generador]);
-
+            return view('complebit.ReportGeneralBit')->with(['all' => $all, 'rfn' => $rfn, 'mesDesc' => $mesDesc, 'generador' => $generador]);
         } else {
             return redirect('reportes')->with('mensajeall', 'No se Encontraron Registros');
         }
-
-
-
     }
 
     public function PDFAlertas(Request $request)
@@ -216,7 +212,7 @@ class PDFController extends Controller
 
 
 
-        $bitacoras = DB::select('select *, fecha from alertas where agencia = ? order by fecha desc', [$agencia]);
+        $bitacoras = DB::select('select * from alertas where agencia = ? order by fecha desc', [$agencia]);
         $datosu = DB::select('select distinct name,agencia from bitacoras where 1 = 1 and agencia = ? order by fecha desc limit 1', [$agencia]);
 
         //return response()->json($alerta);
@@ -261,7 +257,6 @@ class PDFController extends Controller
 
         $rfn = DB::select('select agencia,COUNT(agencia) as total,  CONCAT(ROUND((COUNT(agencia)/?*100),0),"%") as porcentaje from bitacoras where date_format(fecha, "%Y-%m") = ? group by agencia order by total desc', [$dias, $mes]);
 
-
         $pdf = PDF::loadView('complebit.PDFindexb', compact('rfn', 'mesDesc'));
         return $pdf->setPaper('carta')->stream('Resumen_bitacora.pdf');
     }
@@ -284,5 +279,49 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('complebit.PDFindexg', compact('generador', 'mesDesc'));
         return $pdf->setPaper('carta')->stream('Resumen_generador.pdf');
+    }
+
+    public function ResumenCG(Request $request)
+    {
+
+        // calcula los dias de cada mes sin los domingos
+
+
+        $starDate = new DateTime();
+        $starDate->modify('first day of this month');
+
+        $ct = 0;
+        $cd = 0;
+        $endDate = new DateTime();
+        $endDate->modify('last day of this month');
+        while ($starDate <= $endDate) {
+            if ($starDate->format('l') == 'Sunday') {
+                //echo $starDate->format('y-m-d (D)') . "<br/>";
+                $cd++;
+            }
+            $starDate->modify("+1 days");
+            $ct++;
+        }
+        $dias = $ct - $cd;
+
+        //Obtener mes 
+        $mes = $request->get('mes');
+
+        setlocale(LC_TIME, "spanish");
+        $fe = $mes;
+        $fe = str_replace("/", "-", $fe);
+        $newDate = date("d-m-Y", strtotime($fe));
+        $mesDesc = strftime("%B de %Y", strtotime($newDate));
+
+
+
+
+        $rfn = DB::select('select agencia,COUNT(agencia) as total,  CONCAT(ROUND((COUNT(agencia)/?*100),0),"%") as porcentaje from bitacoras where date_format(fecha, "%Y-%m") = ? group by agencia order by total desc', [$dias, $mes]);
+        $generador = DB::select('select distinct agencia, fecha, observaciones, agencia from generadors where date_format(fecha, "%Y-%m") = ? and  1 = 1 order by fecha desc',[$mes]);
+
+
+        $pdf = PDF::loadView('complebit.ResumenCG', compact('generador', 'mesDesc','rfn'));
+        return $pdf->setPaper('carta')->stream('Resumen_cpd_generador.pdf');
+       
     }
 }

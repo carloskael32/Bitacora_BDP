@@ -99,7 +99,7 @@
                             <form action="{{ route('reportAlert')}}" target="_blank" method="GET">
 
                                 <input name="agencia" type="hidden" class="form-control" id="formGroupExampleInput" value="{{ $bitacora->agencia}}">
-                                <input class="btn btn-sm btn-flat btn-info bg-gradient-info" type="submit" value="ver registros">
+                                <input class=" btn-xs btn-flat btn-primary bg-gradient-primary" type="submit" value="ver registros">
 
 
                             </form>

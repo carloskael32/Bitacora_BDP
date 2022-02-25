@@ -15,7 +15,8 @@
 
             <div class="card text-center shadow-lg ">
                 <div class="card-header bg-light">
-                    <h2> <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesion </h2>
+                    
+                    <img src="{{asset('/img/logo.png')}}"  width="200" alt="">
                 </div>
                 <div class="card-body">
 
@@ -25,7 +26,7 @@
                         <div class="form-floating mb-3">
                             <input type="text" name="user" class="form-control" id="floatingInput" placeholder="name@example.com" required autocomplete="name" autofocus>
 
-                            <label for="floatingInput"><i class="bi bi-person-circle"></i> Name de usuario</label>
+                            <label for="floatingInput"><i class="bi bi-person-circle"></i> Nombre de usuario</label>
                         </div>
 
                         <div class="form-floating mb-3">
@@ -49,7 +50,7 @@
 
                         <div class="md-2 ">
                             <button type="submit" class="btn btn-primary btn-sm ">
-                                ingresar
+                            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesion 
                             </button>
                         </div>
 

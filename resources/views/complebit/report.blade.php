@@ -30,13 +30,14 @@ $datos = Arr::pluck($meses,'result','mes');
                     @if (Auth::user()->acceso == "yes")
                     <div>
 
+                        <!-- Resumen general segun el mes de cpd y generador  -->
                         <div class="card border border-cyan">
                             <div class="card-head text-center bg-cyan p-2">
-                                reporte mensual de todas las agencias
+                               Resumen general por mes 
                             </div>
                             <div class="card-body">
                                 <!-- Generar reporte general  -->
-                                <form action="{{ route('PDFAll')}}" target="_blank" method="GET">
+                                <form action="{{ route('PDFResumen')}}" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');" method="GET">
 
                                     <div class="mb-3">
 
@@ -53,13 +54,44 @@ $datos = Arr::pluck($meses,'result','mes');
                                     @endif
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                        <input class="btn btn-sm btn-flat  bg-gradient-info" type="submit" value="Generar Reporte">
+                                        <input class="btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                     </div>
 
                                 </form>
                             </div>
                         </div>
-                   
+
+
+                        <div class="card border border-cyan">
+                            <div class="card-head text-center bg-cyan p-2">
+                                reporte mensual de todas las agencias
+                            </div>
+                            <div class="card-body">
+                                <!-- Generar reporte general  -->
+                                <form action="{{ route('PDFAll')}}" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');" method="GET">
+
+                                    <div class="mb-3">
+
+                                        <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
+                                    </div>
+                                    <!-- Alerta de consultas por mes en todas las agencias -->
+                                    @if(Session::has('mensajeall'))
+                                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                                        <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensajeall')}}</b>
+                                        <button type="button" class="close bg-danger" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @endif
+
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                        <input class="btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
 
 
                         <!-- Genera reportes segun agencia y mes -->
@@ -70,7 +102,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                 Reportes por agencia al mes
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('PDFBitacorareporte')}}" method="GET">
+                                <form action="{{ route('PDFBitacorareporte')}}" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');" method="GET">
                                     <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
                                     <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
                                     <datalist name="agencia" id="datalistOptions">
@@ -98,13 +130,13 @@ $datos = Arr::pluck($meses,'result','mes');
 
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                        <input class="btn btn-sm btn-flat  bg-gradient-info" type="submit" value="Generar Reporte">
+                                        <input class="btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                     </div>
 
                                 </form>
                             </div>
                         </div>
-                      
+
 
 
 
@@ -116,7 +148,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                 de fechas
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('PDFBitacorareporte2')}}" target="_blank" method="GET">
+                                <form action="{{ route('PDFBitacorareporte2')}}" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');" method="GET">
                                     <label for="exampleDataList" class="form-label">Selecciones una Agencia: </label>
                                     <input name="agencia" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="buscar..." required>
                                     <datalist name="agencia" id="datalistOptions">
@@ -148,7 +180,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                     @endif
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                        <input class="btn btn-sm btn-flat  bg-gradient-info" type="submit" value="Generar Reporte">
+                                        <input class="btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                     </div>
 
                                 </form>
@@ -194,7 +226,7 @@ $datos = Arr::pluck($meses,'result','mes');
                         </div>
                     </div>
                     @endif
-                   
+
                 </div>
 
 
@@ -207,7 +239,8 @@ $datos = Arr::pluck($meses,'result','mes');
                     <div class="card border border-cyan" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
 
                         <div class="card-head text-center border bg-light p-2">
-                            <h5 class="text-center">Bitacoras registradas el dia Hoy.. <b>{{ date('Y-m-d') }} </b></h5>
+                            <h5 class="text-center">Bitacoras registradas el mes de <b><?php setlocale(LC_ALL, 'spanish');
+                                                                                        echo strftime('%B del %Y'); ?></b></h5>
                         </div>
                         <div class="card-body">
 
@@ -258,13 +291,9 @@ $datos = Arr::pluck($meses,'result','mes');
                                 </table>
                             </div>
                             <hr>
-      <!--                       <div class="pagination justify-content-center">
 
-                                {!! $bitacoras->links() !!}
-
-                            </div> -->
                         </div>
-                     
+
                     </div>
                     @else
 
@@ -953,7 +982,9 @@ $datos = Arr::pluck($meses,'result','mes');
 @stop
 
 @section('css')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
 
 
 @stop

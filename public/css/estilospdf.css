@@ -1,5 +1,6 @@
 @page{
     margin: 0.5cm 0.5cm 0.5cm 0.5cm; 
+    size: landscape;
 }
 
 body{
@@ -20,7 +21,7 @@ font-size: 14px;
     text-align: center;
     line-height: 30px;
 } */
- /* header{
+/*   header{
     position: fixed;
     top: 10px;
     left: 0px;

@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\EmailAlert;
+
 use App\Mail\EmailAlertParameter;
 use App\Models\Alerta;
 use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-//use App\Http\Controllers\Auth;
+
 use Illuminate\Support\Facades\Auth;
 
 
-use App\Models\User;
-use App\Notifications\NotiBit;
-use DateTime;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\Mail;
-//use Illuminate\Support\Facades\Auth as FacadesAuth;
-use Illuminate\Support\Facades\Notification;
 
-//use Illuminate\Support\Facades\Notification;
+use DateTime;
+
+use Illuminate\Support\Facades\Mail;
+
 
 class BitacoraController extends Controller
 {
@@ -105,8 +101,9 @@ class BitacoraController extends Controller
             $hoy = date('Y-m-d');
 
             $ag = DB::select('select distinct agencia from bitacoras where 1=1');
-            $datos = DB::table('bitacoras')->where('fecha', '=', $hoy)->orderByDesc('id')->paginate(21);
-            //return response()->json($datos);
+            $fc = date("Y-m");
+            $datos = DB::select('select * from bitacoras where date_format(fecha, "%Y-%m") = ? order by fecha desc',[$fc]);
+                //return response()->json($datos);
             return view('complebit.report')->with(['bitacoras' => $datos, 'agencias' => $ag]);
         }
 

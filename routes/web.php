@@ -154,6 +154,7 @@ Route::get('/Resumen mensual CPD',[PDFController::class,'PDFindexb'])->name('PDF
 
 Route::get('/Resumen mensual generadores',[PDFController::class,'PDFindexg'])->name('PDFindexg');
 
+Route::get('/Resumen mensual CPD - Generadores',[PDFController::class,'ResumenCG'])->name('PDFResumen');
 
 
 //PDF alertas de temperatura y humedad
