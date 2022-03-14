@@ -98,10 +98,12 @@ class BitacoraController extends Controller
             return view('complebit.report')->with(['meses' => $meses, 'dmes' => $dmes]);
         } else {
             //ADMINISTRADOR
-            $hoy = date('Y-m-d');
+            //$hoy = date('Y-m-d');
 
-            $ag = DB::select('select distinct agencia from bitacoras where 1=1');
+            $ag = DB::select('select distinct agencia from users where 1=1 and acceso = "no"');
+            //return response()->json($ag);
             $fc = date("Y-m");
+
             $datos = DB::select('select * from bitacoras where date_format(fecha, "%Y-%m") = ? order by fecha desc',[$fc]);
                 //return response()->json($datos);
             return view('complebit.report')->with(['bitacoras' => $datos, 'agencias' => $ag]);

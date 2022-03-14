@@ -1,3 +1,11 @@
+<style>
+    .sidebar-dark-white{
+      background: #1769aa !important;
+    }
+    .navbar-blue{
+        background: #1769aa !important;
+    }
+</style>
 <?php
 
 return [
@@ -46,7 +54,7 @@ return [
     */
 
     'logo' => '<b>Bitacora</b> BDP',
-    'logo_img' => '/img/icono.png',
+    'logo_img' => '/img/archivo.png',
     'logo_img_class' => 'brand-image img-circle elevation-4',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -127,9 +135,10 @@ return [
     'classes_content_wrapper' => '/css/wrapper.css',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-cyan elevation-4',
+    'classes_sidebar' => 'sidebar-dark-white elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-cyan navbar-dark ',
+    //'classes_topnav' => 'navbar-cyan navbar-dark ',
+    'classes_topnav' => 'navbar-blue navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 

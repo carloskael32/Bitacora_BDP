@@ -60,8 +60,7 @@
         <img src="{{asset('/img/logo.png')}}"  width="250" alt="">
 
         <hr>
-        <h2>Buenos Dias Estimad@.</h2>
-        <br>
+      
         <p style=" font-size: 18px;">Se han registrado irregularidades en los parametros de algunas agencias </p>
         
         <p class="title">entre en el siguiente enlace para ver mas detalles.

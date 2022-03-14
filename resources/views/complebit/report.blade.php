@@ -32,7 +32,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                         <!-- Resumen general segun el mes de cpd y generador  -->
                         <div class="card border border-cyan">
-                            <div class="card-head text-center bg-cyan p-2">
+                            <div class="card-head p-2">
                                Resumen general por mes 
                             </div>
                             <div class="card-body">
@@ -40,13 +40,12 @@ $datos = Arr::pluck($meses,'result','mes');
                                 <form action="{{ route('PDFResumen')}}" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');" method="GET">
 
                                     <div class="mb-3">
-
                                         <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                     </div>
                                     <!-- Alerta de consultas por mes en todas las agencias -->
-                                    @if(Session::has('mensajeall'))
+                                    @if(Session::has('mensajegcg'))
                                     <div class="alert alert-warning alert-dismissible text-center" role="alert">
-                                        <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensajeall')}}</b>
+                                        <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensajegcg')}}</b>
                                         <button type="button" class="close bg-danger" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -54,16 +53,15 @@ $datos = Arr::pluck($meses,'result','mes');
                                     @endif
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                        <input class="btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
+                                        <input class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                     </div>
-
                                 </form>
                             </div>
                         </div>
 
 
                         <div class="card border border-cyan">
-                            <div class="card-head text-center bg-cyan p-2">
+                            <div class="card-head p-2">
                                 reporte mensual de todas las agencias
                             </div>
                             <div class="card-body">
@@ -85,7 +83,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                     @endif
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                        <input class="btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
+                                        <input class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                     </div>
 
                                 </form>
@@ -98,7 +96,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
 
                         <div class="card border border-cyan">
-                            <div class="card-head text-center bg-cyan p-2">
+                            <div class="card-head p-2">
                                 Reportes por agencia al mes
                             </div>
                             <div class="card-body">
@@ -130,7 +128,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                        <input class="btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
+                                        <input class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                     </div>
 
                                 </form>
@@ -142,7 +140,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                         <!-- GENERA REPORTE CON INTERVALOS DE fechaS-->
                         <div class="card border border-cyan">
-                            <div class="card-head text-center bg-cyan p-2">
+                            <div class="card-head p-2">
                                 Reporte con Intervalos
                                 <br>
                                 de fechas
@@ -180,7 +178,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                     @endif
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                        <input class="btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
+                                        <input class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                     </div>
 
                                 </form>
@@ -193,7 +191,7 @@ $datos = Arr::pluck($meses,'result','mes');
 
                     <div class="card border border-cyan">
 
-                        <div class="card-head text-center bg-cyan p-2">
+                        <div class="card-head p-2">
                             Reporte por Intervalos
                             <br>
                             de fechas
@@ -214,7 +212,7 @@ $datos = Arr::pluck($meses,'result','mes');
                                     <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                 </div>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                    <input class="btn btn-sm btn-flat  bg-gradient-info" type="submit" value="Generar Reporte">
+                                    <input class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                 </div>
                             </form>
                         </div>
@@ -236,7 +234,7 @@ $datos = Arr::pluck($meses,'result','mes');
                     @auth
                     @if (Auth::user()->acceso == "yes")
 
-                    <div class="card border border-cyan" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
+                    <div class="card border border-cyan">
 
                         <div class="card-head text-center border bg-light p-2">
                             <h5 class="text-center">Bitacoras registradas el mes de <b><?php setlocale(LC_ALL, 'spanish');
@@ -252,14 +250,14 @@ $datos = Arr::pluck($meses,'result','mes');
                                         <tr>
                                             <th>#</th>
                                             <th>Agencia</th>
-                                            <th>encargadoop.</th>
+                                            <th>encargado_op.</th>
                                             <th>Temperatura</th>
                                             <th>Humedad</th>
                                             <th>Filtracion</th>
                                             <th>ups</th>
                                             <th>Generador</th>
                                             <th>Observaciones</th>
-                                            <th>fecha</th>
+                                            <th>fecha_hora</th>
 
                                         </tr>
                                     </thead>
@@ -341,17 +339,21 @@ $datos = Arr::pluck($meses,'result','mes');
 
                                 @else
                                 <div class="col-md-3">
-                                    <div class="card border mx-sm-1 p-3">
+                                    <div class="card border mx-sm-1 p-2">
                                         <div class="progress" style="height: 25px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%">0%</div>
                                         </div>
                                         <div class="text-danger text-center mt-3">
                                             <spam><b>Enero</b></spam>
                                         </div>
-                                        <div class="text-danger text-center mt-2">
-                                            <h5>No se envio ningun reporte.!! </h5>
+                                        <div class="text-danger text-center mt-4">
+                                            <spam>No se envio ningun reporte.!! </spam>
                                         </div>
                                     </div>
+
+                                   
+
+
                                 </div>
                                 @endif
 
@@ -982,7 +984,39 @@ $datos = Arr::pluck($meses,'result','mes');
 @stop
 
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<style>
+    table {
+        text-align: center;
+        font-size: 12px;
+
+    }
+
+    th {
+        background-color: #3498DB;
+        color: white;
+
+    }
+
+    .card {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
+    .card-head{
+        text-align: center;
+        color: white;
+        background-color: #3498DB;
+
+    }
+    .custom-select{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
+</style>
+
+
+
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
 
@@ -1000,7 +1034,7 @@ $datos = Arr::pluck($meses,'result','mes');
     $('#bitacoras').DataTable({
         "language": {
             "lengthMenu": "Mostrar " +
-                `<select class="custom-select custom-select-sm form-control form-control-sm"> 
+                `<select  class="custom-select custom-select-sm form-control form-control-sm"> 
             <option value ='10' >10</option>
             <option value ='25' >25</option>
             <option value ='50' >50</option>

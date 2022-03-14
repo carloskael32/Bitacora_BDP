@@ -71,7 +71,7 @@ class PDFController extends Controller
 
 
         $resumen = DB::select('select  ROUND(AVG(temperatura),2) as pTemperatura, ROUND(AVG(Humedad),2) as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
-        $datosu = DB::select('select distinct name,agencia from users where 1=1 and agencia = ? order by id desc limit 1 ', [$agencia]);
+        $datosu = DB::select('select  name,agencia from users where 1=1 and agencia = ? order by id desc limit 1 ', [$agencia]);
 
 
         $bitacoras = DB::select('select *, fecha from bitacoras where agencia = ? and date_format(fecha, "%Y-%m") = ? order by id desc', [$agencia, $mes]);
@@ -113,7 +113,7 @@ class PDFController extends Controller
 
 
         $resumen = DB::select('select  CONCAT(ROUND(AVG(temperatura))," %") as pTemperatura, CONCAT(ROUND(AVG(Humedad))," %") as pHumedad from bitacoras where agencia = ? GROUP BY agencia', [$agencia]);
-        $datosu = DB::select('select distinct name,agencia from users where 1=1 and agencia = ? order by id desc limit 1 ', [$agencia]);
+        $datosu = DB::select('select name,agencia from users where 1=1 and agencia = ? order by id desc limit 1 ', [$agencia]);
 
         $bitacoras = DB::select('select *,fecha from bitacoras where agencia = ? and fecha BETWEEN ? AND ? order by id asc', [$agencia, $ini, $fin]);
 

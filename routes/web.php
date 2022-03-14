@@ -142,7 +142,7 @@ Route::group(['middleware' => 'auth'], function () {
 //PDF Dom
 //Route::get('/pdf', [PDFController::class, 'PDF'])->name('descargarpdf');
 
-Route::get('/reportBit', [PDFController::class, 'PDFBit'])->name('reportBit');
+Route::get('/Reporte', [PDFController::class, 'PDFBit'])->name('reportBit');
 
 Route::get('/Reporte mensual por agencia', [PDFController::class, 'PDFBitacora'])->name('PDFBitacorareporte');
 

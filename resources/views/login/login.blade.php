@@ -14,12 +14,15 @@
             <br><br>
 
             <div class="card text-center shadow-lg ">
-                <div class="card-header bg-light">
+<!--
+                <div class="card-header">
                     
-                    <img src="{{asset('/img/logo.png')}}"  width="200" alt="">
                 </div>
+-->
                 <div class="card-body">
-
+                    <img src="{{asset('/img/logo.png')}}"  width="200" alt="">
+<br>
+<br>
                     <form method="POST" action="">
                         @csrf
 
@@ -48,7 +51,7 @@
                      
                         @enderror
 
-                        <div class="md-2 ">
+                        <div class="md-2">
                             <button type="submit" class="btn btn-primary btn-sm ">
                             <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesion 
                             </button>
@@ -61,11 +64,6 @@
                     Derechos reservados 2021
                 </div>
             </div>
-
-
-
-
-
         </div>
     </div>
 </div>

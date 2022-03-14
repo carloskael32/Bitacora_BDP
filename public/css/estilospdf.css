@@ -43,7 +43,7 @@ th {
     background-color: #221a96;
     color: white;
     text-align: center;
-    border: 1px solid black;
+   /*  border: 1px solid black; */
 }
 .page-break {
     page-break-after: always;
