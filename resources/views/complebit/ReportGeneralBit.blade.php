@@ -127,6 +127,7 @@
             <div>
                 <table>
                     <thead class="thead">
+                      <br>
                         <tr>
                             <th colspan="7">Reporte Generadores</th>
                         </tr>

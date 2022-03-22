@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\facade as PDF;
+// alternativa  use PDF;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -125,7 +126,7 @@ class PDFController extends Controller
             $pdf = PDF::loadView('complebit.PDFReport', compact('bitacoras', 'resumen', 'datosu', 'mesini', 'mesfin', 'vr', 'generador'));
             return $pdf->setPaper('carta', 'landscape')->Stream('Reporte.pdf');
         } else {
-            return redirect('reportes')->with('mensaje2', 'no se encontraron registros');
+            return redirect('reportes')->with('mensaje22', 'no se encontraron registros');
         }
     }
 
@@ -213,7 +214,7 @@ class PDFController extends Controller
 
 
         $bitacoras = DB::select('select * from alertas where agencia = ? order by fecha desc', [$agencia]);
-        $datosu = DB::select('select distinct name,agencia from bitacoras where 1 = 1 and agencia = ? order by fecha desc limit 1', [$agencia]);
+        $datosu = DB::select('select name,agencia from bitacoras where agencia = ? order by fecha desc limit 1', [$agencia]);
 
         //return response()->json($alerta);
         $pdf = PDF::loadView('complebit.PDFAlertas', compact('bitacoras', 'datosu'));

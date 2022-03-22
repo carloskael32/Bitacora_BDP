@@ -67,25 +67,24 @@ $datos = Arr::pluck($meses,'result','mes');
                             <div class="card-body">
                                 <!-- Generar reporte general  -->
                                 <form action="{{ route('PDFAll')}}" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');" method="GET">
-
                                     <div class="mb-3">
-
                                         <input name="mes" type="month" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                     </div>
                                     <!-- Alerta de consultas por mes en todas las agencias -->
                                     @if(Session::has('mensajeall'))
-                                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
                                         <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensajeall')}}</b>
                                         <button type="button" class="close bg-danger" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                        </button>                                        
+                                    </div>                            
+                                    
                                     @endif
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                         <input class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -211,9 +210,19 @@ $datos = Arr::pluck($meses,'result','mes');
                                     <label for="formGroupExampleInput" class="form-label">Hasta: </label>
                                     <input name="date2" type="date" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" required>
                                 </div>
+                                @if(Session::has('mensaje22'))
+                                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                                        <b> <i class="fas fa-exclamation-circle"></i> {{ Session::get('mensaje22')}}</b>
+                                        <button type="button" class="close bg-danger" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @endif
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                     <input class="btn btn-sm btn-flat btn-primary bg-gradient-primary" type="submit" value="Generar Reporte">
                                 </div>
+
+                            
                             </form>
                         </div>
 
@@ -1054,4 +1063,5 @@ $datos = Arr::pluck($meses,'result','mes');
         }
     });
 </script>
+
 @stop
