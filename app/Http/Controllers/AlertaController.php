@@ -23,7 +23,8 @@ class AlertaController extends Controller
             $hummax =  $pa->hummax;
         }
         //$fc = date("Y-m");
-        $datos = DB::select('select * from alertas order by fecha desc');
+        $datos = DB::select('select * from alertas where MONTH(fecha) = MONTH(date(NOW())) order by fecha desc');
+        //return response()->json($datos);
         return view('complebit.alert')->with(['bitacoras' => $datos, 'parametro' => $parametro]);
     }
 

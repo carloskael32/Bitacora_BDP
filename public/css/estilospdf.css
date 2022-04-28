@@ -49,3 +49,10 @@ th {
     page-break-after: always;
 }
 
+
+.sidebar-dark-white{
+  background: #1769aa !important;
+}
+.navbar-blue{
+    background: #1769aa !important;
+}

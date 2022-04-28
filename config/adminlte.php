@@ -1,13 +1,13 @@
-<style>
-    .sidebar-dark-white{
-      background: #1769aa !important;
-    }
-    .navbar-blue{
-        background: #1769aa !important;
-    }
-</style>
 <?php
-
+echo"
+<style>
+.sidebar-dark-white{
+  background: #1769aa !important;
+}
+.navbar-blue{
+    background: #1769aa !important;
+}
+</style>";
 return [
 
     /*
@@ -21,6 +21,8 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
+
+
 
     'title' => '',
     'title_prefix' => '',
@@ -128,11 +130,12 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-
+    
+ 
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_content_wrapper' => '/css/wrapper.css',
+    'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-white elevation-4',

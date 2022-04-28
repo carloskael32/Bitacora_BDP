@@ -29,14 +29,10 @@ class GeneradorController extends Controller
         */
 
         //$datos = DB::table('generadors')->where('agencia', '=', $user)->orderByDesc('id');
-        $datos = DB::select('select * from generadors where agencia = ? and year(fecha) = YEAR(NOW()) order by fecha desc',[$age]);
+        $datos = DB::select('select * from generadors where agencia = ? and year(fecha) = YEAR(NOW()) order by fecha desc', [$age]);
 
         //return view('generador.index', $datos);
         return view('generador.index')->with(['generador' => $datos]);
-
-
-
-      
     }
 
     public function reportesge()
@@ -46,23 +42,21 @@ class GeneradorController extends Controller
             //users
             $agencia = Auth::user()->agencia;
             //$meses = DB::select('select MONTH(fecha) as mes, count(agencia) as result from generadors where agencia = ? group by mes', [$agencia]);
-            $meses = DB::select('select MONTH(fecha) as mes ,fecha from generadors where agencia = ? and year(fecha) = YEAR(NOW())  order by mes asc ',[$agencia]);
+            $meses = DB::select('select MONTH(fecha) as mes ,fecha from generadors where agencia = ? and year(fecha) = YEAR(NOW())  order by mes asc ', [$agencia]);
             //$meses = DB::select('select MONTH(fecha) as mes, count(agencia) as result from bitacoras where agencia = ? and year(fecha) = YEAR(NOW()) group by mes', [$agencia]);
             //return response()->json($meses);
             return view('complebit.reportge')->with(['meses' => $meses]);
-           
         } else {
             //administrador
             $ag = DB::select('select distinct agencia from generadors where 1=1');
             //$datos['generador'] = DB::table('bitacoras')->where('fecha', '=', date(now()))->orderByDesc('id')->paginate(20);
             //$generador = DB::select('select * from generadors where MONTH(fecha) = MONTH(date(NOW())) order by fecha desc');
             $fecha = date("n");
-           
-            
+
+
             $generador = DB::table('generadors')->whereMonth('fecha', '=', $fecha)->orderByDesc('id')->paginate(20);
             //return $generador;
             return view('complebit.reportge')->with(['agencias' => $ag, 'generador' => $generador]);
-            
         }
     }
 
@@ -75,7 +69,10 @@ class GeneradorController extends Controller
      */
     public function create()
     {
-        return view('generador.create');
+        $age = Auth::user()->agencia;
+
+        $datos = DB::select('select * from generadors where agencia = ? order by fecha desc limit 1', [$age]);
+        return view('generador.create')->with(['generador' => $datos]);
     }
 
     /**
@@ -91,25 +88,28 @@ class GeneradorController extends Controller
 
             'tiempo' => 'required|string|max:100',
             'marca' => 'required|string|max:100',
-            
-             
+
+
         ];
         $mensaje = [
             'required' => 'El :attribute es requerido'
         ];
 
-        $this->validate($request, $campos, $mensaje); 
+        $this->validate($request, $campos, $mensaje);
 
 
         $datosGenerador = request()->except('_token');
         Generador::insert($datosGenerador);
 
+        //Correo de Alerta
+        $obs = $request->get('observaciones');
 
-        $adm = DB::select('select email from users where acceso = "yes"');
-        $correo = new EmailAlertGenerador;
-        Mail::to($adm)->send($correo);
-
-        return redirect('generador')->with('mensaje','Reporte registrado con Exito..');
+        if ($obs != 'Sin Observaciones') {
+            $adm = DB::select('select email from users where acceso = "yes"');
+            $correo = new EmailAlertGenerador;
+            Mail::to($adm)->send($correo);
+        }
+        return redirect('generador')->with('mensaje', 'Reporte registrado con Exito..');
     }
 
     /**

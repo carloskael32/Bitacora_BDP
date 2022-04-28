@@ -79,12 +79,14 @@
 
                     </tr>
                 </thead>
-
+                @php
+                $a=1;
+                @endphp
                 <tbody>
                     @foreach( $bitacoras as $bitacora)
                     <tr>
 
-                        <td>{{ $bitacora->id }}</td>
+                        <td>{{ $a }}</td>
                         <td>{{ $bitacora->agencia }}</td>
                         <td>{{ $bitacora->encargadoop }}</td>
                         <td>{{ $bitacora->temperatura }}</td>
@@ -108,7 +110,11 @@
                         </td>
 
                     </tr>
+                    @php
+                    $a++;
+                    @endphp
                     @endforeach
+                 
                 </tbody>
 
 

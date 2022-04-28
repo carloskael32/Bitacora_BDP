@@ -21,6 +21,10 @@ class CreateParametrosTable extends Migration
 
             $table->integer('hummin');
             $table->integer('hummax');
+
+            //$table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

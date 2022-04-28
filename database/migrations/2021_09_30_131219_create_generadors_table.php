@@ -16,7 +16,7 @@ class CreateGeneradorsTable extends Migration
         Schema::create('generadors', function (Blueprint $table) {
             $table->id();
             
-            $table->date('fecha');
+            $table->dateTime('fecha');
             $table->integer('tiempo');
             $table->string('marca');
             $table->string('modelo')->nullable();

@@ -95,6 +95,7 @@
                     <th>Humedad</th>
                     <th>Filtracion</th>
                     <th>ups</th>
+                    <th>Generador</th>
                     <th>Observaciones</th>
 
 
@@ -111,6 +112,7 @@
                     <td>{{ $bitacora->humedad }}</td>
                     <td>{{ $bitacora->filtracion }}</td>
                     <td>{{ $bitacora->ups }}</td>
+                    <td>{{ $bitacora->generador}}</td>
                     <td>{{ $bitacora->observaciones }}</td>
                 </tr>
                 @endforeach

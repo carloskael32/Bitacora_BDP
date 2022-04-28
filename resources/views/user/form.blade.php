@@ -4,7 +4,7 @@
 
 
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-light">
 
                 <h5> <b>{{ $modo }} Administradores</b></h5>
             </div>
@@ -104,7 +104,7 @@
             </div>
 
             <br>
-            <div class="card-footer bg-light">
+            <div class="card-footer bg-light text-center">
                 BDP - SAM
             </div>
         </div>
