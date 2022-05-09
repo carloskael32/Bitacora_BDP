@@ -35,9 +35,11 @@
             cursor: pointer;
             width: 100%;
             font-size: 18px;
+        
+            
         }
 
-        a {
+        a{
             text-decoration: none;
             font-size: 22px;
             color: black;
@@ -68,9 +70,8 @@
 
         
             
-      
 
-        <a href="{{url('/alertas')}}" style="color:black;" ><button>Mas Informacion</button></a>
+        <a href="{{url('/alertas')}}" style="color:black;"><button><u>Ver mas detalles</u></button></a>
 
 
 

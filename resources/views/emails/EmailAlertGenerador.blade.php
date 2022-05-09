@@ -57,22 +57,19 @@
 
 
     <div class="card">
-        <img src="{{asset('/img/logo.png')}}"  width="250" alt="">
+        <img src="{{asset('/img/logo.png')}}" width="250" alt="">
 
         <hr>
         <h2>Buenos Dias Estimad@.</h2>
         <br>
 
-        
-        <p style=" font-size: 18px;">El dia de ayer no realizo el registro de la bitacora del CPD (Centro de Procesamiento de Datos). </p>
 
-        <p class="title">El registro de la bitacora se debe realizar diariamente segun:
-            El Manual de Procedimiento de Infraestructura de Tecnologia de la Informacion
-            <b>- Codigo: </b> 06-A06-01-024
-        </p>
-      
+        <p style=" font-size: 18px;">Se han registrado irregularidades en los generadores en las agencias </p>
 
-        <a href="{{url('/bitacora/create')}}" style="color:black;" ><button>Registrar Bitacora</button></a>
+        <p class="title">entre en el siguiente enlace para ver mas detalles.</p>
+
+
+        <a href="{{url('/home')}}" style="color:black;"><button><u>Ver mas detalles</u></button></a>
 
 
 
@@ -82,4 +79,3 @@
 </body>
 
 </html>
-

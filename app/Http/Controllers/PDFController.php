@@ -212,8 +212,8 @@ class PDFController extends Controller
         $agencia = $request->get('agencia');
 
 
-
-        $bitacoras = DB::select('select * from alertas where agencia = ? order by fecha desc', [$agencia]);
+        $fc = date("Y-m");
+        $bitacoras = DB::select('select * from alertas where agencia = ? and date_format(fecha, "%Y-%m") = ? order by fecha desc', [$agencia,$fc]);
         $datosu = DB::select('select name,agencia from bitacoras where agencia = ? order by fecha desc limit 1', [$agencia]);
 
         //return response()->json($alerta);

@@ -35,12 +35,15 @@
             cursor: pointer;
             width: 100%;
             font-size: 18px;
+          
+        
         }
 
-        a {
+        a{
             text-decoration: none;
             font-size: 22px;
             color: black;
+                
         }
 
         button:hover,
@@ -70,7 +73,7 @@
         </p>
       
 
-        <a href="{{url('/bitacora/create')}}" style="color:black;" ><button>Registrar Bitacora</button></a>
+        <a href="{{url('/bitacora/create')}}" style="color:black;"><button><u>Registrar Bitacora</u></button></a>
 
 
 
